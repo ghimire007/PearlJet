@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyDreamAir - Select Seat</title>
+    <link rel="stylesheet" href="../../components/header.css">
+    <link rel="stylesheet" href="../../components/footer.css">
+    <link rel="stylesheet" href="booking_seat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+
+    <main class="seat-selection-page">
+        <nav class="booking-nav-tabs">
+            <ul>
+                <li><button class="tab-btn active-tab">Book</button></li>
+                <li><button class="tab-btn">Manage</button></li>
+                <li><button class="tab-btn">Upgrade</button></li>
+                <li><button class="tab-btn">Check-in</button></li>
+                <li><button class="tab-btn">Flight Status</button></li>
+            </ul>
+        </nav>
+
+        <section class="flight-info-bar">
+            <div class="info-item">
+                <span>Departure Location</span>
+                <img src="../../../images/location-pin-icon.svg" alt="icon">
+            </div>
+            <div class="info-item">
+                <span>Arrival Location</span>
+                <img src="../../../images/location-pin-icon.svg" alt="icon">
+            </div>
+            <div class="info-item">
+                <span>Departure Date</span>
+                <img src="../../../images/calendar-icon.svg" alt="icon">
+            </div>
+            <div class="info-item">
+                <span>Departure Time</span>
+                <img src="../../../images/time-icon.svg" alt="icon">
+            </div>
+        </section>
+
+        <div class="seat-selection-content">
+            <aside class="selection-controls">
+                <div id="passenger-configuration-summary" class="passenger-module">
+                    <h4>Selected Passengers</h4>
+                    <ul id="passenger-summary-list">
+                        <!-- Passenger items will be dynamically added here by JavaScript -->
+                        <!-- Example of how an item might look (styling via CSS): -->
+                        <!-- 
+                        <li class="passenger-summary-item completed" data-passenger-id="p1">
+                            <span class="status-icon check"></span> 
+                            <span class="passenger-info">Adult 1 <span class="seat-info">4B Upfront</span></span>
+                            <button class="remove-passenger-btn" aria-label="Remove passenger selection">X</button>
+                        </li>
+                        <li class="passenger-summary-item current-config" data-passenger-id="p2">
+                            <span class="status-icon current"></span> 
+                            <span class="passenger-info">Adult 2 <span class="seat-info">Select Seat</span></span>
+                            <button class="remove-passenger-btn" aria-label="Remove passenger selection">X</button>
+                        </li>
+                        -->
+                    </ul>
+                </div>
+
+                <div class="current-passenger-name-module passenger-module">
+                    <h4>Current Passenger Name</h4>
+                    <div class="passenger-name-input">
+                        <label for="current-passenger-name">Name:</label>
+                        <input type="text" id="current-passenger-name" name="current-passenger-name" placeholder="Enter name">
+                    </div>
+                </div>
+
+                <div class="in-flight-services passenger-module">
+                    <h4>Select In-Flight Services</h4>
+                    <label><input type="checkbox" name="meals" data-service="meals"> Meals</label>
+                    <label><input type="checkbox" name="entertainment" data-service="entertainment"> Entertainment</label>
+                    <label><input type="checkbox" name="wifi" data-service="wifi"> Wi-Fi Access</label>
+                    <label><input type="checkbox" name="extra-baggage" data-service="extra-baggage"> Extra Baggage</label>
+                    <label><input type="checkbox" name="priority-boarding" data-service="priority-boarding"> Priority Boarding</label>
+                    <label><input type="checkbox" name="lounge-access" data-service="lounge-access"> Lounge Access</label>
+                </div>
+            </aside>
+
+            <section class="seat-map-area">
+                <div id="passenger-config-details">
+                    <h3 id="current-passenger-info">Configuring for Passenger 1</h3>
+                </div>
+
+                <div class="seat-legend">
+                    <div class="legend-item"><span class="seat-example available"></span> Available</div>
+                    <div class="legend-item"><span class="seat-example emergency-exit"></span> Emergency Exit Seat</div>
+                    <div class="legend-item"><span class="seat-example unavailable"></span> Unavailable</div>
+                </div>
+
+                <div class="seat-map">
+                    <div class="cabin-section business-class">
+                        <h4>Business</h4>
+                        <!-- Business class rows -->
+                        <div class="seat-row" data-row="1">
+                            <div class="seat" data-seat="1A">A</div> <div class="seat" data-seat="1B">B</div>
+                            <div class="aisle"></div>
+                            <div class="seat" data-seat="1C">C</div> <div class="seat" data-seat="1D">D</div>
+                        </div>
+                        <div class="seat-row" data-row="2">
+                            <div class="seat" data-seat="2A">A</div> <div class="seat" data-seat="2B">B</div>
+                            <div class="aisle"></div>
+                            <div class="seat" data-seat="2C">C</div> <div class="seat" data-seat="2D">D</div>
+                        </div>
+                    </div>
+
+                    <div class="cabin-section economy-class">
+                        <h4>Economy</h4>
+                        <!-- Economy class rows - example, more to be added -->
+                        <div class="seat-row-labels">
+                            <span></span><span>A</span><span>B</span><span>C</span><span class="aisle-label"></span><span>D</span><span>E</span><span>F</span>
+                        </div>
+                        <script>
+                            // Updated script to generate economy rows to strictly match the provided image
+                            const economyClassSection = document.querySelector('.economy-class');
+                            const economySeatInfo = {
+                                unavailable: {
+                                    3: ['A', 'E', 'F'],
+                                    5: ['D']
+                                },
+                                emergencyExit: {
+                                    10: ['A', 'B', 'C', 'D', 'E', 'F'],
+                                    11: ['A', 'B', 'C', 'D', 'E', 'F']
+                                }
+                            };
+
+                            for (let i = 3; i <= 25; i++) {
+                                const rowDiv = document.createElement('div');
+                                rowDiv.classList.add('seat-row');
+                                rowDiv.dataset.row = i;
+
+                                let rowHTML = `<span class="row-number">${i}</span>`;
+                                const seatsInRow = ['A', 'B', 'C', 'D', 'E', 'F'];
+                                
+                                seatsInRow.forEach((seatLetter, index) => {
+                                    const seatId = `${i}${seatLetter}`;
+                                    let seatClasses = 'seat';
+
+                                    if (economySeatInfo.unavailable[i] && economySeatInfo.unavailable[i].includes(seatLetter)) {
+                                        seatClasses += ' unavailable';
+                                    } else if (economySeatInfo.emergencyExit[i] && economySeatInfo.emergencyExit[i].includes(seatLetter)) {
+                                        seatClasses += ' emergency-exit';
+                                    } else {
+                                        // Default is available, no extra class needed beyond 'seat' for available status from CSS
+                                    }
+
+                                    rowHTML += `<div class="${seatClasses}" data-seat="${seatId}">${seatLetter}</div>`;
+                                    if (seatLetter === 'C') { // Add aisle after C
+                                        rowHTML += '<div class="aisle"></div>';
+                                    }
+                                });
+                                rowDiv.innerHTML = rowHTML;
+                                economyClassSection.appendChild(rowDiv);
+                            }
+                        </script>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="checkout-button-container">
+            <button id="proceed-to-checkout-btn" class="action-btn primary-action-btn" onclick="window.location.href='../checkout/index.html'">Proceed to Checkout</button>
+        </div>
+
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+    
+    <!-- Promo content and main footer (assuming they are part of the loaded footer.html) -->
+    <!-- If they are separate, they need to be included or loaded similarly -->
+
+
+    <script>
+        // Load header and footer
+        function loadHTML(url, elementId) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+        loadHTML('../../components/header.html', 'header-placeholder');
+        loadHTML('../../components/footer.html', 'footer-placeholder');
+        // Note: The promo section and main footer from the image are assumed to be part of footer.html
+        // If not, they would need to be added here or loaded separately.
+    </script>
+    <script src="booking_seat.js"></script> 
+</body>
+</html> 

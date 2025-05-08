@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyDreamAir - Booking Confirmed</title>
+    <link rel="stylesheet" href="../../components/header.css">
+    <link rel="stylesheet" href="../../components/footer.css">
+    <link rel="stylesheet" href="booking_confirmed.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons (optional, but good for checkmarks, etc.) -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+
+    <main class="booking-confirmed-page">
+        <nav class="booking-nav-tabs main-confirmation-tabs">
+             <ul>
+                <li><button class="tab-btn book-tab">Book</button></li>
+                <li><button class="tab-btn manage-tab">Manage</button></li>
+                <li><button class="tab-btn upgrade-tab">Upgrade</button></li>
+                <li><button class="tab-btn checkin-tab">Check-in</button></li>
+                <li><button class="tab-btn flight-status-tab">Flight Status</button></li>
+            </ul>
+        </nav>
+
+        <section class="confirmation-message-section">
+            <div class="confirmation-icon">
+                <!-- Placeholder for checkmark icon -->
+                <span class="checkmark-placeholder">&#10004;</span> 
+            </div>
+            <h1>Booking Confirmed</h1>
+            <p class="confirmation-text">
+                Thank You for Flying FlyDreamAir. A Confirmation email will be sent shortly. Your Digital Ticket will be sent closer to you departure date.
+            </p>
+            <p class="farewell-text">See you Soon :)</p>
+        </section>
+
+        <!-- Reusing promo content structure from checkout -->
+        <section class="promo-content-confirmation">
+             <div class="promo-item">
+                <div class="promo-image-placeholder"></div>
+                <h3 class="promo-title">Title</h3>
+                <p class="promo-info">Info: rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                <a href="#" class="learn-more-link">Learn more ></a>
+            </div>
+            <div class="promo-item">
+                <div class="promo-image-placeholder"></div>
+                <h3 class="promo-title">Title</h3>
+                <p class="promo-info">Info: rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                <a href="#" class="learn-more-link">Learn more ></a>
+            </div>
+            <div class="promo-item">
+                <div class="promo-image-placeholder"></div>
+                <h3 class="promo-title">Title</h3>
+                <p class="promo-info">Info: rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                <a href="#" class="learn-more-link">Learn more ></a>
+            </div>
+        </section>
+
+        <section class="sales-clarification-confirmation">
+            <p>* space for clarification of sales/ promotions</p>
+        </section>
+
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Load header and footer
+        function loadHTML(url, elementId) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+        loadHTML('../../components/header.html', 'header-placeholder');
+        loadHTML('../../components/footer.html', 'footer-placeholder');
+    </script>
+</body>
+</html>
