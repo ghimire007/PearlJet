@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlyDreamAir - Onboarding - Personal Details</title>
+        <link rel="stylesheet" href="../../components/header.css">
+        <link rel="stylesheet" href="../../components/footer.css">
+        <link rel="stylesheet" href="onboarding.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <!-- Font Awesome for icons (optional, but good for checkmarks, etc.) -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+    </head>
+    <body>
+        <!-- Header will be loaded here -->
+        <div id="header-placeholder"></div>
+
+        <main class="register-page">
+            
+            <section class="checkout-flow">
+                <!-- Tab content -->
+                <div id="user-details" class="register-tab-content active-content">
+                    <div class="content-grid details-grid">
+                        <h2>Register now</h2>
+
+                        <!--progress bar - started but not functional or complete-->
+                        <div class="progress-bar">
+                            <div class="progress-step" data-title="Personal Details"></div>
+                            <div class="progress-step" data-title="Security"></div>
+                            <div class="progress-step" data-title="Optional Setup"></div>
+                        </div>
+
+                        <!--first page - personal details-->
+                        <form class="details-form">
+                            <h3>Location</h3>
+                            <div class="form-group"><label for="country">Country of Residence</label><input type="text" id="country" placeholder="e.g Australia"></div>
+                            <h3>Personal Details</h3>
+                            <p>
+                                Please enter your personal details as they are listed on either:
+                                <br />(1) your passport
+                                <br />(2) your driver's license
+                                <br />(3) birth certificate
+                            </p>
+                            <div class="form-group"><label for="title">Title</label><input type="tel" id="title" placeholder="e.g Mr"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label for="first-name">First Name</label><input type="text" id="first-name" placeholder="e.g John"></div>
+                                <div class="form-group"><label for="last-name">Last Name</label><input type="text" id="last-name" placeholder="e.g Smith"></div>
+                            </div>
+                            <div class="form-group"><label for="date-of-birth">Date of Birth</label><input type="text" id="date-of-birth" placeholder="e.g DD/MM/YYYY"></div>
+                            <div class="form-group"><label for="email">Email</label><input type="text" id="email" placeholder="e.g john@gmail.com"></div>
+                            <h3>Account Details</h3>
+                            <div class="form-group"><label for="username">Username</label><input type="text" id="username" placeholder=""></div>
+                            <div class="form-group"><label for="password">Password</label><input type="text" id="password" placeholder=""></div>
+                            <p>Password must contain at least 8 characters, a number, and a symbol</p>
+                            <div class="form-group"><label for="comfirm-password">Comfirm password</label><input type="text" id="confirm-password" placeholder=""></div>
+                            <div><input type="checkbox" id="confirm-terms" value="agreement"><label for="comfirm-terms"> By ticking this box you agree with the <u>Terms of use</u> and <u>Privacy agreement</u></label></div>
+            
+                            <div class="checkout-tab-link active"><button class="action-btn" onclick="openNextTab(event, 'User-Security', true)">Continue</button></div>
+
+                            <section class="existing-account-link">
+                                <p>Already have an account?</p>
+                            </section>
+                        </form>
+                    </div>
+                </div>
+
+                <!--second page - security questions - not to be functionally added-->
+                <div id="User-Security" class="register-tab-content">
+                    <div class="content-grid security-grid">
+                        <form class="security-form">
+                            <h3>Add a recovery email or phone number  <span class="red-text">  * optional</span></h3>
+                            <div class="form-row">
+                                <div class="form-group"><label for="different-email">A Different Email</label><input type="email" id="different-email" placeholder="e.g John@gmail.com"></div>
+                                <div class="form-group"><label for="phone-number">Phone number</label><input type="tel" id="phone-number" placeholder="e.g 0456 786 781"></div>
+                            </div>
+                            <h3>Add two-factor identification  <span class="red-text">  * optional</span></h3>
+                            <div class="form-group"><label for="two-factor-phone-number">Email *</label><input type="tel" id="two-factor-phone-number" placeholder="e.g 0456 786 781"></div>
+                            
+                            <div class="register-tab-link"><button class="action-btn" onclick="openNextTab(event, 'User-Optional-Set-up', true)">Continue</button></div>
+
+                            <section class="existing-account-link">
+                                <p>Already have an account?</p>
+                            </section>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!--third page - optional setup including payment details-->
+                <div id="User-Optional-Set-up" class="register-tab-content">
+                    <div class="content-grid payment-grid">
+                        <form class="contact-payment-form">
+                            <h3>Preferred contact method <span class="red-text"> * optional </span></h3>
+                            <label><input type="radio" name="contact-method" value="email" checked> Email</label>
+                            <label><input type="radio" name="contact-method" value="SMS"> SMS</label>
+                            <label><input type="radio" name="contact-method" value="phone"> Phone call</label>
+                            <div class="form-group"><label for="contact-info">Please enter your preferred email/ phone number for contact</label><input type="text" id="contact-info" placeholder="e.g. John@gmail.com | 0412 345 678"></div>
+
+                            <h3>Save payment method <span class="red-text"> * optional </span></h3>
+                            <p>Streamline the booking process and save your desired payment method to your account</p>
+                            <label><input type="radio" name="payment-method" value="card" checked> Debit/Credit Card</label>
+                            <label><input type="radio" name="payment-method" value="paypal"> PayPal</label>
+                            
+                            <div class="form-group"><label for="card-holder">Card Holder Name</label><input type="text" id="card-holder" placeholder="John Smith"></div>
+                            <div class="form-group"><label for="card-number">Card Number</label><input type="text" id="card-number" placeholder="1234 5678 9123 4567"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label for="expiry-date">Expiry Date</label><input type="text" id="expiry-date" placeholder="MM/YY"></div>
+                                <div class="form-group"><label for="cvc">CVC</label><input type="text" id="cvc" placeholder="123"></div>
+                            </div>
+                            <div class="form-group"><label for="address-p1">Address Line 1</label><input type="text" id="address-p1" placeholder=""></div>
+                            <div class="form-group"><label for="address-p2">Address Line 2</label><input type="text" id="address-p2" placeholder=""></div>
+                            <div class="form-group"><label for="city">City</label><input type="text" id="city" placeholder=""></div>
+                            <div class="form-row">
+                                <div class="form-group"><label for="country">Country</label><input type="text" id="country" placeholder="e.g. Australia"></div>
+                                <div class="form-group"><label for="state-province">State/Province</label><input type="text" id="state-province" placeholder="e.g. NSW"></div>
+                                <div class="form-group"><label for="zip-postal-code">Zip/Postal Code</label><input type="text" id="zip-postal-code" placeholder="e.g 2423"></div>
+                            </div>
+                            
+                            <div class="register-tab-link"><button id="complete-registration-btn" class="action-btn primary-action-btn">Complete</button></div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer will be loaded here -->
+        <div id="footer-placeholder"></div>
+
+        <script>
+            // Load header and footer
+            function loadHTML(url, elementId) {
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById(elementId).innerHTML = data;
+                    })
+                    .catch(error => console.error('Error loading HTML:', error));
+            }
+            loadHTML('../../components/header.html', 'header-placeholder');
+            loadHTML('../../components/footer.html', 'footer-placeholder');
+
+            //cannot figure at the buttons at the moment - will do later
+
+            // Tab functionality
+            // function openNextTab(event, tabName, autoSwitchLink) {
+            //     var i, tabcontent, tablinks;
+            //     tabcontent = document.getElementsByClassName("register-tab-content");
+            //     for (i = 0; i < tabcontent.length; i++) {
+            //         tabcontent[i].classList.remove("active-content");
+            //     }
+            //     tablinks = document.getElementsByClassName("register-tab-link.register-tab-content");
+            //     for (i = 0; i < tablinks.length; i++) {
+            //         tablinks[i].classList.remove("active");
+            //     }
+            //     document.getElementById(tabName).classList.add("active-content");
+                
+            //     if(autoSwitchLink) { // If called from a continue button, also activate the corresponding nav link
+            //         const targetNavLink = Array.from(tablinks).find(link => link.textContent.replace(/\s+/g, '') === tabName.replace(/\s+/g, ''));
+            //         if(targetNavLink) targetNavLink.classList.add("active");
+            //     } else if (event) {
+            //         event.currentTarget.classList.add("active");
+            //     }
+            // }
+            // // Initialize the first tab or ensure it's correctly set on load
+            // document.addEventListener('DOMContentLoaded', () => {
+            //     document.querySelector('.register-tab-link.register-tab-content').click(); 
+            // });
+        </script>
+    </body>
+</html>

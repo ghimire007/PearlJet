@@ -1,0 +1,220 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f4f6f8; 
+    color: #333;
+    line-height: 1.6;
+}
+
+.register-page {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.register-tab-content {
+    display: none;
+}
+
+.register-tab-content.active-content {
+    display: block;
+}
+
+/* .content-grid {
+    display: grid;
+    gap: 30px;
+} */
+
+/* #user-details .content-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+} */
+
+.content-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.details-grid, .security-grid, .payment-grid {
+    grid-template-columns: 2fr 1fr;
+}
+
+.details-form h3, .security-form h3, .contact-payment-form h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    color: #343a40;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 0.95em;
+    color: #495057;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* .contact-payment-form label {
+    display: block;
+    margin-bottom: 12px;
+    background-color: #f8f9fa;
+    padding: 12px 15px;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+} */
+
+/* .contact-payment-form label:hover {
+    background-color: #e9ecef;
+} */
+
+.contact-payment-form input[type="radio"] {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* .contact-payment-form input[type="radio"]:checked + label {
+} */
+
+.contact-payment-form label.selected-payment {
+     background-color: #d1ecf1;
+     border-color: #bee5eb;
+}
+
+.register-tab-content {
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.action-btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.05em;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+    width: 100%;
+    display: block;
+}
+
+/* .order-summary-panel .action-btn {
+    width: 100%;
+    display: block;
+} */
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+#complete-registration-btn.primary-action-btn {
+    background-color: #28a745;
+}
+#complete-registration-btn.primary-action-btn:hover {
+    background-color: #1e7e34;
+}
+
+.existing-account-link {
+    text-align: left;
+    margin: 20px 0 40px 0;
+    font-style: italic;
+    color: #007bff;
+}
+
+.red-text {
+    color: red;
+
+}
+
+/*progress bar - does not yet work */
+.progress-bar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    counter-reset: step;
+    margin: 2rem 0;
+}
+
+.progress-bar::before {
+    content: hi;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: #FFF;
+    z-index: -1;
+}
+
+.progress-step {
+    width: 2.1875rem;
+    height: 2.1875rem;
+    background-color: #FFF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-step::before {
+    counter-increment: step;
+    content: counter(step);
+}
+
+/* .progress-setp::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% = 0.5rem);
+    font-size: 20px;
+} */
+
+@media (max-width: 992px) {
+    .detials-grid, .payment-grid, .security-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+} 
