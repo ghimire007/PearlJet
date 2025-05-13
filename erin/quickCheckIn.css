@@ -1,0 +1,496 @@
+/* Import font from folder */
+@font-face {
+    font-family: Poppins;
+    src: url(/Poppins/Poppins-Bold.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(/Poppins/Poppins-SemiBold.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(/Poppins/Poppins-Regular.ttf);
+    font-weight: 300;
+}
+
+/* header 1 -- logo, language, profile and log out buttons */
+.header1 {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    background-color: #3E4C65;
+}
+
+.whiteButton {
+    background-color: #F4F6F8;
+    color: #3E4C65;
+    border: 1px solid #F4F6F8;
+    padding: 8px;
+    border-radius: 4px;
+    font-family: 'Poppins';
+    font-weight: 300;
+}
+
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    color: #FFFFFF;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Poppins';
+    font-weight: 700;
+}
+
+.logoHeader {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header2 {
+    display: flex;
+    justify-content: space-between;
+    background-color: #3E4C65;
+    border-top: 1px solid #989D9F;
+}
+
+.headerChoices {
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 15px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.headerChoices a {
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.headerChoices a:link {
+    color: #989D9F;
+}
+
+.headerChoices a:visited {
+    color: #989D9F;
+}
+
+.headerChoices a:active {
+    color: #FFFFFF;
+}
+
+.headerChoices a:hover {
+    color: #FFFFFF;
+}
+
+.headerBackground {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.imgAndSearchSection {
+    position: relative;
+}
+
+/* Targets the entire search module (the whole search container) */
+.searchModule {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 200px;
+    position: absolute;
+    background-color: #FFFFFF;
+    top: 65%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    border: 2px solid #D7DEDD;
+}
+
+/* Targets the container for searchChoices. */
+.searchChoices {
+    display: flex;
+    align-items: flex-start;
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 15px;
+    padding: 10px;
+    background-color: #3E4C65;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    /* border-top: 1px solid #D7DEDD;
+    border-left: 1px solid #D7DEDD;
+    border-right: 1px solid #D7DEDD; */
+}
+
+/* Only targeting the individual 'a' tags in searchChoices */
+.searchChoices a {
+    margin-right: 12px;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+/* link, visited, active, hover */
+.searchChoices a:link {
+    color: #989D9F;
+}
+
+.searchChoices a:visited {
+    color: #989D9F;
+}
+
+.searchChoices a:active {
+    color: #FFFFFF;
+}
+
+.searchChoices a:hover {
+    color: #FFFFFF;
+}
+
+.checkInArea {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.checkInMessage {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.checkInInputAndButton {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.checkInInputs {
+    background-color: #F4F6F8;
+    width: 200px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkInButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.input {
+    width: 190px;
+    background-color: #F4F6F8;
+    border: 0px;
+}
+
+.blueButton {
+    background-color: #3E4C65;
+    border-radius: 4px;
+    padding: 8px;
+    font-family: 'Poppins';
+    color: #FFFFFF;
+    border: 1.5px solid #3E4C65;
+}
+
+.blueButton:hover {
+    background-color: transparent;
+    color: #3E4C65;
+    border: 1.5px solid #3E4C65;
+}
+
+.dealsSection {
+    margin-top: 120px;
+    font-family: 'Poppins';
+    margin-right: 80px;
+    margin-left: 80px;
+}
+
+.sectionHeading {
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.travelCardsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.pickedCity {
+    color: #3E4C65;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.arrow {
+    color: #3E4C65;
+    margin-left: 5px;
+    font-size: 200;
+}
+
+.eachTravelCard {
+    width: 250px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    border-radius: 15px;
+    border: 2px solid #D7DEDD;
+
+}
+
+/* .eachTravelCard:hover {
+    border: 3px solid #D7DEDD;
+
+} */
+
+.travelCardImage {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    object-position: center;
+
+}
+
+.overlayText {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+
+}
+
+.sale {
+    font-weight: 300;
+    font-size: 15px;
+    padding-top: 40px;
+
+}
+
+.cityAndPrice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.city {
+    font-weight: 500;
+    font-size: 25px;
+
+}
+
+.price {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.seeDealsCard {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    object-position: center;
+}
+
+.seeDealsContainer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.seeDealsButton {
+    background-color: transparent;
+    color: #F4F6F8;
+    border: 1.5px solid #F4F6F8;
+    padding: 8px;
+    border-radius: 4px;
+    font-family: 'Poppins';
+    font-weight: 500;
+}
+
+.seeDealsButton:hover {
+    background-color: #3E4C65;
+    color: #FFFFFF;
+    border: 1.5px solid #3E4C65;
+
+}
+
+.blurImage {
+    filter: blur(1.5px);
+}
+
+.airlineInfoSection {
+    margin-top: 100px;
+    font-family: 'Poppins';
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.infoBody {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.airlineImage {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    object-position: center;
+}
+
+.airlineImageContainer {
+    flex-shrink: 0;
+    width: 540px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    border-radius: 15px;
+    border: 2px solid #D7DEDD;
+}
+
+.airlineInfoContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.information {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.infoHeading {
+    font-weight: 700;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: -50px;
+}
+
+.gridFour {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 50px;
+}
+
+.icon {
+    width: 30px;
+}
+
+.infoCardsSection {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 90px;
+    font-family: 'Poppins';
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.eachInfoCard {
+    width: 270px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #3E4C65;
+    border: 2px solid #D7DEDD;
+}
+
+.imageContainer {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.cardAllText {
+    padding: 10px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.cardTitle {
+    font-size: 20px;
+}
+
+.cardDescription {
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.learnMoreLink {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.membershipSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 90px;
+    font-family: 'Poppins';
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.membershipInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 50px;
+}
+
+.gridTwo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    padding-right: 50px;
+}
