@@ -1,15 +1,18 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    background-color: #f4f6f8; 
+    background-color: #e6f7ff;
     color: #333;
     line-height: 1.6;
 }
 
 .register-page {
     max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .register-tab-content {
@@ -20,201 +23,381 @@ body {
     display: block;
 }
 
-/* .content-grid {
-    display: grid;
-    gap: 30px;
-} */
-
-/* #user-details .content-grid {
-    grid-template-columns: 1fr;
-    justify-items: center;
-} */
-
-.content-grid {
-    grid-template-columns: 1fr;
-    justify-items: center;
+.onboarding-container {
+    display: flex;
+    gap: 60px;
 }
 
-.details-grid, .security-grid, .payment-grid {
-    grid-template-columns: 2fr 1fr;
+.stepper {
+    flex: 0 0 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.details-form h3, .security-form h3, .contact-payment-form h3 {
-    margin-top: 0;
+.step {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.step.active .step-number {
+    background-color: #007bff;
+}
+
+.step-label {
+    font-size: 1em;
+    color: #6c757d;
+}
+
+.step.active .step-label {
+    color: #000;
+    font-weight: 500;
+}
+
+.step-connector {
+    width: 2px;
+    height: 40px;
+    background-color: #d9d9d9;
+    margin: 5px 0;
+}
+
+.form-content {
+    flex: 1;
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-content h2 {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.form-content h3 {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-content p {
+    font-size: 0.9em;
+    color: #666;
     margin-bottom: 20px;
-    font-size: 1.3em;
-    color: #343a40;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="password"],
+.form-group select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    background-color: #f8f9fa;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group input[type="tel"]::placeholder,
+.form-group input[type="password"]::placeholder {
+    color: #adb5bd;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group input[type="password"]:focus,
+.form-group select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    background-color: #fff;
 }
 
 .form-row {
     display: flex;
     gap: 20px;
-    margin-bottom: 15px;
 }
 
-.form-group {
+.form-row .form-group {
     flex: 1;
-    margin-bottom: 15px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 500;
-    font-size: 0.95em;
-    color: #495057;
+/* Container for Back/Continue buttons */
+.form-buttons {
+    display: flex;
+    justify-content: space-between; /* Space out Back and Continue */
+    gap: 20px; /* Add space between buttons if needed */
+    margin-top: 30px; /* Space above button row */
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="tel"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 1em;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group input[type="tel"]:focus {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-/* .contact-payment-form label {
-    display: block;
-    margin-bottom: 12px;
-    background-color: #f8f9fa;
-    padding: 12px 15px;
-    border-radius: 4px;
-    border: 1px solid #e9ecef;
-    cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-} */
-
-/* .contact-payment-form label:hover {
-    background-color: #e9ecef;
-} */
-
-.contact-payment-form input[type="radio"] {
-    margin-right: 10px;
-    vertical-align: middle;
-}
-
-/* .contact-payment-form input[type="radio"]:checked + label {
-} */
-
-.contact-payment-form label.selected-payment {
-     background-color: #d1ecf1;
-     border-color: #bee5eb;
-}
-
-.register-tab-content {
-    margin-top: 20px;
-    padding-top: 20px;
-}
-
-.action-btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: white;
-    padding: 12px 25px;
+.action-btn, .back-btn { /* Apply common styles to both */
+    padding: 12px 30px;
     border: none;
     border-radius: 4px;
-    font-size: 1.05em;
+    font-size: 1em;
     font-weight: 500;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.2s ease;
-    margin-top: 10px;
-    width: 100%;
-    display: block;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    flex: 1; /* Make buttons share space */
+    max-width: 250px; /* Adjust as needed, same as original .action-btn */
 }
 
-/* .order-summary-panel .action-btn {
-    width: 100%;
-    display: block;
-} */
+.action-btn {
+    /* display: inline-block; */ /* Already handled by flex */
+    background-color: #0056b3;
+    color: white;
+    /* Remove margin-top, margin-left, margin-right, width, display:block as they are handled by .form-buttons */
+    /* margin-top: 20px; */ 
+    /* width: 100%; */
+    /* max-width: 250px; */
+    /* display: block; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
 
+/* Style for the Back button */
+.back-btn {
+    background-color: #f8f9fa; /* Light grey background */
+    color: #495057; /* Dark grey text */
+    border: 1px solid #ced4da; /* Add a border */
+}
+
+.back-btn:hover {
+    background-color: #e2e6ea; /* Darker grey on hover */
+    border-color: #adb5bd;
+}
+
+/* Keep original hover for action button */
 .action-btn:hover {
+    background-color: #004085;
+}
+
+.primary-action-btn {
     background-color: #0056b3;
 }
-
-#complete-registration-btn.primary-action-btn {
-    background-color: #28a745;
-}
-#complete-registration-btn.primary-action-btn:hover {
-    background-color: #1e7e34;
+.primary-action-btn:hover {
+    background-color: #004085;
 }
 
 .existing-account-link {
-    text-align: left;
-    margin: 20px 0 40px 0;
-    font-style: italic;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+.existing-account-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.existing-account-link a:hover {
+    text-decoration: underline;
+}
+
+.optional-text {
+    color: #6c757d;
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.password-requirement { /* Keep specific style for password requirement */
+    font-size: 0.85em;
+    color: #666;
+    margin-top: -10px; /* Adjust spacing after password fields */
+    margin-bottom: 15px;
+}
+
+.terms-agreement { /* This is a div with class="form-group terms-agreement" */
+    display: flex;
+    align-items: flex-start; /* Align checkbox to the start of the label text */
+    /* margin-bottom from .form-group will apply for spacing below */
+    margin-top: 0; /* Override any negative margin from shared rules if it were on the group */
+}
+
+.terms-agreement input[type="checkbox"] {
+    margin-right: 8px;
+    margin-top: 3px; /* Fine-tune vertical alignment with the first line of text */
+    flex-shrink: 0; /* Prevent checkbox from shrinking if label is long */
+    vertical-align: middle; /* Keep this as it might help in some browsers */
+}
+
+.terms-agreement label {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 0;    /* Crucially, remove negative top margin */
+    margin-bottom: 0; /* Let parent .form-group handle bottom margin */
+    line-height: 1.4; /* Improve readability if label wraps */
+}
+
+.terms-agreement label u {
+    text-decoration: underline;
+    cursor: pointer;
     color: #007bff;
 }
 
-.red-text {
-    color: red;
-
+.radio-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: normal;
+    color: #333;
 }
 
-/*progress bar - does not yet work */
-.progress-bar {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    counter-reset: step;
-    margin: 2rem 0;
+.radio-group input[type="radio"] {
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
-.progress-bar::before {
-    content: hi;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 4px;
-    width: 100%;
-    background-color: #FFF;
-    z-index: -1;
+/* Styling for message areas */
+.message-area {
+    padding: 10px 15px;
+    margin-top: 15px; /* Add some space above the message */
+    margin-bottom: 15px; /* Add space below the message */
+    border-radius: 4px;
+    border: 1px solid transparent;
+    font-size: 0.9em;
+    text-align: center; /* Center the text */
 }
 
-.progress-step {
-    width: 2.1875rem;
-    height: 2.1875rem;
-    background-color: #FFF;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.message-area.success {
+    color: #155724; /* Dark green text */
+    background-color: #d4edda; /* Light green background */
+    border-color: #c3e6cb; /* Green border */
 }
 
-.progress-step::before {
-    counter-increment: step;
-    content: counter(step);
+.message-area.error {
+    color: #721c24; /* Dark red text */
+    background-color: #f8d7da; /* Light red background */
+    border-color: #f5c6cb; /* Red border */
 }
 
-/* .progress-setp::after {
-    content: attr(data-title);
-    position: absolute;
-    top: calc(100% = 0.5rem);
-    font-size: 20px;
-} */
+/* Specific styling for select to ensure consistent height and appearance */
+.form-group select.form-control {
+    height: 43px; /* Match padding of other inputs approx (10px padding + 10px padding + font-size + border) */
+    appearance: none; /* Remove default system appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27292.4%27%20height%3D%27292.4%27%3E%3Cpath%20fill%3D%27%23007CB2%27%20d%3D%27M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%27%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 10px 10px;
+}
+
+/* Ensure disabled option has a lighter color */
+.form-group select option[disabled] {
+    color: #adb5bd;
+}
 
 @media (max-width: 992px) {
-    .detials-grid, .payment-grid, .security-grid {
-        grid-template-columns: 1fr;
+    .onboarding-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .stepper {
+        flex-direction: row;
+        flex: 0 0 auto;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    .step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 0;
+        width: auto;
+        margin-right: 15px;
+    }
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    .step-connector {
+        width: 40px;
+        height: 2px;
+        margin: 0 10px;
+        transform: translateY(-18px);
+    }
+    .stepper .step:last-child .step-connector {
+        display: none;
+    }
+    .form-content h2 {
+        font-size: 1.8em;
     }
 }
 
 @media (max-width: 768px) {
+    .register-page {
+        padding: 20px;
+        margin: 20px auto;
+    }
     .form-row {
         flex-direction: column;
         gap: 0;
+    }
+    .form-row .form-group {
+        margin-bottom: 20px;
+    }
+    .action-btn, .back-btn { /* Adjust button max-width on smaller screens */
+        max-width: none;
+    }
+    /* Optional: Stack buttons on very small screens if needed */
+    /* .form-buttons {
+        flex-direction: column;
+    } */
+    .stepper {
+        flex-wrap: wrap;
+    }
+    .step-connector {
+        display: none;
+    }
+    .step {
+        margin-right: 10px;
+        margin-bottom: 10px;
     }
 } 

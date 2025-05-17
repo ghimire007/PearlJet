@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FlyDreamAir - Onboarding - Personal Details</title>
+        <title>FlyDreamAir - Onboarding</title>
         <link rel="stylesheet" href="../../components/header.css">
         <link rel="stylesheet" href="../../components/footer.css">
         <link rel="stylesheet" href="onboarding.css">
@@ -16,116 +16,212 @@
         <div id="header-placeholder"></div>
 
         <main class="register-page">
-            
-            <section class="checkout-flow">
-                <!-- Tab content -->
-                <div id="user-details" class="register-tab-content active-content">
-                    <div class="content-grid details-grid">
-                        <h2>Register now</h2>
+            <!-- Registration Flow Container -->
+            <div id="registration-flow-container">
+                <div class="onboarding-container">
+                    <div class="stepper">
+                        <div class="step active" data-step-name="Personal details">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Personal details</div>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step" data-step-name="Account details">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Account details</div>
+                        </div>
+                        <div class="step-connector"></div>
+                        <div class="step" data-step-name="Optional set-up">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Optional set-up</div>
+                        </div>
+                    </div>
 
-                        <!--progress bar - started but not functional or complete-->
-                        <div class="progress-bar">
-                            <div class="progress-step" data-title="Personal Details"></div>
-                            <div class="progress-step" data-title="Security"></div>
-                            <div class="progress-step" data-title="Optional Setup"></div>
+                    <div class="form-content">
+                        <div id="message-area" class="message-area" style="display: none;"></div>
+                        <h2>Register now</h2>
+                        
+                        <div id="personal-details-step" class="form-step active">
+                            <form id="personal-details-form" class="details-form">
+                                <h3>Location</h3>
+                                <div class="form-group">
+                                    <label for="country">Country of Residence</label>
+                                    <select id="country" name="country" class="form-control" required>
+                                        <option value="" disabled selected>Select your country</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="New Zealand">New Zealand</option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <h3>Personal Details</h3>
+                                <p>
+                                    Please enter your personal details as they are listed on either:
+                                    <br />(1) your passport
+                                    <br />(2) your driver's license
+                                    <br />(3) birth certificate
+                                </p>
+                                <div class="form-group">
+                                    <label for="title-reg">Title</label>
+                                    <select id="title-reg" name="title" class="form-control" required>
+                                        <option value="" disabled selected>Select Title</option>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
+                                        <option value="Miss">Miss</option>
+                                        <option value="Ms">Ms</option>
+                                        <option value="Dr">Dr</option>
+                                        <option value="Other">Other</option> 
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="first-name">First Name</label>
+                                        <input type="text" id="first-name" name="firstName" placeholder="Placeholder" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-name">Last Name</label>
+                                        <input type="text" id="last-name" name="lastName" placeholder="Placeholder" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date-of-birth">Date of Birth</label>
+                                    <input type="text" id="date-of-birth" name="dateOfBirth" placeholder="DD/MM/YYYY" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email-reg">Email</label>
+                                    <input type="email" id="email-reg" name="email" placeholder="Placeholder" required autocomplete="email">
+                                </div>
+                                <button type="button" class="action-btn" onclick="goToNextStep()">Continue</button>
+                                <div class="auth-toggle-link">
+                                    <a href="#" id="show-login-link">Already have an account? Login</a>
+                                </div>
+                            </form>
                         </div>
 
-                        <!--first page - personal details-->
-                        <form class="details-form">
-                            <h3>Location</h3>
-                            <div class="form-group"><label for="country">Country of Residence</label><input type="text" id="country" placeholder="e.g Australia"></div>
-                            <h3>Personal Details</h3>
-                            <p>
-                                Please enter your personal details as they are listed on either:
-                                <br />(1) your passport
-                                <br />(2) your driver's license
-                                <br />(3) birth certificate
-                            </p>
-                            <div class="form-group"><label for="title">Title</label><input type="tel" id="title" placeholder="e.g Mr"></div>
-                            <div class="form-row">
-                                <div class="form-group"><label for="first-name">First Name</label><input type="text" id="first-name" placeholder="e.g John"></div>
-                                <div class="form-group"><label for="last-name">Last Name</label><input type="text" id="last-name" placeholder="e.g Smith"></div>
-                            </div>
-                            <div class="form-group"><label for="date-of-birth">Date of Birth</label><input type="text" id="date-of-birth" placeholder="e.g DD/MM/YYYY"></div>
-                            <div class="form-group"><label for="email">Email</label><input type="text" id="email" placeholder="e.g john@gmail.com"></div>
-                            <h3>Account Details</h3>
-                            <div class="form-group"><label for="username">Username</label><input type="text" id="username" placeholder=""></div>
-                            <div class="form-group"><label for="password">Password</label><input type="text" id="password" placeholder=""></div>
-                            <p>Password must contain at least 8 characters, a number, and a symbol</p>
-                            <div class="form-group"><label for="comfirm-password">Comfirm password</label><input type="text" id="confirm-password" placeholder=""></div>
-                            <div><input type="checkbox" id="confirm-terms" value="agreement"><label for="comfirm-terms"> By ticking this box you agree with the <u>Terms of use</u> and <u>Privacy agreement</u></label></div>
-            
-                            <div class="checkout-tab-link active"><button class="action-btn" onclick="openNextTab(event, 'User-Security', true)">Continue</button></div>
+                        <div id="account-details-step" class="form-step" style="display: none;">
+                            <form id="account-details-form" class="account-form">
+                                <h3>Account Details</h3>
+                                <div class="form-group">
+                                    <label for="password-reg">Password</label>
+                                    <input type="password" id="password-reg" name="password" placeholder="Enter password" required autocomplete="new-password">
+                                </div>
+                                <p class="password-requirement">Password must contain at least 8 characters, a number, and a symbol</p>
+                                <div class="form-group">
+                                    <label for="confirm-password">Confirm password</label>
+                                    <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm password" required autocomplete="new-password">
+                                </div>
+                                <div class="form-group terms-agreement">
+                                    <input type="checkbox" id="confirm-terms" name="termsAccepted" value="agreement" required>
+                                    <label for="confirm-terms"> By ticking this box you agree with the <u>Terms of use</u> and <u>Privacy agreement</u></label>
+                                </div>
+                                <div class="form-buttons">
+                                    <button type="button" class="back-btn" onclick="goToPreviousStep()">Back</button>
+                                    <button type="button" class="action-btn" onclick="goToNextStep()">Continue</button>
+                                </div>
+                            </form>
+                        </div>
 
-                            <section class="existing-account-link">
-                                <p>Already have an account?</p>
-                            </section>
-                        </form>
+                        <div id="optional-setup-step" class="form-step" style="display: none;">
+                            <form id="optional-setup-form" class="contact-payment-form">
+                                <h3>Preferred contact method <span class="optional-text">* optional</span></h3>
+                                <div class="radio-group" id="preferred-contact-method">
+                                    <label><input type="radio" name="contactMethod" value="email" checked> Email</label>
+                                    <label><input type="radio" name="contactMethod" value="SMS"> SMS</label>
+                                    <label><input type="radio" name="contactMethod" value="phone"> Phone call</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-info">Preferred contact detail</label>
+                                    <input type="text" id="contact-info" name="contactDetail" placeholder="e.g. John@gmail.com | 0412 345 678">
+                                </div>
+                                <h3>Save payment method <span class="optional-text">* optional</span></h3>
+                                <p>Streamline the booking process and save your desired payment method to your account</p>
+                                <div class="radio-group" id="preferred-payment-method">
+                                    <label><input type="radio" name="paymentMethodType" value="card" checked> Debit/Credit Card</label>
+                                    <label><input type="radio" name="paymentMethodType" value="paypal"> PayPal</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-holder">Card Holder Name</label>
+                                    <input type="text" id="card-holder" name="cardHolderName" placeholder="John Smith">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-number">Card Number</label>
+                                    <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9123 4567">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="expiry-date">Expiry Date</label>
+                                        <input type="text" id="expiry-date" name="cardExpiryDate" placeholder="MM/YY">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cvc">CVC</label>
+                                        <input type="text" id="cvc" name="cardCvc" placeholder="123">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-p1">Address Line 1</label>
+                                    <input type="text" id="address-p1" name="addressLine1" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-p2">Address Line 2</label>
+                                    <input type="text" id="address-p2" name="addressLine2" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input type="text" id="city" name="city" placeholder="">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="country-billing">Country</label>
+                                        <input type="text" id="country-billing" name="billingCountry" placeholder="e.g. Australia">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state-province">State/Province</label>
+                                        <input type="text" id="state-province" name="billingStateProvince" placeholder="e.g. NSW">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zip-postal-code">Zip/Postal Code</label>
+                                        <input type="text" id="zip-postal-code" name="billingZipPostalCode" placeholder="e.g 2423">
+                                    </div>
+                                </div>
+                                <div class="form-buttons">
+                                    <button type="button" class="back-btn" onclick="goToPreviousStep()">Back</button>
+                                    <button type="button" id="complete-registration-btn" class="action-btn primary-action-btn">Complete Registration</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!--second page - security questions - not to be functionally added-->
-                <div id="User-Security" class="register-tab-content">
-                    <div class="content-grid security-grid">
-                        <form class="security-form">
-                            <h3>Add a recovery email or phone number  <span class="red-text">  * optional</span></h3>
-                            <div class="form-row">
-                                <div class="form-group"><label for="different-email">A Different Email</label><input type="email" id="different-email" placeholder="e.g John@gmail.com"></div>
-                                <div class="form-group"><label for="phone-number">Phone number</label><input type="tel" id="phone-number" placeholder="e.g 0456 786 781"></div>
-                            </div>
-                            <h3>Add two-factor identification  <span class="red-text">  * optional</span></h3>
-                            <div class="form-group"><label for="two-factor-phone-number">Email *</label><input type="tel" id="two-factor-phone-number" placeholder="e.g 0456 786 781"></div>
-                            
-                            <div class="register-tab-link"><button class="action-btn" onclick="openNextTab(event, 'User-Optional-Set-up', true)">Continue</button></div>
-
-                            <section class="existing-account-link">
-                                <p>Already have an account?</p>
-                            </section>
-
-                        </form>
-                    </div>
+            <!-- Login Form Container (Initially Hidden) -->
+            <div id="login-flow-container" style="display: none;">
+                <div class="form-content">
+                    <h2>Login</h2>
+                    <div id="login-message-area" class="message-area" style="display: none;"></div>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-identifier">Email</label>
+                            <input type="email" id="login-identifier" name="identifier" placeholder="Enter email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="password" placeholder="Enter password" required autocomplete="current-password">
+                        </div>
+                        <button type="submit" class="action-btn primary-action-btn">Login</button>
+                        <div class="auth-toggle-link">
+                            <a href="#" id="show-register-link">Don't have an account? Register</a>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-                <!--third page - optional setup including payment details-->
-                <div id="User-Optional-Set-up" class="register-tab-content">
-                    <div class="content-grid payment-grid">
-                        <form class="contact-payment-form">
-                            <h3>Preferred contact method <span class="red-text"> * optional </span></h3>
-                            <label><input type="radio" name="contact-method" value="email" checked> Email</label>
-                            <label><input type="radio" name="contact-method" value="SMS"> SMS</label>
-                            <label><input type="radio" name="contact-method" value="phone"> Phone call</label>
-                            <div class="form-group"><label for="contact-info">Please enter your preferred email/ phone number for contact</label><input type="text" id="contact-info" placeholder="e.g. John@gmail.com | 0412 345 678"></div>
-
-                            <h3>Save payment method <span class="red-text"> * optional </span></h3>
-                            <p>Streamline the booking process and save your desired payment method to your account</p>
-                            <label><input type="radio" name="payment-method" value="card" checked> Debit/Credit Card</label>
-                            <label><input type="radio" name="payment-method" value="paypal"> PayPal</label>
-                            
-                            <div class="form-group"><label for="card-holder">Card Holder Name</label><input type="text" id="card-holder" placeholder="John Smith"></div>
-                            <div class="form-group"><label for="card-number">Card Number</label><input type="text" id="card-number" placeholder="1234 5678 9123 4567"></div>
-                            <div class="form-row">
-                                <div class="form-group"><label for="expiry-date">Expiry Date</label><input type="text" id="expiry-date" placeholder="MM/YY"></div>
-                                <div class="form-group"><label for="cvc">CVC</label><input type="text" id="cvc" placeholder="123"></div>
-                            </div>
-                            <div class="form-group"><label for="address-p1">Address Line 1</label><input type="text" id="address-p1" placeholder=""></div>
-                            <div class="form-group"><label for="address-p2">Address Line 2</label><input type="text" id="address-p2" placeholder=""></div>
-                            <div class="form-group"><label for="city">City</label><input type="text" id="city" placeholder=""></div>
-                            <div class="form-row">
-                                <div class="form-group"><label for="country">Country</label><input type="text" id="country" placeholder="e.g. Australia"></div>
-                                <div class="form-group"><label for="state-province">State/Province</label><input type="text" id="state-province" placeholder="e.g. NSW"></div>
-                                <div class="form-group"><label for="zip-postal-code">Zip/Postal Code</label><input type="text" id="zip-postal-code" placeholder="e.g 2423"></div>
-                            </div>
-                            
-                            <div class="register-tab-link"><button id="complete-registration-btn" class="action-btn primary-action-btn">Complete</button></div>
-                        </form>
-                    </div>
-                </div>
-            </section>
         </main>
 
         <!-- Footer will be loaded here -->
         <div id="footer-placeholder"></div>
 
+        <script src="../../js/api_client.js" defer></script>
         <script>
             // Load header and footer
             function loadHTML(url, elementId) {
@@ -139,32 +235,334 @@
             loadHTML('../../components/header.html', 'header-placeholder');
             loadHTML('../../components/footer.html', 'footer-placeholder');
 
-            //cannot figure at the buttons at the moment - will do later
+            const steps = document.querySelectorAll('.stepper .step');
+            const formSteps = document.querySelectorAll('.form-content .form-step');
+            let currentStepIndex = 0;
+            const totalSteps = 3; // Updated total steps count
 
-            // Tab functionality
-            // function openNextTab(event, tabName, autoSwitchLink) {
-            //     var i, tabcontent, tablinks;
-            //     tabcontent = document.getElementsByClassName("register-tab-content");
-            //     for (i = 0; i < tabcontent.length; i++) {
-            //         tabcontent[i].classList.remove("active-content");
-            //     }
-            //     tablinks = document.getElementsByClassName("register-tab-link.register-tab-content");
-            //     for (i = 0; i < tablinks.length; i++) {
-            //         tablinks[i].classList.remove("active");
-            //     }
-            //     document.getElementById(tabName).classList.add("active-content");
-                
-            //     if(autoSwitchLink) { // If called from a continue button, also activate the corresponding nav link
-            //         const targetNavLink = Array.from(tablinks).find(link => link.textContent.replace(/\s+/g, '') === tabName.replace(/\s+/g, ''));
-            //         if(targetNavLink) targetNavLink.classList.add("active");
-            //     } else if (event) {
-            //         event.currentTarget.classList.add("active");
-            //     }
-            // }
-            // // Initialize the first tab or ensure it's correctly set on load
-            // document.addEventListener('DOMContentLoaded', () => {
-            //     document.querySelector('.register-tab-link.register-tab-content').click(); 
-            // });
+            // DOM Elements for forms and containers
+            const registrationFlowContainer = document.getElementById('registration-flow-container');
+            const loginFlowContainer = document.getElementById('login-flow-container');
+            const showLoginLink = document.getElementById('show-login-link');
+            const showRegisterLink = document.getElementById('show-register-link');
+            const completeRegistrationBtn = document.getElementById('complete-registration-btn');
+            const loginForm = document.getElementById('login-form');
+
+            // Declare message area vars in outer scope
+            let messageArea = null; 
+            let loginMessageArea = null;
+
+            // --- Token Management --- 
+            const TOKEN_KEY = 'flyDreamAirToken';
+
+            function storeToken(token) {
+                localStorage.setItem(TOKEN_KEY, token);
+            }
+
+            function getToken() {
+                return localStorage.getItem(TOKEN_KEY);
+            }
+
+            function removeToken() {
+                localStorage.removeItem(TOKEN_KEY);
+            }
+
+            function getCurrentUser() {
+                const token = getToken();
+                if (!token) return null;
+                // In a real app, you'd likely decode the token here
+                // or make an API call to get user details based on the token.
+                // For now, just knowing a token exists means logged in.
+                // You could decode the payload if the backend includes user info in it, but let's keep it simple.
+                try {
+                     // Basic decode (doesn't verify signature)
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    return { id: payload.id }; // Assuming token payload has user ID as 'id'
+                } catch (e) {
+                    console.error("Failed to decode token or token invalid:", e);
+                    removeToken(); // Clear invalid token
+                    return null;
+                }
+            }
+
+            function logoutUser() {
+                removeToken();
+                // Update UI or redirect
+                console.log("User logged out.");
+                 // Example: Reload page to reflect logged-out state
+                window.location.reload(); 
+            }
+
+            function displayMessage(areaElement, message, isSuccess) {
+                areaElement.textContent = message;
+                areaElement.className = 'message-area ' + (isSuccess ? 'success' : 'error');
+                areaElement.style.display = 'block';
+            }
+
+            function updateStepper(index) {
+                steps.forEach((step, i) => {
+                    // Only update active class for existing steps
+                    if (i < totalSteps) {
+                         step.classList.toggle('active', i === index);
+                    }
+                });
+            }
+
+            function showFormStep(index) {
+                formSteps.forEach((formStep, i) => {
+                     // Map index to the correct form step if indices are no longer sequential (0, 1, 3 -> 0, 1, 2)
+                    // In this case, removing step 2 (index 2) means step 3 (index 3) becomes index 2.
+                    // The indices of formSteps array should now be 0, 1, 2 correctly.
+                    formStep.style.display = (i === index) ? 'block' : 'none';
+                    formStep.classList.toggle('active', i === index);
+                });
+            }
+
+            // Validate the form for the current step
+            function validateCurrentStep() {
+                 const currentForm = formSteps[currentStepIndex].querySelector('form');
+                 if (!currentForm) return true; // Should not happen
+
+                 // Use HTML5 built-in validation
+                 if (!currentForm.checkValidity()) {
+                     // Optionally trigger browser's validation UI or custom handling
+                     // Find the first invalid element and focus it for better UX
+                    const firstInvalid = currentForm.querySelector(':invalid');
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    }
+                    console.log("First invalid element:", firstInvalid);
+                     // Display a generic message or rely on browser UI
+                     // Make sure messageArea is visible during validation failures
+                     displayMessage(messageArea, 'Please fill in all required fields correctly.', false);
+                     return false;
+                 }
+                 
+                 // Step-specific validation (like password match)
+                 if (currentStepIndex === 1) { // Account Details step
+                    const password = currentForm.password.value;
+                    const confirmPassword = currentForm.confirmPassword.value;
+                    const termsAccepted = currentForm.termsAccepted.checked;
+
+                    if (password !== confirmPassword) {
+                        displayMessage(messageArea, 'Passwords do not match.', false);
+                        // Focus confirm password field
+                        currentForm.confirmPassword.focus();
+                        return false;
+                    }
+                    if (!termsAccepted) {
+                         displayMessage(messageArea, 'You must accept the terms and conditions.', false);
+                         // Focus terms checkbox
+                         currentForm.termsAccepted.focus();
+                         return false;
+                    }
+                 }
+                 
+                 return true;
+            }
+
+            function goToNextStep() {
+                if (!validateCurrentStep()) {
+                    return; // Stop if validation fails
+                }
+
+                if (currentStepIndex < totalSteps - 1) { // Use totalSteps
+                    currentStepIndex++;
+                    updateStepper(currentStepIndex);
+                    showFormStep(currentStepIndex);
+                    messageArea.style.display = 'none'; // Hide previous messages
+                }
+            }
+
+            function goToPreviousStep() {
+                if (currentStepIndex > 0) {
+                    currentStepIndex--;
+                    updateStepper(currentStepIndex);
+                    showFormStep(currentStepIndex);
+                }
+            }
+
+            function toggleAuthForms(showLogin) {
+                if (showLogin) {
+                    registrationFlowContainer.style.display = 'none';
+                    loginFlowContainer.style.display = 'block';
+                } else {
+                    registrationFlowContainer.style.display = 'block';
+                    loginFlowContainer.style.display = 'none';
+                    // Reset registration form to first step
+                    currentStepIndex = 0;
+                    updateStepper(currentStepIndex);
+                    showFormStep(currentStepIndex);
+                }
+            }
+            
+            // Collect data from a form given its ID
+            function getFormData(formId) {
+                const form = document.getElementById(formId);
+                if (!form) return {};
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    // Handle radio buttons specifically if needed, for now FormData handles it okay
+                    // For checkboxes, it gives value only if checked, which is fine for 'termsAccepted'
+                    data[key] = value;
+                });
+                return data;
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                updateStepper(currentStepIndex);
+                showFormStep(currentStepIndex);
+
+                // Assign elements inside DOMContentLoaded
+                messageArea = document.getElementById('message-area');
+                loginMessageArea = document.getElementById('login-message-area'); 
+
+                // Moved event listener setup inside DOMContentLoaded
+                if (showLoginLink) { // Check if element exists
+                    showLoginLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        toggleAuthForms(true);
+                    });
+                }
+                if (showRegisterLink) { // Check if element exists
+                    showRegisterLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        toggleAuthForms(false);
+                    });
+                }
+
+                if (completeRegistrationBtn) {
+                    completeRegistrationBtn.addEventListener('click', async (event) => {
+                        event.preventDefault();
+                        if (messageArea) messageArea.style.display = 'none';
+
+                        console.log("Attempting registration via API client...");
+
+                        const personalDetails = getFormData('personal-details-form');
+                        const accountDetails = getFormData('account-details-form');
+                        const optionalSetup = getFormData('optional-setup-form');
+
+                        // --- Map frontend names to backend schema names --- 
+                        const registrationData = {
+                            // Personal Details
+                            title: personalDetails.title,
+                            firstName: personalDetails.firstName,
+                            lastName: personalDetails.lastName,
+                            countryOfResidence: personalDetails.country,
+                            dob: personalDetails.dateOfBirth,
+                            email: personalDetails.email,
+                            // Account Details
+                            password: accountDetails.password,
+                            // Optional Setup
+                            mobileNumber: optionalSetup.contactDetail,
+                            preferredContactMethod: optionalSetup.contactMethod,
+                            cardDetails: {
+                                cardHolderName: optionalSetup.cardHolderName,
+                                cardNumber: optionalSetup.cardNumber,
+                                expiryDate: optionalSetup.cardExpiryDate,
+                                cvc: optionalSetup.cardCvc
+                            },
+                            billingAddress: {
+                                address1: optionalSetup.addressLine1,
+                                address2: optionalSetup.addressLine2,
+                                city: optionalSetup.city,
+                                state: optionalSetup.billingStateProvince,
+                                country: optionalSetup.billingCountry,
+                                zipCode: optionalSetup.billingZipPostalCode
+                            }
+                        };
+
+                        // --- Basic Frontend Check (Backend will validate more thoroughly) ---
+                        if (!registrationData.email || !registrationData.password || !accountDetails.confirmPassword || !accountDetails.termsAccepted) {
+                            displayMessage(messageArea, 'Please ensure Email, Password, Confirm Password fields are filled and Terms are accepted.', false);
+                            return;
+                        }
+                        if (registrationData.password !== accountDetails.confirmPassword) {
+                            displayMessage(messageArea, 'Passwords do not match.', false);
+                            return;
+                        }
+                        // Basic DOB format check
+                        if (registrationData.dob && !/^\d{2}\/\d{2}\/\d{4}$/.test(registrationData.dob)) {
+                            displayMessage(messageArea, 'Please enter Date of Birth in DD/MM/YYYY format.', false);
+                            return;
+                        } else if (registrationData.dob) {
+                            const parts = registrationData.dob.split('/');
+                            if (parts.length === 3) {
+                                const day = parts[0];
+                                const month = parts[1];
+                                const year = parts[2];
+                                if (parseInt(month, 10) < 1 || parseInt(month, 10) > 12 || parseInt(day, 10) < 1 || parseInt(day, 10) > 31) {
+                                    displayMessage(messageArea, 'Invalid date for Date of Birth.', false);
+                                    return;
+                                }
+                                registrationData.dob = `${year}-${month}-${day}`;
+                                console.log("Converted DOB to YYYY-MM-DD:", registrationData.dob);
+                            } else {
+                                displayMessage(messageArea, 'Invalid Date of Birth format. Please use DD/MM/YYYY.', false);
+                                return;
+                            }
+                        }
+
+                        // --- Call Backend API via Client --- 
+                        try {
+                            const result = await signupUser(registrationData);
+                            displayMessage(messageArea, 'Registration successful! You can now log in.', true);
+                            document.getElementById('personal-details-form').reset();
+                            document.getElementById('account-details-form').reset();
+                            document.getElementById('optional-setup-form').reset();
+                            setTimeout(() => toggleAuthForms(true), 2000);
+                        } catch (error) {
+                            displayMessage(messageArea, `Registration failed: ${error.message}`, false);
+                        }
+                    });
+                }
+
+                if (loginForm) {
+                    loginForm.addEventListener('submit', async (event) => {
+                        event.preventDefault();
+                        if (loginMessageArea) loginMessageArea.style.display = 'none';
+
+                        const email = loginForm.identifier.value;
+                        const password = loginForm.password.value;
+
+                        if (!email || !password) {
+                            displayMessage(loginMessageArea, 'Please enter both email and password.', false);
+                            return;
+                        }
+                        
+                        console.log("Attempting login via API client...");
+
+                        try {
+                            // Use the loginUserApi function from api_client.js
+                             const result = await loginUserApi({ email, password });
+
+                             displayMessage(loginMessageArea, `Login successful! Welcome.`, true);
+                             storeToken(result.token); // Store the received token
+                             console.log('Logged in. Token stored.');
+                             loginForm.reset();
+                             
+                             // TODO: Redirect to a dashboard or main app page
+                              // Example: Redirect after a short delay
+                              setTimeout(() => { 
+                                  console.log("Redirecting...");
+                                 // window.location.href = '../dashboard/index.html'; // Example redirect
+                              }, 1500);
+
+                        } catch (error) {
+                             removeToken(); 
+                             displayMessage(loginMessageArea, `Login failed: ${error.message}`, false);
+                        }
+                    });
+                }
+
+                const currentUser = getCurrentUser();
+                if (currentUser) {
+                    console.log("User already logged in:", currentUser);
+                    // If there's a general message area for logged in status, use it.
+                    // For now, just console log as the main message areas are for form feedback.
+                }
+            });
         </script>
     </body>
 </html>
