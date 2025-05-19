@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
         <title>Welcome to FlyDreamAir!</title>
-        <link rel="stylesheet" href="quickCheckIn.css">
+        <link rel="stylesheet" href="errorBooking.css">
     </head>
     <body>
         <!-- Header 1 (including logo, language dropdown, profile and log out buttons) -->
@@ -53,24 +53,27 @@
                             <a href="">Flight Status</a>
                         </nav>
                     </div>
-                    <div class="checkInArea">
-                        <div class="checkInMessage">Check in online from 24 hours before your flight, using your unique reference number. Am I eligible for online check-in?</div>
-                        <div class="checkInInputAndButton">
-                            <div class="checkInInputs">
-                                <input type="text" class="input" placeholder="Customer Reference Number">
-                            </div>
-                            <div class="checkInInputs">
-                                <input type="text" class="input" placeholder="Last Name">
-                            </div>
-                            <div class="checkInButtonContainer">
-                                <button class="blueButton" onClick="manageBooking()">Check In</button>
+                    <div class="errorContainer">
+                        <div class="imageAndMessage">
+                            <img src="/images/redError.png" alt="" class="errorImage">
+                            <h1>Booking Failed</h1>
+                        </div>
+                        <div class="errorReason">
+                            <span class="impMessage">We could not complete your booking for the following reason:</span><br><br>
+                            The selected seats are no longer available. Another passenger has selected these seats.
+                            <br><br><br>
+                            <span class="errorCode">error code: FD-2222 | Time: 14:33 AEST</span>
+                        </div>
+                        <div class="errorButtonsContainer">
+                            <div class="errorButtons">
+                                <button class="blueButton">Choose Different Seats</button>
+                                <button class="outlineButton ">Return to Flight Selection</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
         <!-- New section: travel cards -->
         <section class="dealsSection">
             <div>
@@ -117,7 +120,6 @@
                 </div>
             </div>
         </section>
-
         <!-- New section: Airline info -->
         <section class="airlineInfoSection">
             <div class="infoBody">
