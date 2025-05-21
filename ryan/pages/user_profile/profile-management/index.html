@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlyDreamAir - Prolfile Management</title>
+        <link rel="stylesheet" href="profile-management.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    </head>
+
+    <body>
+        <div id="whole-page">
+            <div id="header-placeholder"></div>
+
+            <main class="user-profile-page">
+                <nav class="main-website-nav-sections">
+                    <ul>
+                        <li>
+                            <button class="current-button">
+                                <p>Deals</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="regular-button">
+                                <p>Plan</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="regular-button">
+                                <p>Book</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="regular-button">
+                                <p>Travel</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="regular-button">
+                                <p>Manage Booking</p>
+                            </button>
+                        </li>
+
+                        <li>
+                            <button class="regular-button">
+                                <p>Help</p>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div id="main-content-box">
+                    <section class="user-profile-section-selection">
+                        <div>
+                            <p id=welcome-text>Welcome back,<br />USER!</p>
+                        </div>
+
+                        <nav class="section-selection-nav-buttons">
+                            <ul>
+                                <li>
+                                    <button class="regular-button">
+                                        <p>Upcoming flights</p>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <button class="regular-button">
+                                        <p>Current bookings management</p>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <button class="regular-button">
+                                        <p>Digital tickets</p>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <button class="regular-button">
+                                        <p>In-flight points</p>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <button class="regular-button">
+                                        <p>Booking history</p>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <button class="regular-button">
+                                        <p>Digital receipts</p>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <button class="current-button">
+                                        <p>Profile management</p>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <button class="regular-button">
+                                        <p>Settings</p>
+                                    </button>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </section>
+
+                    <section class="section-content-area">
+                        <div id="pm-div">
+                            <form id="pm-form">
+                                <div id="update-personal-details">
+                                    <div class="pm-sections-titles-div">
+                                        <table>
+                                            <tr>
+                                                <td class="table-left-side">Update personal details</td>
+                                                <td class="table-right-side">
+                                                    <span class="drop-down-arrow">&#x2304;</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <p class="pm-subtitle">Location</p>
+
+                                    <div class="pm-form-field">
+                                        <label for="country">Country of Residence</label>
+                                        <input type="text" id="country" placeholder="Australia" />
+                                    </div>
+
+                                    <p class="pm-subtitle">Personal Details</p>
+
+                                    <p class="pm-instructional-text">
+                                        Please enter your personal details as they are listed on either:
+                                        <br />
+                                        (1) your passport
+                                        <br />
+                                        (2) your driver's licence
+                                        <br />
+                                        (3) birth certificate
+                                    </p>
+
+                                    <div class="pm-form-field">
+                                        <label for="title">Title</label>
+                                        <input type="text" id="title" placeholder="Mr/Mrs/Miss" />
+                                    </div>
+
+                                    <div class="pm-form-row">
+                                        <div class="pm-form-field">
+                                            <label for="first-name">First Name</label>
+                                            <input type="text" id="first-name" placeholder="John" />
+                                        </div>
+
+                                        <div class="pm-form-field">
+                                            <label for="last-name">Last Name</label>
+                                            <input type="text" id="last-name" placeholder="Smith" />
+                                        </div>
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="date-of-birth">Date of Birth</label>
+                                        <input type="text" id="date-of-birth" placeholder="DD/MM/YYYY" />
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="email">Email</label>
+                                        <input type="text" id="email" placeholder="name@gmail.com" />
+                                    </div>
+
+                                    <p class="pm-subtitle">Account Details</p>
+
+                                    <div class="pm-form-field">
+                                        <label for="username">Username</label>
+                                        <input type="text" id="username" placeholder="user_name1" />
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="password">Password</label>
+                                        <input type="text" id="password" placeholder="Placeholder" />
+                                        <!--
+                                        <button class="eye-button">
+                                            <img src="../../../images/eye-password-show-svgrepo-com.svg" alt="password eye icon" id="input-eye-icon-1">
+                                        </button>
+                                        -->
+                                        <img src="../../../images/eye-password-show-svgrepo-com.svg" alt="password eye icon" id="input-eye-icon-1">
+                                    </div>
+
+                                    <p class="pm-instructional-text">
+                                        Password must contain at least 8 characters, a number, and a symbol
+                                    </p>
+
+                                    <div class="pm-form-field">
+                                        <label for="confirm-password">Confirm Password</label>
+                                        <input type="text" id="confirm-password" placeholder="Placeholder" />
+                                        <!--
+                                        <button class="eye-button">
+                                            <img src="../../../images/eye-password-show-svgrepo-com.svg" alt="password eye icon" id="input-eye-icon-2">
+                                        </button>
+                                        -->
+                                        <img src="../../../images/eye-password-show-svgrepo-com.svg" alt="password eye icon" id="input-eye-icon-2">
+                                    </div>
+                                </div>
+
+                                <div id="update-security-details">
+                                    <div class="pm-sections-titles-div">
+                                        <table>
+                                            <tr>
+                                                <td class="table-left-side">Update security details</td>
+                                                <td class="table-right-side">
+                                                    <span class="drop-down-arrow">&#x2304;</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+
+                                    <div class="pm-subtitle">
+                                        <span>Add a recovery email or phone number</span>
+                                        &nbsp; &nbsp;
+                                        <span class="pm-optional-text">* optional</span>
+                                    </div>
+
+                                    <div class="pm-form-row">
+                                        <div class="pm-form-field">
+                                            <label for="recovery-email">A Different Email</label>
+                                            <input type="text" id="recovery-email" placeholder="alternate@gmail.com" />
+                                        </div>
+
+                                        <div class="pm-form-field">
+                                            <label for="phone-number">Phone Number</label>
+                                            <input type="text" id="phone-number" placeholder="Placeholder" />
+                                        </div>
+                                    </div>
+
+                                    <div class="pm-subtitle" id="two-factor-subtitle">
+                                        <span>Add two-factor identification</span>
+                                        &nbsp; &nbsp;
+                                        <span class="pm-optional-text">* optional</span>
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="two-factor-phone-number">Phone number to receive a login code</label>
+                                        <input type="text" id="two-factor-phone-number" placeholder="Placeholder" />
+                                    </div>
+                                </div>
+
+                                <div id="update-preferred-contact-method">
+                                    <div class="pm-sections-titles-div">
+                                        <table>
+                                            <tr>
+                                                <td class="table-left-side">Update preferred contact method</td>
+                                                <td class="table-right-side">
+                                                    <span class="drop-down-arrow">&#x2304;</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="pm-subtitle">
+                                        <span>Preferred contact method</span>
+                                        &nbsp; &nbsp;
+                                        <span class="pm-optional-text">* optional</span>
+                                    </div>
+
+                                    <div class="radio-button-group-div">
+                                        <input type="radio" class="first-radio-button" id="email-contact-method" name="contact-method-selector" value="email-selected" checked />
+                                        <label for="email-contact-method">Email</label>
+
+                                        <input type="radio" id="sms-contact-method" name="contact-method-selector" value="sms-selected" />
+                                        <label for="sms-contact-method">Dark mode</label>
+
+                                        <input type="radio" id="phone-call-contact-method" name="contact-method-selector" value="phone-call-selected" />
+                                        <label for="phone-call-contact-method">Phone call</label>
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="change-email-or-phone-number">If not the desired information, please change:</label>
+                                        <input type="text" id="change-email-or-phone-number" placeholder="Given email/phone if given in optional step above" />
+                                    </div>
+                                </div>
+
+                                <div id="update-saved-payment-method">
+                                    <div class="pm-sections-titles-div">
+                                        <table>
+                                            <tr>
+                                                <td class="table-left-side">Update saved payment method</td>
+                                                <td class="table-right-side">
+                                                    <span class="drop-down-arrow">&#x2304;</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="pm-subtitle">
+                                        <span>Save payment method</span>
+                                        &nbsp; &nbsp;
+                                        <span class="pm-optional-text">* optional</span>
+                                    </div>
+
+                                    <p class="pm-instructional-text">
+                                        Streamline the booking process and save your desired payment method to your account!
+                                    </p>
+
+                                    <div>
+                                        <span class="pm-instructional-text">
+                                            Preferred currency to view costs in:
+                                        </span>
+
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+                                        <span>
+                                            <select name="currency">
+                                                <option value="aud" selected="selected">Australia $(AUD)</option>
+                                                <option value="usd">United States $(USD)</option>
+                                                <option value="cad">Canada $(CAD)</option>
+                                                <option value="gbp">United Kingdom &#163;(GPB)</option>
+                                                <option value="euro">Europe &#8364;(EUR)</option>
+                                                <option value="yuan">China &#20803;(CNY)</option>
+                                            </select>
+                                        </span>
+                                    </div>
+
+                                    <div class="radio-button-group-div">
+                                        <input type="radio" class="first-radio-button" id="credit-or-debit" name="payment-method-selector" value="credit-or-debit" checked />
+                                        <label for="credit-or-debit">Credit or Debit Card</label>
+
+                                        <input type="radio" id="paypal" name="payment-method-selector" value="paypal" />
+                                        <label for="paypal">PayPal</label>
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="name-on-card">Name on Card</label>
+                                        <input type="text" id="name-on-card" placeholder="John Smith" />
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="card-number">Card Number</label>
+                                        <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" />
+                                    </div>
+
+                                    <div class="pm-form-row">
+                                        <div class="pm-form-field">
+                                            <label for="expiration-date">Expiration Date</label>
+                                            <input type="text" id="expiration-date" placeholder="MM/YY" />
+                                        </div>
+
+                                        <div class="pm-form-field">
+                                            <label for="cvv-code">CVV Code</label>
+                                            <input type="text" id="cvv-code" placeholder="Placeholder" />
+                                        </div>
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="address-line-1">Address Line 1</label>
+                                        <input type="text" id="address-line-1" placeholder="Placeholder" />
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="address-line-2">Address Line 2</label>
+                                        <input type="text" id="address-line-2" placeholder="Placeholder" />
+                                    </div>
+
+                                    <div class="pm-form-field">
+                                        <label for="address-city">City</label>
+                                        <input type="text" id="address-city" placeholder="Placeholder" />
+                                    </div>
+
+                                    <div class="pm-form-row" id="three-column-row">
+                                        <div class="pm-form-field">
+                                            <label for="address-country">Country</label>
+                                            <input type="text" id="address-country" placeholder="Placeholder" />
+                                        </div>
+
+                                        <div class="pm-form-field">
+                                            <label for="address-state-or-province">State/Province</label>
+                                            <input type="text" id="address-state-or-province" placeholder="Placeholder" />
+                                        </div>
+
+                                        <div class="pm-form-field" id="zip-code-field">
+                                            <label for="address-zip-or-postal-code">Zip/Postal Code</label>
+                                            <input type="text" id="address-zip-or-postal-code" placeholder="Placeholder" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button id="save-changes-button">
+                                    <p>Save changes</p>
+                                </button>
+                            </form>
+
+                            <hr />
+
+                        </div>
+                    </section>
+                </div>
+
+                <div id="promo-box">
+                    <section class="promo-content">
+                        <div class="promo-item">
+                            <div class="promo-image-placeholder"></div>
+                            <h3 class="promo-title">Title</h3>
+                            <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                            <a href="#" class="learn-more-link">Learn more ></a>
+                        </div>
+                        <div class="promo-item">
+                            <div class="promo-image-placeholder"></div>
+                            <h3 class="promo-title">Title</h3>
+                            <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                            <a href="#" class="learn-more-link">Learn more ></a>
+                        </div>
+                        <div class="promo-item">
+                            <div class="promo-image-placeholder"></div>
+                            <h3 class="promo-title">Title</h3>
+                            <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                            <a href="#" class="learn-more-link">Learn more ></a>
+                        </div>
+                    </section>
+
+                    <section class="sales-clarification">
+                        <p>* space for clarification of sales/ promotions</p>
+                    </section>
+                </div>
+
+
+            </main>
+
+            <!-- Footer will be loaded here (e.g., by JavaScript) -->
+            <div id="footer-placeholder"></div>
+
+            <!-- <script src="user-profile.js"></script> -->
+            <script>
+                // Example JavaScript to load header and footer
+                function loadHTML(url, elementId) {
+                    fetch(url)
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById(elementId).innerHTML = data;
+                        })
+                        .catch(error => console.error('Error loading HTML:', error));
+                }
+
+                // Load header and footer
+                loadHTML('../components/header.html', 'header-placeholder');
+                loadHTML('../components/footer.html', 'footer-placeholder');
+            </script>
+        </div>
+    </body>
+</html>
