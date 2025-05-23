@@ -103,7 +103,7 @@
     display: flex;
     flex-direction: column;
     width: 80%;
-    height: 200px;
+    height: 330px;
     position: absolute;
     background-color: #FFFFFF;
     top: 65%;
@@ -148,18 +148,16 @@
 }
 
 .searchChoices a:active {
-    color: #989D9F;
+    color: #FFFFFF;
 }
 
 .searchChoices a:hover {
     color: #FFFFFF;
 }
 
-/* start: manage booking area */
-
-.manageBookingArea {
+.checkInArea {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -169,20 +167,18 @@
     font-size: 15px;
 }
 
-.manageInputsArea {
+.checkInMessage {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.checkInInputAndButton {
     display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
 }
 
-.input {
-    width: 190px;
-    background-color: #F4F6F8;
-    border: 0px;
-}
-
-.manageInputs {
+.checkInInputs {
     background-color: #F4F6F8;
     width: 200px;
     margin-left: 8px;
@@ -193,63 +189,16 @@
     flex-direction: column;
 }
 
-.manageBookingButtonContainer {
+.checkInButtonContainer {
     display: flex;
     justify-content: flex-end;
     width: 100%;
 }
 
-.outlineButton {
-    background-color: transparent;
-    color: #3E4C65;
-    border: 1.5px solid #3E4C65;
-    border-radius: 4px;
-    padding: 8px;
-    font-family: 'Poppins';
-}
-
-.outlineButton:hover {
-    background-color: #3E4C65;
-    color: #FFFFFF;
-}
-
-.loginArea {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.loginButtonContainer {
-    margin-top: 15px;
-    padding-top: 0;
-}
-
-.textLine {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    color: #989D9F;
-    font-family: 'Poppins';
-}
-
-.or {
-    color: #989D9F;
-}
-
-.textLine::before,
-.textLine::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid #ccc;
-}
-
-.textLine::before {
-    margin-right: 10px;
-}
-
-.textLine::after {
-    margin-left: 10px;
+.input {
+    width: 190px;
+    background-color: #F4F6F8;
+    border: 0px;
 }
 
 .blueButton {
@@ -267,19 +216,40 @@
     border: 1.5px solid #3E4C65;
 }
 
-.pAmountButton {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-left: 5px;
-    margin-right: 5px;
-    color: #FFFFFF;
-    background-color: #3E4C65;
-    border: 1px solid #3E4C65;
+/* results section start */
+.checkInResultsSection {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-right: 80px;
+    margin-left: 80px;
+    font-family: 'Poppins';
 }
 
+.confirmImageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.confirmImage {
+    width: 120px;
+}
+
+.confirmationMess {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirmationMess div {
+    font-weight: 300;
+}
+
+/*  end of results section */
+
 .dealsSection {
-    margin-top: 120px;
+    margin-top: 210px;
     font-family: 'Poppins';
     margin-right: 80px;
     margin-left: 80px;
@@ -321,6 +291,11 @@
     border: 2px solid #D7DEDD;
 
 }
+
+/* .eachTravelCard:hover {
+    border: 3px solid #D7DEDD;
+
+} */
 
 .travelCardImage {
     display: block;

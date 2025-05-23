@@ -278,6 +278,26 @@
     border: 1px solid #3E4C65;
 }
 
+.cancelBookingSection {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-right: 80px;
+    margin-left: 80px;
+    font-family: 'Poppins';
+}
+
+.confirmationMess {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirmationMess div {
+    font-weight: 300;
+}
+
 .dealsSection {
     margin-top: 120px;
     font-family: 'Poppins';

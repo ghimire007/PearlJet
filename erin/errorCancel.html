@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
         <title>Welcome to FlyDreamAir!</title>
-        <link rel="stylesheet" href="quickCheckFlightStatus.css">
+        <link rel="stylesheet" href="errorCancel.css">
     </head>
     <body>
         <!-- Header 1 (including logo, language dropdown, profile and log out buttons) -->
@@ -53,33 +53,38 @@
                             <a href="">Flight Status</a>
                         </nav>
                     </div>
-                    <div class="checkStatus">
-                        <div class="trackMessage">Track real time arrival and departure information for FlyDreamAir</div>
-                        <div class="flightInputsArea">
-                            <div class="flightInputs">
-                                <input type="text" class="input" placeholder="Flight Number">
-                            </div>
-                            <div class="radioContainer">
-                                <div>
-                                    <input type="radio" class="radioButtons">Arriving
-                                </div>
-                                <div>
-                                    <input type="radio" class="radioButtons">Departing
-                                </div>
-                            </div>
-                            <div class="flightInputs">
-                                <input type="text" class="input" placeholder="Fri 9 May 2025">
-                                <div><img src="/images/calendar.png" alt="" class="inlineIcon"></div>
+                    <div class="cancelErrorContainer">
+                        <div class="cancelHeader">Cancel Flight</div>
+                        <div class="bookingRefContainer">
+                            <div class="top">Booking Reference: FD234324</div>
+                            <div class="bottom">
+                                Sydney (SYD) → Brisbane (BRI)
+                                <br>09 May 2025 | FlyDreamAir 181 | 07:00 - 08:30
                             </div>
                         </div>
-                        <div class="searchFlightsContainer">
-                            <button class="blueButton ">Search Flights</button>
+                        <div class="imageAndMessage">
+                            <img src="/images/redError.png" alt="" class="errorImage">
+                            <h1>Cancellation Failed</h1>
+                        </div>
+                        <div class="errorReason">
+                            <span class="impMessage">We could not process your cancellation request:</span><br><br>
+                            This flight is within the 24-hour cancellation window. Cancellations are not permitted online within 24 hours of departure.
+                        </div>
+                        <div class="yellowBanner">
+                            <div>
+                                Note: Late cancellation may be subject to reduced or no refund.
+                            </div>
+                        </div>
+                        <div class="errorButtonsContainer">
+                            <div class="errorButtons">
+                                <button class="blueButton">Call Customer Service</button>
+                                <button class="outlineButton ">Return to My Bookings</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
         <!-- New section: travel cards -->
         <section class="dealsSection">
             <div>
@@ -126,8 +131,6 @@
                 </div>
             </div>
         </section>
-
-
         <!-- New section: Airline info -->
         <section class="airlineInfoSection">
             <div class="infoBody">
@@ -226,96 +229,6 @@
          </section>
          <!-- Javascript for people buttons -->
          <script>
-
-            // intialise values for people amounts
-            var initialAdult = 1;
-            var initialChild = 0;
-            var initialInfant = 0;
-
-            function profileButton() {}
-
-            function logOutButton() {}
-
-            function addAdult() {
-                // get the amount in the span
-                var adultSpan = document.getElementById("adultAmount");
-                // get the number and change to integer
-                var adultNum = parseInt(adultSpan.innerHTML);
-                // calculate
-                var result = adultNum + 1;
-                // display the new number
-                var resultSpan = document.getElementById("adultAmount");
-                resultSpan.innerHTML = result;
-            }
-
-            function subtractAdult() {
-                // get hte amount in the span
-                var adultSpan = document.getElementById("adultAmount");
-                // get the number and change to integer
-                var adultNum = parseInt(adultSpan.innerHTML);
-                // calculate -- cannot be less than what is originally shown
-                if (adultNum > 1) {
-                    var result = adultNum - 1
-                    // display the result
-                    var resultSpan = document.getElementById("adultAmount");
-                    resultSpan.innerHTML = result;
-                }
-            }
-
-
-            function addChild() {
-                // get the amount in the span
-                var childSpan = document.getElementById("childAmount");
-                // get the number and change to integer
-                var childNum = parseInt(childSpan.innerHTML);
-                // calculate
-                var result = childNum + 1;
-                // display the new number
-                var resultSpan = document.getElementById("childAmount");
-                resultSpan.innerHTML = result;
-            }
-
-            function subtractChild() {
-                // get the amount in the span
-                var childSpan = document.getElementById("childAmount");
-                // get the number and change to integer
-                var childNum = parseInt(childSpan.innerHTML);
-                // calculate -- cannot be less than what is originally shown
-                if (childNum > 0) {
-                    var result = childNum - 1
-                    // display the result
-                    var resultSpan = document.getElementById("childAmount");
-                    resultSpan.innerHTML = result;
-                }
-            }
-
-            function addInfant() {
-                // get the amount in the span
-                var infantSpan = document.getElementById("infantAmount");
-                // get the number and change to integer
-                var infantNum = parseInt(infantSpan.innerHTML);
-                // calculate
-                var result = infantNum + 1;
-                // display the new number
-                var resultSpan = document.getElementById("infantAmount");
-                resultSpan.innerHTML = result;
-            }
-
-            function subtractInfant() {
-                // get the amount in the span
-                var infantSpan = document.getElementById("infantAmount");
-                // get the number and change to integer
-                var infantNum = parseInt(infantSpan.innerHTML);
-                // calculate -- cannot be less than what is originally shown
-                if (infantNum > 0) {
-                    var result = infantNum - 1
-                    // display the result
-                    var resultSpan = document.getElementById("infantAmount");
-                    resultSpan.innerHTML = result;
-                }
-            }
-
-            function searchFlightsButton() {}
 
             function joinTodayButton() {}
 

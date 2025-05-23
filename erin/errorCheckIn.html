@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Welcome to FlyDreamAir!</title>
+        <link rel="stylesheet" href="errorCheckIn.css">
+    </head>
+    <body>
+        <!-- Header 1 (including logo, language dropdown, profile and log out buttons) -->
+        <header class="header1">
+            <div class="logoHeader">
+                <div class="logo">FlyDreamAir</div>
+            </div>
+            <nav>
+                <select name="Language Options" id="language" class="whiteButton">
+                    <option value="lang1">Australia (English)</option>
+                    <option value="lang2">Language 2</option>
+                    <option value="lang3">Language 3</option>
+                    <option value="lang4">Language 4</option>
+                    <option value="lang5">Language 5</option>
+                    <option value="lang6">Language etc.</option>
+                </select>
+                <button class="whiteButton" onClick="profileButton()">Profile</button>
+                <button class="whiteButton" onClick="logOutButton()">Log Out</button>
+            </nav>
+        </header>  
+        <!-- Second header covering the deals, plan, book, travel, manage booking, help navigation buttons -->
+        <header class="header2">
+            <nav class="headerChoices">
+                <a href="">Deals</a>
+                <a href="">Plan</a>
+                <a href="">Book</a>
+                <a href="">Travel</a>
+                <a href="">Manage Booking</a>
+                <a href="">Help</a>
+            </nav>
+        </header>
+        <!-- search module section -->
+        <section>
+            <!-- div covering the banner image and the search module -->
+            <div class="imgAndSearchSection">
+                <!-- image -->
+                <img src="/images/headerLandscape.jpeg" alt="headerBackground" class="headerBackground">
+                <!-- search module -->
+                <div class="searchModule">
+                    <div class="searchNavBar">
+                        <nav class="searchChoices">
+                            <a href="">Book</a>
+                            <a href="">Manage</a>
+                            <a href="">Upgrade</a>
+                            <a href="">Check-in</a>
+                            <a href="">Flight Status</a>
+                        </nav>
+                    </div>
+                    <div class="cancelErrorContainer">
+                        <div class="cancelHeader">Online Check-In</div>
+                        <div class="bookingRefContainer">
+                            <div class="top">Sydney (SYD) → Brisbane (BNE) | Economy class</div>
+                            <div class="bottom">
+                                09 May 2025 | FlyDreamAir 181 | 07:00 - 08:30 
+                                <br>Passenger: John Smith | Booking ref: FD234324
+                            </div>
+                        </div>
+                        <div class="imageAndMessage">
+                            <img src="/images/redError.png" alt="" class="errorImage">
+                            <h1>Check-In Failed</h1>
+                        </div>
+                        <div class="errorReason">
+                            <span class="impMessage">We could not complete your check-in:</span><br><br>
+                            Online check-in is not yet available for this flight. Check-in opens 24 hours before departure time.
+                            <br> <span class="checkInMessage">Check in opens: 9 May 2025, 07:00 AEST</span>
+                        </div>
+                        <div class="greenBanner">
+                            <div>
+                                Time until check-in: 19 hours and 42 minutes
+                            </div>
+                        </div>
+                        <div class="errorButtonsContainer">
+                            <div class="errorButtons">
+                                <button class="blueButton">Set Check-In Reminder</button>
+                                <button class="outlineButton ">Return to My Bookings</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- New section: travel cards -->
+        <section class="dealsSection">
+            <div>
+                <!-- Based on the results -->
+                <div class="sectionHeading">Flight Deals
+                <span class="arrow"> &#9662;</span></div>
+            </div>
+            <div class="travelCardsContainer">
+                <div class="eachTravelCard">
+                    <img src="/images/travelcard_1.jpg" alt="" class="travelCardImage">
+                    <div class="overlayText">
+                        <div class="sale">Sale Ends</div>
+                        <div class="cityAndPrice">
+                            <div class="city">Sydney</div>
+                            <div class="price">$$$</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eachTravelCard">
+                    <img src="/images/travelcard_1.jpg" alt="" class="travelCardImage">
+                    <div class="overlayText">
+                        <div class="sale">Sale Ends</div>
+                        <div class="cityAndPrice">
+                            <div class="city">Sydney</div>
+                            <div class="price">$$$</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eachTravelCard">
+                    <img src="/images/travelcard_1.jpg" alt="" class="travelCardImage">
+                    <div class="overlayText">
+                        <div class="sale">Sale Ends</div>
+                        <div class="cityAndPrice">
+                            <div class="city">Sydney</div>
+                            <div class="price">$$$</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eachTravelCard">
+                    <img src="/images/travelcard_1.jpg" alt="" class="travelCardImage blurImage">
+                    <div class="seeDealsContainer">
+                        <button class="seeDealsButton">See All Deals</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- New section: Airline info -->
+        <section class="airlineInfoSection">
+            <div class="infoBody">
+              <div class="airlineImageContainer">
+                <img src="/images/airbus.jpg" alt="" class="airlineImage">
+              </div>
+              <div class="gridFour">
+                <div class="infoHeading">Why choose FlyDreamAir?</div>
+                <div class="airlineInfoContainer">
+                  <div>
+                    <div class="eachInfoGroup">
+                      <img src="/images/calendar.png" alt="" class="icon">
+                    </div>
+                    <p class="information">Egestas elit dui scelerisque ut eu purus aliquam vitae habitasse.</p>
+                  </div>
+                  <div>
+                    <div class="eachInfoGroup">
+                      <img src="/images/car.png" alt="" class="icon">
+                    </div>
+                    <p class="information">Id eros pellentesque facilisi id mollis faucibus commodo enim.</p>
+                  </div>
+                  <div>
+                    <div class="eachInfoGroup">
+                      <img src="/images/heartbeat.png" alt="" class="icon">
+                    </div>
+                    <p class="information">Tristique elementum, ac maecenas enim fringilla placerat scelerisque semper.</p>
+                  </div>
+          
+                  <div>
+                    <div class="eachInfoGroup">
+                      <img src="/images/bag.png" alt="" class="icon">
+                    </div>
+                    <p class="information">Curabitur magna cras euismod pharetra, mauris malesuada sit enim, elementum.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+        <section class="infoCardsSection">
+            <div class="eachInfoCard">
+                <div class="imageContainer">
+                    <img src="/images/travelcard_1.jpg" alt="Travel Image" class="cardImage">
+                </div>
+                <div class="cardAllText">
+                    <p class="cardTitle">Title</p>
+                    <p class="cardDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <a href="" class="learnMoreLink">Learn More &#9656;</a>
+                </div>
+            </div>
+            <div class="eachInfoCard">
+                <div class="imageContainer">
+                  <img src="/images/travelcard_1.jpg" alt="Travel Image" class="cardImage">
+                </div>
+                <div class="cardAllText">
+                  <p class="cardTitle">Title</p>
+                  <p class="cardDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <a href="" class="learnMoreLink">Learn More &#9656;</a>
+                </div>
+            </div>
+            <div class="eachInfoCard">
+                <div class="imageContainer">
+                  <img src="/images/travelcard_1.jpg" alt="Travel Image" class="cardImage">
+                </div>
+                <div class="cardAllText">
+                  <p class="cardTitle">Title</p>
+                  <p class="cardDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <a href="" class="learnMoreLink">Learn More &#9656;</a>
+                </div>
+            </div>
+          </section>
+          <!-- Section membership -->
+          <section class="membershipSection">
+            <div class="infoBody">
+                <div class="gridTwo">
+                    <div class="infoHeading">Why not become a member?</div>
+                    <div class="membershipInfoContainer">
+                        <div>
+                            <div class="eachInfoGroup">
+                                <img src="/images/calendar.png" alt="" class="icon">
+                            </div>
+                            <p class="information">Egestas elit dui scelerisque ut eu purus aliquam vitae habitasse.</p>
+                        </div>
+                        <div>
+                            <div class="eachInfoGroup">
+                                <img src="/images/heartbeat.png" alt="" class="icon">
+                            </div>
+                            <p class="information">Tristique elementum, ac maecenas enim fringilla placerat scelerisque semper.</p>
+                        </div>
+                        <div><button class="blueButton" onClick="joinTodayButton()">Join Today!</button></div>
+                    </div>
+                </div>
+                <div class="airlineImageContainer">
+                    <img src="/images/airbus.jpg" alt="" class="airlineImage">
+                </div>
+            </div>
+         </section>
+         <!-- Javascript for people buttons -->
+         <script>
+
+            function joinTodayButton() {}
+
+         </script>
+    </body>
+</html>
