@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import userRoutes from './routes/userRoutes.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import flightRoutes from './routes/flightRoutes.js';
+import bookingRoutes from './routes/bookingRoutes.js';
 dotenv.config();
 
 const app = express();
@@ -28,6 +30,8 @@ mongoose.connection.on('error', (err) => {
 
 // Use routes
 app.use('/api', userRoutes);
+app.use('/api/flights', flightRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 // Start the server
 app.listen(PORT, () => {

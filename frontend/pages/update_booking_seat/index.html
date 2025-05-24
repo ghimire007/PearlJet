@@ -72,6 +72,7 @@
 
                 <div class="seat-legend">
                     <div class="legend-item"><span class="seat-example available"></span> Available</div>
+                    <div class="legend-item"><span class="seat-example booked-seat"></span> Your Booking</div>
                     <div class="legend-item"><span class="seat-example emergency-exit"></span> Emergency Exit Seat</div>
                     <div class="legend-item"><span class="seat-example unavailable"></span> Unavailable</div>
                 </div>
@@ -148,7 +149,7 @@
         </div>
 
         <div class="checkout-button-container">
-            <button id="proceed-to-checkout-btn" class="action-btn primary-action-btn" type="button">Proceed to Checkout</button>
+            <button id="proceed-to-checkout-btn" class="action-btn primary-action-btn" type="button">Update</button>
         </div>
 
     </main>
@@ -160,6 +161,7 @@
     <!-- If they are separate, they need to be included or loaded similarly -->
 
 
+    <script src="../../js/api_client.js"></script>
     <script>
         // Load header and footer
         function loadHTML(url, elementId) {
@@ -181,137 +183,103 @@
             return urlParams.get(name);
         }
 
-        function populateFlightInfo(flight) {
-            selectedFlight = flight;
+        let currentBooking = null;
+        let originalBookedSeat = null;
+
+        function fillBookingDetails(booking) {
+            currentBooking = booking;
+            originalBookedSeat = booking.passenger.seat;
+            // Fill flight info bar
             const infoValues = document.querySelectorAll('.flight-info-bar .info-value');
             if (infoValues.length >= 4) {
-                infoValues[0].textContent = flight.origin;
-                infoValues[1].textContent = flight.destination;
-                infoValues[2].textContent = new Date(flight.departureDateTime).toLocaleDateString();
-                infoValues[3].textContent = new Date(flight.departureDateTime).toLocaleTimeString();
+                infoValues[0].textContent = booking.flight.origin;
+                infoValues[1].textContent = booking.flight.destination;
+                infoValues[2].textContent = new Date(booking.flight.departureDateTime).toLocaleDateString();
+                infoValues[3].textContent = new Date(booking.flight.departureDateTime).toLocaleTimeString();
+            }
+            // Fill passenger name
+            document.getElementById('current-passenger-name').value = booking.passenger.name || '';
+            // Highlight booked seat
+            if (booking.passenger.seat) {
+                const seatEl = document.querySelector(`.seat[data-seat='${booking.passenger.seat}']`);
+                if (seatEl) {
+                    seatEl.classList.add('booked-seat');
+                }
+                // Optionally, show in summary or passenger info
+                const infoBar = document.querySelector('.flight-info-bar');
+                if (infoBar && !infoBar.querySelector('.booked-seat')) {
+                    const seatInfo = document.createElement('span');
+                    seatInfo.className = 'booked-seat';
+                    seatInfo.textContent = `Your Seat: ${booking.passenger.seat}`;
+                    infoBar.appendChild(seatInfo);
+                }
+            }
+            // Check passenger services
+            if (booking.passenger.services && Array.isArray(booking.passenger.services)) {
+                const selectedServices = booking.passenger.services.map(s => s.name);
+                document.querySelectorAll('.in-flight-services input[type="checkbox"]').forEach(cb => {
+                    if (selectedServices.includes(cb.getAttribute('data-service'))) {
+                        cb.checked = true;
+                    } else {
+                        cb.checked = false;
+                    }
+                });
             }
         }
 
-        window.addEventListener('DOMContentLoaded', function() {
-            const flightId = getQueryParam('id');
-            if (flightId) {
-                fetch(`http://localhost:3000/api/flights/${flightId}`)
-                    .then(res => res.json())
-                    .then(flight => {
-                        if (flight && !flight.error) {
-                            populateFlightInfo(flight);
-                        }
-                    });
-            }
-            // Add prices to checkboxes
-            const servicePrices = {
-                'meals': 15,
-                'entertainment': 10,
-                'wifi': 8,
-                'extra-baggage': 25,
-                'priority-boarding': 12,
-                'lounge-access': 30
-            };
-            document.querySelectorAll('.in-flight-services input[type="checkbox"]').forEach(cb => {
-                const service = cb.getAttribute('data-service');
-                if (servicePrices[service]) {
-                    const label = cb.parentElement;
-                    label.innerHTML = `<input type="checkbox" name="${service}" data-service="${service}"> ${label.textContent.trim()} ($${servicePrices[service]})`;
+        window.addEventListener('DOMContentLoaded', async function() {
+            const bookingId = getQueryParam('id');
+            if (bookingId) {
+                try {
+                    const booking = await apiCall(`/bookings/${bookingId}`);
+                    fillBookingDetails(booking);
+                } catch (err) {
+                    alert('Failed to load booking details: ' + err.message);
                 }
-            });
-
-            // Seat selection highlight logic
+            }
+            // Seat selection logic: remove .booked-seat from all seats if user selects a different seat
             document.querySelectorAll('.seat').forEach(seat => {
                 seat.addEventListener('click', function() {
                     document.querySelectorAll('.seat.selected-seat').forEach(s => s.classList.remove('selected-seat'));
+                    // Remove .booked-seat from all except the legend
+                    document.querySelectorAll('.seat.booked-seat').forEach(s => s.classList.remove('booked-seat'));
                     this.classList.add('selected-seat');
                 });
             });
-
-            // Remove multi-passenger logic, only single passenger
-            function getCurrentPassengerFromForm() {
+            // Update booking on button click
+            document.getElementById('proceed-to-checkout-btn').addEventListener('click', async function() {
+                if (!currentBooking) return alert('Booking not loaded.');
+                // Gather updated passenger info
                 const passengerName = document.getElementById('current-passenger-name').value;
-                const selectedSeat = document.querySelector('.seat.selected-seat')?.getAttribute('data-seat') || '';
+                const selectedSeat = document.querySelector('.seat.selected-seat')?.getAttribute('data-seat') || originalBookedSeat;
                 const selectedServices = [];
                 document.querySelectorAll('.in-flight-services input[type="checkbox"]:checked').forEach(cb => {
                     const service = cb.getAttribute('data-service');
-                    selectedServices.push({
-                        name: service,
-                        price: servicePrices[service] || 0
-                    });
+                    // Find price from label if possible
+                    let price = 0;
+                    const label = cb.parentElement.textContent;
+                    const match = label.match(/\$(\d+)/);
+                    if (match) price = parseFloat(match[1]);
+                    selectedServices.push({ name: service, price });
                 });
-                return { name: passengerName, seat: selectedSeat, services: selectedServices };
-            }
-
-            document.getElementById('proceed-to-checkout-btn').addEventListener('click', function() {
-                const passenger = getCurrentPassengerFromForm();
-                if (!passenger.name || !passenger.seat) {
-                    alert('Please enter a name and select a seat for the passenger.');
-                    return;
+                // Update booking object
+                currentBooking.passenger.name = passengerName;
+                currentBooking.passenger.seat = selectedSeat;
+                currentBooking.passenger.services = selectedServices;
+                try {
+                    await apiCall(`/bookings/${currentBooking._id}`, 'PUT', {
+                        passenger: currentBooking.passenger
+                    });
+                    alert('Booking updated successfully! Redirecting to Upcoming Flights...');
+                    setTimeout(() => {
+                        window.location.href = '../upcoming_flights/index.html';
+                    }, 1200);
+                } catch (err) {
+                    alert('Failed to update booking: ' + err.message);
                 }
-                const currentFlightSelection = {
-                    flight: selectedFlight,
-                    passenger: passenger
-                };
-                console.log(currentFlightSelection);
-                localStorage.setItem('currentFlightSelection', JSON.stringify(currentFlightSelection));
-                window.location.href = '../checkout/index.html';
             });
-
-            // Try to get user data from localStorage
-            const users = JSON.parse(localStorage.getItem('flyDreamAirUser') || '[]');
-            const user = users[0] || {};
-
-            // Billing address fields
-            document.getElementById('first-name').value = user.personalDetails?.firstName || '';
-            document.getElementById('last-name').value = user.personalDetails?.lastName || '';
-            document.getElementById('email').value = user.personalDetails?.email || '';
-            document.getElementById('address').value = user.optionalSetup?.addressLine1 || '';
-            document.getElementById('city').value = user.optionalSetup?.city || '';
-            document.getElementById('state').value = user.optionalSetup?.billingStateProvince || '';
-            document.getElementById('country').value = user.optionalSetup?.billingCountry || '';
-            document.getElementById('mobile').value = user.optionalSetup?.contactDetail || '';
-            document.getElementById('passport').value = user.personalDetails?.passportNumber || '';
-            document.getElementById('zip-postal-code').value = user.optionalSetup?.billingZipPostalCode || '';
-
-            // Payment info fields (if you have them in your form)
-            if (document.getElementById('card-holder')) {
-                document.getElementById('card-holder').value = user.optionalSetup?.cardHolderName || '';
-                document.getElementById('card-number').value = user.optionalSetup?.cardNumber || '';
-                document.getElementById('expiry-date').value = user.optionalSetup?.cardExpiryDate || '';
-                document.getElementById('cvc').value = user.optionalSetup?.cardCvc || '';
-            }
-
-            // Show a message if address or payment info is missing
-            if (!user.optionalSetup?.addressLine1) {
-                // Show a message or highlight the address section
-                let warn = document.getElementById('address-warning');
-                if (!warn) {
-                    warn = document.createElement('div');
-                    warn.id = 'address-warning';
-                    warn.style.color = 'red';
-                    warn.textContent = 'No saved address found. Please enter your address for this booking.';
-                    document.querySelector('.billing-address-form').prepend(warn);
-                } else {
-                    warn.style.display = 'block';
-                }
-            }
-            if (!user.optionalSetup?.cardNumber) {
-                let warn = document.getElementById('payment-warning');
-                if (!warn) {
-                    warn = document.createElement('div');
-                    warn.id = 'payment-warning';
-                    warn.style.color = 'red';
-                    warn.textContent = 'No saved payment info found. Please enter your payment details for this booking.';
-                    // Place this in your payment form section
-                    const paymentForm = document.querySelector('.card-details-form');
-                    if (paymentForm) paymentForm.prepend(warn);
-                } else {
-                    warn.style.display = 'block';
-                }
-            }
         });
     </script>
-    <script src="booking_seat.js"></script> 
+  
 </body>
 </html> 

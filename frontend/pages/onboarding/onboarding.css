@@ -1,3 +1,10 @@
+:root {
+  --primary-color: #3E4C65;
+  --primary-hover: #2c3950;
+  --accent-color: #0056b3;
+  --text-on-primary: #fff;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -58,7 +65,7 @@ body {
 }
 
 .step.active .step-number {
-    background-color: #007bff;
+    background-color: var(--primary-color);
 }
 
 .step-label {
@@ -189,8 +196,8 @@ body {
 
 .action-btn {
     /* display: inline-block; */ /* Already handled by flex */
-    background-color: #0056b3;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
     /* Remove margin-top, margin-left, margin-right, width, display:block as they are handled by .form-buttons */
     /* margin-top: 20px; */ 
     /* width: 100%; */
@@ -214,14 +221,15 @@ body {
 
 /* Keep original hover for action button */
 .action-btn:hover {
-    background-color: #004085;
+    background-color: var(--primary-hover);
 }
 
 .primary-action-btn {
-    background-color: #0056b3;
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
 }
 .primary-action-btn:hover {
-    background-color: #004085;
+    background-color: var(--primary-hover);
 }
 
 .existing-account-link {
@@ -400,4 +408,15 @@ body {
         margin-right: 10px;
         margin-bottom: 10px;
     }
+}
+
+/* Update nav/tab if present */
+/* .booking-nav-tabs, .register-nav-tabs, etc. */
+.booking-nav-tabs ul, .register-nav-tabs ul {
+    background-color: var(--primary-color);
+}
+.booking-nav-tabs .tab-btn.active-tab, .register-nav-tabs .tab-btn.active-tab {
+    background-color: var(--primary-hover);
+    border-bottom: 4px solid #fff;
+    font-weight: bold;
 } 

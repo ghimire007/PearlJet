@@ -1,0 +1,347 @@
+﻿:root {
+    --primary-color: #3E4C65;
+    --primary-hover: #2c3950;
+    --accent-color: #ffd700;
+    --text-on-primary: #fff;
+    --background-light: #f4f6f8;
+    --card-background: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --border-color: #e0e0e0;
+}
+
+body
+{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    margin: 0;
+    padding: 0;
+}
+
+.user-profile-page
+{
+    flex-grow: 1;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.main-website-nav-sections p
+{
+    font-size: 18px;
+}
+
+.main-website-nav-sections ul
+{
+    color: var(--text-primary);
+    list-style: none;
+    margin: 0 0 20px 0;
+    display: flex;
+    padding: 0;
+}
+
+.main-website-nav-sections li
+{
+    margin-right: 20px;
+}
+
+.main-website-nav-sections .current-button
+{
+    background: none;
+    color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.main-website-nav-sections .regular-button
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+div#main-content-box
+{
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+p#welcome-text
+{
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.user-profile-section-selection
+{
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.user-profile-section-selection ul li
+{
+    color: var(--text-primary);
+    list-style: none;
+}
+
+.section-selection-nav-buttons .current-button
+{
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
+    border: none;
+    border-radius: 6px;
+    padding: 12px 16px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.section-selection-nav-buttons .regular-button
+{
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    width: 100%;
+    text-align: left;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.section-selection-nav-buttons .regular-button:hover
+{
+    background-color: var(--background-light);
+}
+
+button
+{
+    background: none;
+    color: var(--text-primary);
+    border: none;
+    cursor: pointer;
+}
+
+.section-content-area
+{
+    flex: 1;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+div#digital-tickets-list
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- Digital Tickets Table Improvements --- */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 32px;
+    background: var(--card-background);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px 0 rgba(62, 76, 101, 0.08);
+    overflow: hidden;
+    padding: 0 0 16px 0;
+}
+
+th {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    padding: 20px 24px 8px 24px;
+    text-align: left;
+}
+
+td {
+    border: none;
+    background: transparent;
+    padding: 12px 24px;
+}
+
+tr:not(:last-child) td {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.button-in-table {
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0 2px 8px 0 rgba(62, 76, 101, 0.08);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+    margin: 0 0 8px 0;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+.button-in-table:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 4px 16px 0 rgba(62, 76, 101, 0.12);
+    transform: translateY(-2px) scale(1.03);
+}
+
+/* Align the right-side buttons */
+td.table-right-side {
+    text-align: right;
+    vertical-align: middle;
+}
+
+/* Add spacing between tables */
+#digital-tickets-list > table {
+    margin-bottom: 32px;
+}
+
+/* Responsive improvements */
+@media (max-width: 700px) {
+    table, th, td {
+        font-size: 15px;
+        padding: 10px 8px;
+    }
+    .button-in-table {
+        font-size: 15px;
+        padding: 10px 10px;
+    }
+    th {
+        padding: 14px 10px 6px 10px;
+    }
+}
+
+/* From Prakash */
+/* Promo Content */
+
+#promo-box
+{
+    padding-top: 60px;
+}
+
+.promo-content
+{
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 70px;
+}
+
+.promo-item
+{
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    min-width: 250px; /* Minimum width for promo items */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.promo-image-placeholder
+{
+    width: 100%;
+    height: 150px;
+    background-color: var(--background-light);
+    margin-bottom: 15px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-secondary);
+}
+/* Simulating the crossed box icon if no image provided */
+.promo-image-placeholder::before
+{
+    content: 'X'; /* Placeholder content */
+    font-size: 50px;
+    border: 2px solid var(--border-color);
+    padding: 20px;
+    display: inline-block;
+}
+
+.promo-title
+{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.promo-info
+{
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    min-height: 60px; /* To align 'Learn more' links if text length varies */
+}
+
+.learn-more-link
+{
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.learn-more-link:hover
+{
+    color: var(--primary-hover);
+}
+
+.sales-clarification
+{
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 20px;
+    padding: 0 70px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px)
+{
+    div#main-content-box
+    {
+        flex-direction: column;
+    }
+
+    .user-profile-section-selection
+    {
+        width: 100%;
+    }
+
+    .section-content-area
+    {
+        margin-left: 0;
+    }
+
+    .promo-content
+    {
+        padding: 0 20px;
+    }
+
+    .sales-clarification
+    {
+        padding: 0 20px;
+    }
+}

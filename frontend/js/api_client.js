@@ -82,10 +82,11 @@ async function signupUser(registrationData) {
 /**
  * Calls the backend login endpoint.
  * @param {object} credentials - { email, password }.
- * @returns {Promise<object>} - The success response containing the token (e.g., { token }).
+ * @returns {Promise<object>} - The success response containing the token and user details (e.g., { token, user }).
  */
-async function loginUserApi(credentials) { // Renamed to avoid conflict with previous inline function name
-    return apiCall('/login', 'POST', credentials);
+async function loginUserApi(credentials) {
+    const response = await apiCall('/login', 'POST', credentials);
+    return response; // Assuming response includes { token, user }
 }
 
 // Example for future use: Get user details (requires token)

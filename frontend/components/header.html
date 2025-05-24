@@ -1,26 +1,29 @@
-<header class="main-header">
-    <div class="logo">FlyDreamAir</div>
-    <nav class="main-nav">
-        <ul>
-            <li><a href="#">Deals</a></li>
-            <li><a href="#">Plan</a></li>
-            <li><a href="#" class="active">Book</a></li>
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Manage Booking</a></li>
-            <li><a href="#">Help</a></li>
-        </ul>
-    </nav>
-    <div class="header-actions">
-        <button class="search-icon-btn">
-            <img src="../../images/search-icon.svg" alt="Search">
-        </button>
-        <div class="language-selector">
-            <select>
-                <option value="en-AU">Australia (English)</option>
-                <!-- Other language options -->
-            </select>
-        </div>
-        <button class="profile-btn">Profile</button>
-        <button class="logout-btn">Log out</button>
+<!-- Header 1 (including logo, language dropdown, profile and log out buttons) -->
+<header class="header1">
+    <div class="logoHeader">
+        <div class="logo">FlyDreamAir</div>
     </div>
+    <nav>
+        <select name="Language Options" id="language" class="whiteButton">
+            <option value="lang1">Australia (English)</option>
+            <option value="lang2">Language 2</option>
+            <option value="lang3">Language 3</option>
+            <option value="lang4">Language 4</option>
+            <option value="lang5">Language 5</option>
+            <option value="lang6">Language etc.</option>
+        </select>
+        <button class="whiteButton" onClick="profileButton()">Profile</button>
+        <button class="whiteButton" onClick="logOutButton()">Log Out</button>
+    </nav>
+</header>
+<!-- Second header covering the deals, plan, book, travel, manage booking, help navigation buttons -->
+<header class="header2">
+    <nav class="headerChoices">
+        <a href="">Deals</a>
+        <a href="">Plan</a>
+        <a href="">Book</a>
+        <a href="">Travel</a>
+        <a href="">Manage Booking</a>
+        <a href="">Help</a>
+    </nav>
 </header> 

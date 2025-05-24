@@ -1,3 +1,7 @@
+:root {
+    --primary-color: #3E4C65;
+    --primary-hover: #2c3950;
+}
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -17,7 +21,7 @@ body {
     padding: 0;
     margin: 0 0 25px 0;
     display: flex;
-    background-color: #007bff; 
+    background-color: var(--primary-color); 
     border-radius: 6px;
 }
 .main-checkout-tabs ul li {
@@ -35,7 +39,7 @@ body {
     transition: background-color 0.3s ease;
 }
 .main-checkout-tabs .tab-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover);
 }
 .main-checkout-tabs .tab-btn.book-tab {
 }
@@ -68,12 +72,12 @@ body {
 }
 
 .checkout-tab-link:hover {
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 .checkout-tab-link.active {
-    color: #007bff;
-    border-bottom-color: #007bff;
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
 }
 
 .checkout-tab-content {
@@ -114,7 +118,7 @@ body {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.3em;
-    color: #343a40;
+    color: var(--primary-color);
     padding-bottom: 10px;
     border-bottom: 1px solid #dee2e6;
 }
@@ -133,13 +137,13 @@ body {
 
 .order-summary-panel th {
     font-weight: 500;
-    color: #495057;
+    color: var(--primary-color);
 }
 
 .order-summary-panel .passenger-summary-header td {
     background-color: #e9ecef;
     font-weight: bold;
-    color: #343a40;
+    color: var(--primary-color);
     padding-top: 12px;
     padding-bottom: 12px;
     border-top: 2px solid #ced4da;
@@ -160,7 +164,7 @@ body {
 .order-summary-panel tfoot tr.total-cost td {
     font-size: 1.2em;
     font-weight: bold;
-    color: #007bff;
+    color: var(--primary-color);
     padding-top: 10px;
 }
 
@@ -249,7 +253,7 @@ body {
 
 .action-btn {
     display: inline-block;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     padding: 12px 25px;
     border: none;
@@ -269,7 +273,7 @@ body {
 }
 
 .action-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover);
 }
 
 #pay-now-btn.primary-action-btn {
