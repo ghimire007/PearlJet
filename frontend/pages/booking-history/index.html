@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlyDreamAir - Booking History</title>
+        <link rel="stylesheet" href="booking-history.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <link rel="stylesheet" href="../../components/header.css">
+        <link rel="stylesheet" href="../../components/footer.css">
+    </head>
+
+    <body>
+        <div id="header-placeholder"></div>
+
+        <main class="user-profile-page">
+
+            <div id="main-content-box">
+                <div id="user-profile-sidebar-placeholder"></div>
+                <section class="section-content-area">
+
+                    <div id="past-flights-title">
+                        Past Flights
+                    </div>
+
+                    <div id="flight-list">
+                        <table id="flight-item-1">
+                            <tr>
+                                <th class="table-left-side">Flight type/name</th>
+                                <td class="table-right-side">class</td>
+                                <td class="table-right-side dollar-amount-td">$$$</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">Leave date</td>
+                                <td class="table-right-side" colspan="2">Return date if return flight</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">City to City</td>
+                                <td class="table-right-side" colspan="2">City to City</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">Status</td>
+                                <td class="table-right-side" colspan="2">
+                                    <span class="flight-status status-completed">Completed</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">Points earned</td>
+                                <td class="table-right-side" colspan="2">500 points</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3" style="text-align: right;">
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table id="flight-item-2">
+                            <tr>
+                                <th class="table-left-side">Flight type/name</th>
+                                <td class="table-right-side">class</td>
+                                <td class="table-right-side dollar-amount-td">$$$</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">Leave date</td>
+                                <td class="table-right-side" colspan="2">Return date if return flight</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">City to City</td>
+                                <td class="table-right-side" colspan="2">City to City</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">Status</td>
+                                <td class="table-right-side" colspan="2">
+                                    <span class="flight-status status-upcoming">Upcoming</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">Points earned</td>
+                                <td class="table-right-side" colspan="2">Pending</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3" style="text-align: right;">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <div id="promo-box">
+                <section class="promo-content">
+                    <div class="promo-item">
+                        <div class="promo-image-placeholder"></div>
+                        <h3 class="promo-title">Title</h3>
+                        <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                        <a href="#" class="learn-more-link">Learn more ></a>
+                    </div>
+                    <div class="promo-item">
+                        <div class="promo-image-placeholder"></div>
+                        <h3 class="promo-title">Title</h3>
+                        <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                        <a href="#" class="learn-more-link">Learn more ></a>
+                    </div>
+                    <div class="promo-item">
+                        <div class="promo-image-placeholder"></div>
+                        <h3 class="promo-title">Title</h3>
+                        <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                        <a href="#" class="learn-more-link">Learn more ></a>
+                    </div>
+                </section>
+
+                <section class="sales-clarification">
+                    <p>* space for clarification of sales/ promotions</p>
+                </section>
+            </div>
+
+
+        </main>
+
+        <!-- Footer will be loaded here (e.g., by JavaScript) -->
+        <div id="footer-placeholder"></div>
+
+        <!-- <script src="user-profile.js"></script> -->
+        <script src="../../js/api_client.js"></script>
+        <script>
+        function loadHTML(url, elementId, callback) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                    if (callback) callback();
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+        function highlightSidebarTab() {
+            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            let folder = '';
+            if (pathParts.length > 1 && pathParts[pathParts.length - 1] === 'index.html') {
+                folder = pathParts[pathParts.length - 2];
+            } else {
+                folder = pathParts[pathParts.length - 1];
+            }
+            const sidebarMap = [
+                { id: 'sidebar-upcoming-flights',    folder: 'upcoming_flights' },
+                { id: 'sidebar-current-bookings',    folder: 'current-bookings-management' },
+                { id: 'sidebar-digital-tickets',     folder: 'digital-tickets' },
+                { id: 'sidebar-inflight-points',     folder: 'in-flight-points' },
+                { id: 'sidebar-booking-history',     folder: 'booking-history' },
+                { id: 'sidebar-digital-receipts',    folder: 'digital-receipts' },
+                { id: 'sidebar-profile-management',  folder: 'user_profile' },
+                { id: 'sidebar-settings',            folder: 'settings' }
+            ];
+            sidebarMap.forEach(item => {
+                const btn = document.getElementById(item.id);
+                if (btn) {
+                    if (item.folder === folder) {
+                        btn.classList.remove('regular-button');
+                        btn.classList.add('current-button');
+                    } else {
+                        btn.classList.remove('current-button');
+                        btn.classList.add('regular-button');
+                    }
+                }
+            });
+        }
+        loadHTML('../../components/header.html', 'header-placeholder');
+        loadHTML('../../components/footer.html', 'footer-placeholder');
+        loadHTML('../../components/user-profile-sidebar.html', 'user-profile-sidebar-placeholder', highlightSidebarTab);
+
+        // Fetch and render booking history
+        async function fetchBookingHistory() {
+            const container = document.getElementById('flight-list');
+            container.innerHTML = '<p>Loading...</p>';
+            try {
+                const bookings = await apiCall('/bookings');
+                console.log(bookings);
+                if (!bookings.length) {
+                    container.innerHTML = '<p>No booking history found.</p>';
+                    return;
+                }
+                container.innerHTML = bookings.map(booking => `
+                    <div class="history-card">
+                        <div class="history-row">
+                            <div class="history-label">Flight Number</div>
+                            <div class="history-value">${booking.flight?.flightNumber || '-'}</div>
+                            <div class="history-label">Class</div>
+                            <div class="history-value">${booking.flight?.class || '-'}</div>
+                        </div>
+                        <div class="history-row">
+                            <div class="history-label">Price</div>
+                            <div class="history-value">${booking.price ? '$' + booking.price : '-'}</div>
+                            <div class="history-label">Departure Date</div>
+                            <div class="history-value">${booking.flight?.departureDateTime ? new Date(booking.flight.departureDateTime).toLocaleDateString() : '-'}</div>
+                        </div>
+                        <div class="history-row">
+                            <div class="history-label">Return Date</div>
+                            <div class="history-value">${booking.flight?.returnDateTime ? new Date(booking.flight.returnDateTime).toLocaleDateString() : '-'}</div>
+                            <div class="history-label">Route</div>
+                            <div class="history-value">${booking.flight?.origin || '-'} → ${booking.flight?.destination || '-'}</div>
+                        </div>
+                        <div class="history-row">
+                            <div class="history-label">Status</div>
+                            <div class="history-value"><span class="flight-status ${booking.status === 'Completed' ? 'status-completed' : booking.status === 'Cancelled' ? 'status-cancelled' : 'status-upcoming'}">${booking.status || '-'}</span></div>
+                            <div class="history-label">Points Earned</div>
+                            <div class="history-value">${booking.pointsEarned ? booking.pointsEarned + ' points' : 'Pending'}</div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                container.innerHTML = '<p style="color:red">Failed to load booking history.</p>';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', fetchBookingHistory);
+        </script>
+    </body>
+</html>

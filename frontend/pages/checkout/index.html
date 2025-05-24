@@ -38,7 +38,7 @@
                 <div class="content-grid">
                     <div class="order-summary-panel">
                         <h3>Order Summary:</h3>
-                        <table>
+                        <table id="order-summary-table">
                             <thead>
                                 <tr>
                                     <th>Item/Passenger</th>
@@ -47,53 +47,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Example for Passenger 1 -->
-                                <tr class="passenger-summary-header">
-                                    <td colspan="3">Passenger 1: Adult - John Doe</td>
-                                </tr>
-                                <tr>
-                                    <td>Flight Ticket (Economy)</td>
-                                    <td>1</td>
-                                    <td>$250.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Selected Seat</td>
-                                    <td>4B</td>
-                                    <td>$15.00</td>
-                                </tr>
-                                <tr>
-                                    <td>In-Flight Meal</td>
-                                    <td>1</td>
-                                    <td>$20.00</td>
-                                </tr>
-
-                                <!-- Example for Passenger 2 -->
-                                <tr class="passenger-summary-header">
-                                    <td colspan="3">Passenger 2: Child - Jane Doe</td>
-                                </tr>
-                                <tr>
-                                    <td>Flight Ticket (Economy)</td>
-                                    <td>1</td>
-                                    <td>$180.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Selected Seat</td>
-                                    <td>12C</td>
-                                    <td>$10.00</td>
-                                </tr>
-                                <tr>
-                                    <td>In-Flight Entertainment</td>
-                                    <td>1</td>
-                                    <td>$10.00</td>
-                                </tr>
-                                
-                                <!-- Add more passengers dynamically with JS -->
-                                
+                                <!-- Order summary rows will be injected by JS -->
                             </tbody>
                             <tfoot>
-                                <tr><td colspan="2">Subtotal</td><td>$0.00</td></tr>
-                                <tr><td colspan="2">Tax</td><td>$0.00</td></tr>
-                                <tr class="total-cost"><td>Total Cost:</td><td colspan="2">$0.00</td></tr>
+                                <tr><td colspan="2">Subtotal</td><td id="subtotal-cell">$0.00</td></tr>
+                                <tr><td colspan="2">Tax</td><td id="tax-cell">$0.00</td></tr>
+                                <tr class="total-cost"><td>Total Cost:</td><td colspan="2" id="total-cost-cell">$0.00</td></tr>
                             </tfoot>
                         </table>
                         <button class="action-btn" onclick="openCheckoutTab(event, 'BillingDetails', true)">Continue</button>
@@ -114,22 +73,31 @@
                         <div class="form-row">
                             <div class="form-group"><label for="city">City *</label><input type="text" id="city" placeholder="e.g Sydney"></div>
                             <div class="form-group"><label for="state">State *</label><input type="text" id="state" placeholder="e.g New South Wales"></div>
+                            <div class="form-group"><label for="zip-postal-cod">Post Code *</label><input type="text" id="zip-postal-cod" placeholder="Post Code"></div>
+                            
                         </div>
                         <div class="form-row">
                              <div class="form-group"><label for="country">Country *</label><input type="text" id="country" placeholder="e.g Australia"></div>
-                             <div class="form-group"><label for="mobile">Mobile Number *</label><input type="tel" id="mobile" placeholder="e.g 0123 456 789"></div>
+                             <div class="form-group"><label for="mobile">Contact *</label><input type="tel" id="mobile" placeholder="e.g 0123 456 789"></div>
                         </div>
-                        <div class="form-group"><label for="passport">Passport Number *</label><input type="text" id="passport" placeholder="e.g PA0123456"></div>
                     </form>
                     <div class="order-summary-panel fixed-summary">
                         <h3>Order Summary:</h3>
-                        <table>
-                             <tbody>
-                                <tr><td>Subtotal</td><td>$0.00</td></tr>
-                                <tr><td>Tax</td><td>$0.00</td></tr>
-                             </tbody>
+                        <table id="order-summary-table-billing">
+                             <thead>
+                                <tr>
+                                    <th>Item/Passenger</th>
+                                    <th>Details/Qty.</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Order summary rows will be injected by JS -->
+                            </tbody>
                             <tfoot>
-                                <tr class="total-cost"><td>Total Cost:</td><td>$0.00</td></tr>
+                                <tr><td colspan="2">Subtotal</td><td id="subtotal-cell">$0.00</td></tr>
+                                <tr><td colspan="2">Tax</td><td id="tax-cell">$0.00</td></tr>
+                                <tr class="total-cost"><td>Total Cost:</td><td colspan="2" id="total-cost-cell">$0.00</td></tr>
                             </tfoot>
                         </table>
                         <button class="action-btn" onclick="openCheckoutTab(event, 'PaymentDetails', true)">Continue</button>
@@ -156,13 +124,21 @@
                     </div>
                      <div class="order-summary-panel fixed-summary">
                         <h3>Order Summary:</h3>
-                         <table>
-                             <tbody>
-                                <tr><td>Subtotal</td><td>$0.00</td></tr>
-                                <tr><td>Tax</td><td>$0.00</td></tr>
-                             </tbody>
+                         <table id="order-summary-table-payment">
+                             <thead>
+                                <tr>
+                                    <th>Item/Passenger</th>
+                                    <th>Details/Qty.</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Order summary rows will be injected by JS -->
+                            </tbody>
                             <tfoot>
-                                <tr class="total-cost"><td>Total Cost:</td><td>$0.00</td></tr>
+                                <tr><td colspan="2">Subtotal</td><td id="subtotal-cell">$0.00</td></tr>
+                                <tr><td colspan="2">Tax</td><td id="tax-cell">$0.00</td></tr>
+                                <tr class="total-cost"><td>Total Cost:</td><td colspan="2" id="total-cost-cell">$0.00</td></tr>
                             </tfoot>
                         </table>
                         <button id="pay-now-btn" class="action-btn primary-action-btn">Pay Now</button>
@@ -216,6 +192,44 @@
 
         // Tab functionality
         function openCheckoutTab(event, tabName, autoSwitchLink) {
+            // If trying to go to PaymentDetails, validate billing fields first
+            if (tabName === 'PaymentDetails') {
+                const requiredFields = [
+                    'first-name', 'last-name', 'email', 'address', 'city',
+                    'state', 'country', 'mobile', 'zip-postal-cod'
+                ];
+                let firstEmpty = null;
+                for (const id of requiredFields) {
+                    const el = document.getElementById(id);
+                    if (el && !el.value.trim()) {
+                        if (!firstEmpty) firstEmpty = el;
+                        el.classList.add('input-error');
+                    } else if (el) {
+                        el.classList.remove('input-error');
+                    }
+                }
+                if (firstEmpty) {
+                    if (event) event.preventDefault();
+                    firstEmpty.focus();
+                    let warn = document.getElementById('address-warning');
+                    if (!warn) {
+                        warn = document.createElement('div');
+                        warn.id = 'address-warning';
+                        warn.style.color = 'red';
+                        warn.style.marginBottom = '10px';
+                        warn.textContent = 'Please fill in all required billing address fields.';
+                        document.querySelector('.billing-address-form').prepend(warn);
+                    } else {
+                        warn.style.display = 'block';
+                    }
+                    return false;
+                } else {
+                    let warn = document.getElementById('address-warning');
+                    if (warn) warn.style.display = 'none';
+                }
+            }
+            if (tabName === 'BillingDetails') renderOrderSummary('order-summary-table-billing');
+            if (tabName === 'PaymentDetails') renderOrderSummary('order-summary-table-payment');
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("checkout-tab-content");
             for (i = 0; i < tabcontent.length; i++) {
@@ -226,7 +240,6 @@
                 tablinks[i].classList.remove("active");
             }
             document.getElementById(tabName).classList.add("active-content");
-            
             if(autoSwitchLink) { // If called from a continue button, also activate the corresponding nav link
                  const targetNavLink = Array.from(tablinks).find(link => link.textContent.replace(/\s+/g, '') === tabName.replace(/\s+/g, ''));
                  if(targetNavLink) targetNavLink.classList.add("active");
@@ -238,6 +251,228 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.checkout-tab-link').click(); 
         });
+
+        // Render order summary from localStorage
+        function renderOrderSummary(tableId = 'order-summary-table') {
+            const table = document.getElementById(tableId);
+            if (!table) return;
+            const summaryTableBody = table.querySelector('tbody');
+            const subtotalCell = table.querySelector('#subtotal-cell') || table.querySelector('.subtotal-cell');
+            const taxCell = table.querySelector('#tax-cell') || table.querySelector('.tax-cell');
+            const totalCostCell = table.querySelector('#total-cost-cell') || table.querySelector('.total-cost-cell');
+            if (!summaryTableBody) return;
+            summaryTableBody.innerHTML = '';
+            let subtotal = 0;
+            let tax = 0;
+            let total = 0;
+            const data = JSON.parse(localStorage.getItem('currentFlightSelection'));
+            if (!data || !data.passenger) return;
+            const passenger = data.passenger;
+            summaryTableBody.innerHTML += `<tr class='passenger-summary-header'><td colspan='3'>Passenger: ${passenger.name ? passenger.name : 'N/A'}</td></tr>`;
+            summaryTableBody.innerHTML += `<tr><td>Flight Ticket</td><td>1</td><td>$250.00</td></tr>`;
+            subtotal += 250;
+            if (passenger.seat) {
+                summaryTableBody.innerHTML += `<tr><td>Selected Seat</td><td>${passenger.seat}</td><td>$15.00</td></tr>`;
+                subtotal += 15;
+            }
+            if (passenger.services && passenger.services.length > 0) {
+                passenger.services.forEach(service => {
+                    summaryTableBody.innerHTML += `<tr><td>In-Flight ${service.name.charAt(0).toUpperCase() + service.name.slice(1)}</td><td>1</td><td>$${service.price.toFixed(2)}</td></tr>`;
+                    subtotal += service.price;
+                });
+            }
+            if (subtotalCell) subtotalCell.textContent = `$${subtotal.toFixed(2)}`;
+            tax = 0;
+            if (taxCell) taxCell.textContent = `$${tax.toFixed(2)}`;
+            total = subtotal + tax;
+            if (totalCostCell) totalCostCell.textContent = `$${total.toFixed(2)}`;
+        }
+        // --- Autofill Logic Refactor ---
+        function autofillUserDetails() {
+            const user = JSON.parse(localStorage.getItem('user')) || {};
+            // Billing address fields
+            if (user) {
+                if (user.firstName) document.getElementById('first-name').value = user.firstName;
+                if (user.lastName) document.getElementById('last-name').value = user.lastName;
+                if (user.email) document.getElementById('email').value = user.email;
+            }
+            if (user.billingAddress) {
+                if (user.billingAddress.address1) document.getElementById('address').value = user.billingAddress.address1;
+                if (user.billingAddress.city) document.getElementById('city').value = user.billingAddress.city;
+                if (user.billingAddress.state) document.getElementById('state').value = user.billingAddress.state;
+                if (user.billingAddress.country) document.getElementById('country').value = user.billingAddress.country;
+                document.getElementById('mobile').value = user.mobileNumber || user.email;
+                if (user.billingAddress.zipCode) document.getElementById('zip-postal-cod').value = user.billingAddress.zipCode;
+            }
+            // Payment info fields
+            if (document.getElementById('card-holder')) {
+                document.getElementById('card-holder').value = user.cardDetails?.cardHolderName || '';
+                document.getElementById('card-number').value = user.cardDetails?.cardNumber || '';
+                document.getElementById('expiry-date').value = user.cardDetails?.expiryDate || '';
+                document.getElementById('cvc').value = user.cardDetails?.cvc || '';
+            }
+        }
+        // --- End Autofill Logic Refactor ---
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderOrderSummary('order-summary-table');
+            renderOrderSummary('order-summary-table-billing');
+            renderOrderSummary('order-summary-table-payment');
+            autofillUserDetails();
+
+            // Show a message if any billing address field is missing
+            const requiredFields = [
+                'first-name', 'last-name', 'email', 'address', 'city',
+                'state', 'country', 'mobile', 'zip-postal-cod'
+            ];
+            let missingBilling = false;
+            const user = JSON.parse(localStorage.getItem('user')) || {};
+            for (const field of requiredFields) {
+                let val = '';
+                switch(field) {
+                    case 'first-name': val = user.firstName || ''; break;
+                    case 'last-name': val = user.lastName || ''; break;
+                    case 'email': val = user.email || ''; break;
+                    case 'address': val = user.billingAddress?.address1 || ''; break;
+                    case 'city': val = user.billingAddress?.city || ''; break;
+                    case 'state': val = user.billingAddress?.state || ''; break;
+                    case 'country': val = user.billingAddress?.country || ''; break;
+                    case 'mobile': val = user.mobileNumber || user.email || ''; break;
+                    case 'zip-postal-cod': val = user.billingAddress?.zipCode || ''; break;
+                }
+                if (!val) { missingBilling = true; break; }
+            }
+            if (missingBilling) {
+                let warn = document.getElementById('address-warning');
+                if (!warn) {
+                    warn = document.createElement('div');
+                    warn.id = 'address-warning';
+                    warn.style.color = 'red';
+                    warn.style.marginBottom = '10px';
+                    warn.textContent = 'No saved address found. Please enter your address for this booking.';
+                    document.querySelector('.billing-address-form').prepend(warn);
+                } else {
+                    warn.style.display = 'block';
+                }
+            }
+
+            // Show a message if any card detail is missing
+            const cardFields = ['cardHolderName', 'cardNumber', 'expiryDate', 'cvc'];
+            let missingCard = false;
+            for (const field of cardFields) {
+                if (!user.cardDetails?.[field]) { missingCard = true; break; }
+            }
+            if (missingCard) {
+                let warn = document.getElementById('payment-warning');
+                if (!warn) {
+                    warn = document.createElement('div');
+                    warn.id = 'payment-warning';
+                    warn.style.color = 'red';
+                    warn.style.marginBottom = '10px';
+                    warn.textContent = 'No saved payment info found. Please enter your payment details for this booking.';
+                    const paymentForm = document.querySelector('.card-details-form');
+                    if (paymentForm) paymentForm.prepend(warn);
+                } else {
+                    warn.style.display = 'block';
+                }
+            }
+
+            const payNowBtn = document.getElementById('pay-now-btn');
+            if (payNowBtn) {
+                payNowBtn.addEventListener('click', async function(e) {
+                    const requiredCardFields = [
+                        'card-holder', 'card-number', 'expiry-date', 'cvc'
+                    ];
+                    let firstEmpty = null;
+                    for (const id of requiredCardFields) {
+                        const el = document.getElementById(id);
+                        if (el && !el.value.trim()) {
+                            if (!firstEmpty) firstEmpty = el;
+                            el.classList.add('input-error');
+                        } else if (el) {
+                            el.classList.remove('input-error');
+                        }
+                    }
+                    if (firstEmpty) {
+                        e.preventDefault();
+                        firstEmpty.focus();
+                        let warn = document.getElementById('payment-warning');
+                        if (!warn) {
+                            warn = document.createElement('div');
+                            warn.id = 'payment-warning';
+                            warn.style.color = 'red';
+                            warn.style.marginBottom = '10px';
+                            warn.textContent = 'Please fill in all required payment details.';
+                            const paymentForm = document.querySelector('.card-details-form');
+                            if (paymentForm) paymentForm.prepend(warn);
+                        } else {
+                            warn.style.display = 'block';
+                        }
+                        return false;
+                    } else {
+                        let warn = document.getElementById('payment-warning');
+                        if (warn) warn.style.display = 'none';
+                    }
+
+                    // --- Booking save with JWT integration ---
+                    const currentFlightSelection = JSON.parse(localStorage.getItem('currentFlightSelection'));
+                    const bookingData = {
+                        flight: currentFlightSelection.flight,
+                        passenger: currentFlightSelection.passenger,
+                        billingAddress: {
+                            address1: document.getElementById('address').value,
+                            address2: '', // Add if you have this field
+                            city: document.getElementById('city').value,
+                            state: document.getElementById('state').value,
+                            country: document.getElementById('country').value,
+                            zipCode: document.getElementById('zip-postal-cod').value
+                        },
+                        paymentInfo: {
+                            cardHolderName: document.getElementById('card-holder').value,
+                            cardNumber: document.getElementById('card-number').value,
+                            expiryDate: document.getElementById('expiry-date').value,
+                            cvc: document.getElementById('cvc').value
+                        }
+                    };
+
+                    const token = localStorage.getItem('flyDreamAirToken');
+                    if (!token) {
+                        alert('You must be logged in to complete your booking.');
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch('http://localhost:3000/api/bookings', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + token
+                            },
+                            body: JSON.stringify(bookingData)
+                        });
+                        const contentType = response.headers.get('content-type');
+                        if (response.ok && contentType && contentType.includes('application/json')) {
+                            const booking = await response.json();
+                            window.location.href = '/frontend/pages/booking_conirmed/index.html?id=' + booking._id;
+                        } else {
+                            const errorText = await response.text();
+                            alert('Booking failed: ' + errorText);
+                        }
+                    } catch (err) {
+                        alert('Booking failed: ' + err.message);
+                    }
+                });
+            }
+        });
+
+        // Patch openCheckoutTab to autofill when BillingDetails is shown
+        const originalOpenCheckoutTab = openCheckoutTab;
+        openCheckoutTab = function(event, tabName, autoSwitchLink) {
+            originalOpenCheckoutTab(event, tabName, autoSwitchLink);
+            if (tabName === 'BillingDetails') {
+                setTimeout(autofillUserDetails, 0); // Ensure DOM is updated
+            }
+        };
     </script>
 </body>
 </html>

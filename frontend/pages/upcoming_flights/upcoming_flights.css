@@ -1,0 +1,661 @@
+﻿:root {
+    --primary-color: #3E4C65;
+    --primary-hover: #2c3950;
+    --accent-color: #ffd700;
+    --text-on-primary: #fff;
+    --background-light: #f4f6f8;
+    --card-background: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --border-color: #e0e0e0;
+}
+
+body
+{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    margin: 0;
+    padding: 0;
+}
+
+.user-profile-page
+{
+    flex-grow: 1;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.main-website-nav-sections p
+{
+    font-size: 18px;
+}
+
+.main-website-nav-sections ul
+{
+    color: var(--text-primary);
+    list-style: none;
+    margin: 0 0 20px 0;
+    display: flex;
+    padding: 0;
+}
+
+.main-website-nav-sections li
+{
+    margin-right: 20px;
+}
+
+.main-website-nav-sections .current-button
+{
+    background: none;
+    color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.main-website-nav-sections .regular-button
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+div#main-content-box
+{
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+p#welcome-text
+{
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.user-profile-section-selection
+{
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.user-profile-section-selection ul li
+{
+    color: #000000;
+    list-style: none;
+}
+
+.section-selection-nav-buttons .current-button
+{
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
+    border: none;
+    border-radius: 6px;
+    padding: 12px 16px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.section-selection-nav-buttons .regular-button
+{
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    width: 100%;
+    text-align: left;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.section-selection-nav-buttons .regular-button:hover
+{
+    background-color: var(--background-light);
+}
+
+button
+{
+    background: none;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.section-content-area
+{
+    flex: 1;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-content-area #calendar-div
+{
+    background-color: #D9D9D9;
+    float: left;
+    margin-top: 15px;
+    margin-left: 15px;
+    min-width: 845px;
+    min-height: 350px;
+}
+
+p#calendar-div-text
+{
+    /*display: flex;*/
+    text-align: center;
+    /*
+    align-items: center;
+    justify-content: center;
+    */
+}
+
+div#flight-list
+{
+    float: left;
+    
+    min-width: 910px;
+    max-height: 300px;
+}
+
+table
+{
+    margin-left: 15px;
+    margin-top: 15px;
+    padding: 10px;
+    border: solid;
+    border-color: #000000;
+    min-width: 845px;
+    max-height: 400px;
+    font-size: 17px;
+}
+
+td, th
+{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+tr td
+{
+    border: 1px solid black;
+}
+
+td.dollar-amount-td
+{
+    width: 55px;
+}
+
+.table-left-side
+{
+    text-align: left;
+    border: black;
+}
+
+.table-right-side
+{
+    text-align: right;
+    border: black;
+}
+
+/* From Prakash */
+/* Promo Content */
+
+#promo-box
+{
+    padding-top: 60px;
+}
+
+.promo-content
+{
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.promo-item
+{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    min-width: 250px; /* Minimum width for promo items */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.promo-image-placeholder
+{
+    width: 100%;
+    height: 150px;
+    background-color: #e9ecef;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+}
+/* Simulating the crossed box icon if no image provided */
+.promo-image-placeholder::before
+{
+    content: 'X'; /* Placeholder content */
+    font-size: 50px;
+    border: 2px solid #ccc;
+    padding: 20px;
+    display: inline-block;
+}
+
+.promo-title
+{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.promo-info
+{
+    font-size: 10px;
+    color: #555;
+    margin-bottom: 15px;
+    min-height: 60px; /* To align 'Learn more' links if text length varies */
+}
+
+.learn-more-link
+{
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sales-clarification
+{
+    text-align: center;
+    margin: 30px 0;
+    font-style: italic;
+    color: #555;
+}
+
+/* Vertical Unified Layout */
+.unified-views-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+#calendar-box, #list-box {
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(62, 76, 101, 0.06);
+    padding: 24px;
+    width: 100%;
+    margin-bottom: 32px;
+    max-width: 100%;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+}
+
+.upcoming-flights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (max-width: 700px) {
+    .unified-views-vertical {
+        gap: 20px;
+    }
+    #calendar-box, #list-box {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+    .section-title {
+        font-size: 1.1rem;
+    }
+    .flight-card {
+        padding: 12px;
+    }
+}
+
+/* Remove old horizontal layout */
+.calendar-list-container { display: none !important; }
+
+/* FullCalendar Customization */
+.fc {
+    font-family: 'Poppins', sans-serif !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.fc .fc-toolbar {
+    margin-bottom: 1.5em !important;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.5em !important;
+    color: var(--primary-color) !important;
+    font-weight: 600 !important;
+}
+
+.fc .fc-button-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    padding: 8px 16px !important;
+    font-weight: 500 !important;
+    text-transform: capitalize !important;
+}
+
+.fc .fc-button-primary:hover {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+.fc .fc-button-primary:not(:disabled):active,
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: rgba(62, 76, 101, 0.1) !important;
+}
+
+.fc .fc-daygrid-day-number {
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+    padding: 8px !important;
+}
+
+.fc .fc-daygrid-day {
+    transition: background-color 0.2s !important;
+}
+
+.fc .fc-daygrid-day:hover {
+    background-color: rgba(62, 76, 101, 0.05) !important;
+}
+
+.fc .fc-event {
+    border-radius: 4px !important;
+    padding: 4px 8px !important;
+    margin: 2px 0 !important;
+    cursor: pointer !important;
+    border: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.fc .fc-event-title {
+    font-weight: 500 !important;
+    padding: 2px 0 !important;
+}
+
+.fc .fc-daygrid-event-dot {
+    border-color: var(--primary-color) !important;
+}
+
+/* Flight Modal */
+.flight-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.flight-modal-content {
+    background-color: var(--card-background);
+    padding: 24px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: var(--text-primary);
+}
+
+.flight-modal-content h2 {
+    color: var(--primary-color);
+    margin: 0 0 20px 0;
+    font-size: 20px;
+}
+
+.flight-modal-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.flight-modal-details .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.flight-modal-details .label {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.flight-modal-details .value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.flight-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* Responsive Calendar */
+@media (max-width: 768px) {
+    .fc .fc-toolbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .fc .fc-toolbar-chunk {
+        display: flex;
+        gap: 8px;
+    }
+
+    .flight-modal-details {
+        grid-template-columns: 1fr;
+    }
+
+    .flight-modal-actions {
+        flex-direction: column;
+    }
+
+    .flight-modal-actions .action-btn {
+        width: 100%;
+    }
+}
+
+#calendar {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    height: 450px;
+    width: 600px;
+    max-width: 100%;
+    border: 1px solid var(--border-color);
+    margin: 0 auto;
+}
+
+#calendar-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 700px) {
+    #calendar {
+        width: 100%;
+        min-width: 0;
+        height: 350px;
+    }
+}
+
+.flight-card {
+    background-color: var(--card-background);
+    border: 1.5px solid var(--primary-color);
+    border-radius: 14px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    box-shadow: none;
+    transition: border-color 0.2s, transform 0.2s;
+}
+.flight-card:hover {
+    box-shadow: none;
+    transform: translateY(-2px) scale(1.01);
+    border-color: var(--primary-hover);
+}
+.flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+.flight-route {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.arrow {
+    font-size: 1.3em;
+    color: var(--primary-color);
+    margin: 0 6px;
+}
+.flight-status {
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #e3f2fd;
+    color: #1565c0;
+    letter-spacing: 0.5px;
+}
+.flight-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+.flight-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 18px 32px;
+}
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.label {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+}
+.value {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.08em;
+}
+.flight-actions {
+    display: flex;
+    gap: 14px;
+    align-items: flex-end;
+    margin-top: 12px;
+}
+.action-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: none;
+}
+.view-details {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    border: 1.5px solid var(--primary-color);
+}
+.manage-booking {
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
+}
+.manage-files {
+    display: none;
+}
+.action-btn:hover {
+    opacity: 0.92;
+    box-shadow: none;
+}
+@media (max-width: 700px) {
+    .flight-card {
+        padding: 14px 8px;
+    }
+    .flight-route {
+        font-size: 1.1rem;
+    }
+    .flight-info {
+        grid-template-columns: 1fr;
+        gap: 10px 0;
+    }
+    .flight-actions {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+}
+
+.booked-seat {
+    background-color: orange;
+    color: #fff
+}

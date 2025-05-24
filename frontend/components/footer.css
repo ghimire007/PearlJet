@@ -1,4 +1,10 @@
 /* Footer Styles */
+:root {
+    --primary-color: #3E4C65;
+    --text-on-primary: #fff;
+    --accent-color: #fff;
+  }
+  
 .main-footer-bottom {
     background-color: #343a40; /* Dark footer background */
     color: #f8f9fa; /* Light text color for footer */
@@ -107,4 +113,23 @@
         margin-top: 10px;
         justify-content: center;
     }
+}
+
+.footer, .main-footer-bottom, .footer-bottom-bar {
+  background: var(--primary-color) !important;
+  color: var(--text-on-primary) !important;
+}
+.footer a, .footer-bottom-nav ul li a, .footer-column ul li a {
+  color: var(--accent-color) !important;
+  text-decoration: none;
+}
+.footer a:hover, .footer-bottom-nav ul li a:hover, .footer-column ul li a:hover {
+  color: #fff !important;
+  text-decoration: underline;
+}
+.footer-column h4 {
+  color: var(--accent-color) !important;
+}
+.footer-bottom-bar {
+  border-top: 1px solid var(--accent-color) !important;
 } 

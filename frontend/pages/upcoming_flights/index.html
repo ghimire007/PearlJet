@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlyDreamAir - Upcoming Flights</title>
+        <link rel="stylesheet" href="upcoming_flights.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <!-- FullCalendar CSS -->
+        <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' />
+    </head>
+
+    <body>
+        <div id="header-placeholder"></div>
+
+        <main class="user-profile-page">
+ 
+
+            <div id="main-content-box">
+                <div id="user-profile-sidebar-placeholder"></div>
+   
+
+                <section class="section-content-area unified-views-vertical">
+                    <h2 class="section-title">Upcoming Flights List</h2>
+                    <div class="upcoming-flights-list" id="upcoming-flights-list">
+                        <!-- Flights will be rendered here by JS -->
+                    </div>
+                </section>
+            </div>
+
+            <div id="promo-box">
+                <section class="promo-content">
+                    <div class="promo-item">
+                        <div class="promo-image-placeholder"></div>
+                        <h3 class="promo-title">Title</h3>
+                        <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                        <a href="#" class="learn-more-link">Learn more ></a>
+                    </div>
+                    <div class="promo-item">
+                        <div class="promo-image-placeholder"></div>
+                        <h3 class="promo-title">Title</h3>
+                        <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                        <a href="#" class="learn-more-link">Learn more ></a>
+                    </div>
+                    <div class="promo-item">
+                        <div class="promo-image-placeholder"></div>
+                        <h3 class="promo-title">Title</h3>
+                        <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                        <a href="#" class="learn-more-link">Learn more ></a>
+                    </div>
+                </section>
+
+                <section class="sales-clarification">
+                    <p>* space for clarification of sales/ promotions</p>
+                </section>
+            </div>
+
+        </main>
+
+        <div id="footer-placeholder"></div>
+
+        <script src="../../js/api_client.js"></script>
+        <script>
+            function loadHTML(url, elementId, callback) {
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById(elementId).innerHTML = data;
+                        if (callback) callback();
+                    })
+                    .catch(error => console.error('Error loading HTML:', error));
+            }
+
+            function highlightSidebarTab() {
+                const pathParts = window.location.pathname.split('/').filter(Boolean);
+                let folder = '';
+                if (pathParts.length > 1 && pathParts[pathParts.length - 1] === 'index.html') {
+                    folder = pathParts[pathParts.length - 2];
+                } else {
+                    folder = pathParts[pathParts.length - 1];
+                }
+                const sidebarMap = [
+                    { id: 'sidebar-upcoming-flights',    folder: 'upcoming_flights' },
+                    { id: 'sidebar-current-bookings',    folder: 'current-bookings-management' },
+                    { id: 'sidebar-digital-tickets',     folder: 'digital-tickets' },
+                    { id: 'sidebar-inflight-points',     folder: 'in-flight-points' },
+                    { id: 'sidebar-booking-history',     folder: 'booking-history' },
+                    { id: 'sidebar-digital-receipts',    folder: 'digital-receipts' },
+                    { id: 'sidebar-profile-management',  folder: 'user_profile' },
+                    { id: 'sidebar-settings',            folder: 'settings' }
+                ];
+                sidebarMap.forEach(item => {
+                    const btn = document.getElementById(item.id);
+                    if (btn) {
+                        if (item.folder === folder) {
+                            btn.classList.remove('regular-button');
+                            btn.classList.add('current-button');
+                        } else {
+                            btn.classList.remove('current-button');
+                            btn.classList.add('regular-button');
+                        }
+                    }
+                });
+            }
+
+            loadHTML('../components/header.html', 'header-placeholder');
+            loadHTML('../components/footer.html', 'footer-placeholder');
+            loadHTML('../../components/user-profile-sidebar.html', 'user-profile-sidebar-placeholder', highlightSidebarTab);
+
+            // Initialize calendar
+            document.addEventListener('DOMContentLoaded', function() {
+                const calendarEl = document.getElementById('calendar');
+                if (!calendarEl) {
+                    console.error('Calendar element not found');
+                    return;
+                }
+            });
+
+            // Fetch and render upcoming flights
+            async function fetchUpcomingFlights() {
+                const container = document.getElementById('upcoming-flights-list');
+                container.innerHTML = '<p>Loading...</p>';
+                try {
+                    const flights = await apiCall('/bookings/upcoming');
+                    if (!flights.length) {
+                        container.innerHTML = '<p>No upcoming flights found.</p>';
+                        return;
+                    }
+                    container.innerHTML = flights.map(flight => `
+                        <div class="flight-card">
+                            <div class="flight-header">
+                                <h2 class="flight-route">${flight.flight.origin || 'From'} <span class="arrow">→</span> ${flight.flight.destination || 'To'}</h2>
+                                <span class="flight-status status-upcoming">Upcoming</span>
+                            </div>
+                            <div class="flight-details">
+                                <div class="flight-info">
+                                    <div class="info-item">
+                                        <span class="label">Flight Number</span>
+                                        <span class="value">${flight.flight.flightNumber || '-'}</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="label">Date</span>
+                                        <span class="value">${flight.flight.departureDateTime ? new Date(flight.flight.departureDateTime).toLocaleDateString() : '-'}</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="label">Time</span>
+                                        <span class="value">${flight.flight.departureDateTime? new Date(flight.flight.departureDateTime).toLocaleTimeString(): '-'}</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="label">Class</span>
+                                        <span class="value">${flight.flight.class || '-'}</span>
+                                    </div>
+                                </div>
+                                <div class="flight-actions">
+                                    <button class="action-btn manage-booking" onclick="window.location.href='../update_booking_seat/index.html?id=${flight._id}'">Manage Booking</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                } catch (err) {
+                    container.innerHTML = '<p style="color:red">Failed to load flights.</p>';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', fetchUpcomingFlights);
+        </script>
+    </body>
+</html>

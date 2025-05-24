@@ -1,5 +1,105 @@
-/* Header Styles */
+:root {
+  --primary-color: #3E4C65;
+  --primary-hover: #2c3950;
+  --text-on-primary: #fff;
+  --accent-color: #ffd700;
+}
+
+.header, .main-header {
+  background: var(--primary-color) !important;
+  color: var(--text-on-primary) !important;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  min-height: 60px;
+}
+
+.logo {
+  color: var(--text-on-primary) !important;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-right: 30px;
+}
+
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-nav ul li a {
+  color: var(--text-on-primary) !important;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+
+.main-nav ul li a.active,
+.main-nav ul li a:hover {
+  color: var(--accent-color) !important;
+  border-bottom: 2px solid var(--accent-color) !important;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.profile-btn, .logout-btn {
+  background: var(--primary-color) !important;
+  color: var(--text-on-primary) !important;
+  border: 1px solid var(--accent-color) !important;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.profile-btn:hover, .logout-btn:hover {
+  background: var(--accent-color) !important;
+  color: var(--primary-color) !important;
+}
+
+.language-selector select {
+  background: var(--primary-color);
+  color: var(--text-on-primary);
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  padding: 6px 12px;
+}
+
+.search-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-on-primary);
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.search-icon-btn img {
+  filter: brightness(0) invert(1); /* Make icon white */
+}
+
+/* Remove old background and border from .main-header */
 .main-header {
+    border-bottom: none !important;
+}
+
+/* Remove old blue and white from .logout-btn, .profile-btn */
+.profile-btn, .logout-btn {
+    background: var(--primary-color) !important;
+    color: var(--text-on-primary) !important;
+    border: 1px solid var(--accent-color) !important;
+}
+.logout-btn {
+    background: var(--accent-color) !important;
+    color: var(--primary-color) !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -100,4 +200,77 @@
     .header-actions > * {
         margin: 5px;
     }
+}
+
+/* Header 1 styles */
+.header1 {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    background-color: #3E4C65; /* Reverted to original blue */
+    font-family: 'Poppins', sans-serif; /* Added Poppins font */
+}
+
+.logoHeader {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    color: #FFFFFF; /* Reverted to white */
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif; /* Added Poppins font */
+    font-weight: 700;
+}
+
+.whiteButton {
+    background-color: #F4F6F8;
+    color: #3E4C65;
+    border: 1px solid #F4F6F8;
+    padding: 8px;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif; /* Added Poppins font */
+    font-weight: 300;
+}
+
+/* Header 2 styles */
+.header2 {
+    display: flex;
+    justify-content: space-between;
+    background-color: #3E4C65; /* Reverted to original blue */
+    border-top: 1px solid #989D9F;
+    font-family: 'Poppins', sans-serif; /* Added Poppins font */
+}
+
+.headerChoices {
+    font-family: 'Poppins', sans-serif; /* Added Poppins font */
+    font-weight: 300;
+    font-size: 15px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.headerChoices a {
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.headerChoices a:link {
+    color: #989D9F;
+}
+
+.headerChoices a:visited {
+    color: #989D9F;
+}
+
+.headerChoices a:active {
+    color: #FFFFFF; /* Reverted to white */
+}
+
+.headerChoices a:hover {
+    color: #FFFFFF; /* Reverted to white */
 } 

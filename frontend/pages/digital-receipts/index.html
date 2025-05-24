@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlyDreamAir - Digital Receipts</title>
+        <link rel="stylesheet" href="digital-receipts.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <link rel="stylesheet" href="../../components/header.css">
+        <link rel="stylesheet" href="../../components/footer.css">
+    </head>
+
+    <body>
+        <div id="header-placeholder"></div>
+
+        <main class="user-profile-page">
+
+            <div id="main-content-box">
+                <div id="user-profile-sidebar-placeholder"> </div>
+
+                <section class="section-content-area">
+                    <div id="transaction-list">
+                        <table id="transaction-item-1">
+                            <tr>
+                                <th class="table-left-side">Transaction number</th>
+
+                                <td class="table-right-side">$$$</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">Flight info</td>
+
+                                <td class="table-right-side">
+                                    <button class="button-in-table">
+                                        Link to pdf version
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table id="transaction-item-2">
+                            <tr>
+                                <th class="table-left-side">Transaction number</th>
+
+                                <td class="table-right-side">$$$</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">Flight info</td>
+
+                                <td class="table-right-side">
+                                    <button class="button-in-table">
+                                        Link to pdf version
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table id="transaction-item-3">
+                            <tr>
+                                <th class="table-left-side">Transaction number</th>
+
+                                <td class="table-right-side">$$$</td>
+                            </tr>
+
+                            <tr>
+                                <td class="table-left-side">Flight info</td>
+
+                                <td class="table-right-side">
+                                    <button class="button-in-table">
+                                        Link to pdf version
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <div id="promo-box">
+                <section class="promo-content">
+                    <div class="promo-item">
+                        <div class="promo-image-placeholder"></div>
+                        <h3 class="promo-title">Title</h3>
+                        <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                        <a href="#" class="learn-more-link">Learn more ></a>
+                    </div>
+                    <div class="promo-item">
+                        <div class="promo-image-placeholder"></div>
+                        <h3 class="promo-title">Title</h3>
+                        <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                        <a href="#" class="learn-more-link">Learn more ></a>
+                    </div>
+                    <div class="promo-item">
+                        <div class="promo-image-placeholder"></div>
+                        <h3 class="promo-title">Title</h3>
+                        <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                        <a href="#" class="learn-more-link">Learn more ></a>
+                    </div>
+                </section>
+
+                <section class="sales-clarification">
+                    <p>* space for clarification of sales/ promotions</p>
+                </section>
+            </div>
+
+
+        </main>
+
+        <!-- Footer will be loaded here (e.g., by JavaScript) -->
+        <div id="footer-placeholder"></div>
+
+        <!-- <script src="user-profile.js"></script> -->
+        <script>
+            function highlightSidebarTab() {
+            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            let folder = '';
+            if (pathParts.length > 1 && pathParts[pathParts.length - 1] === 'index.html') {
+                folder = pathParts[pathParts.length - 2];
+            } else {
+                folder = pathParts[pathParts.length - 1];
+            }
+            console.log('Current folder:', folder);
+            const sidebarMap = [
+                { id: 'sidebar-upcoming-flights',    folder: 'upcoming_flights' },
+                { id: 'sidebar-current-bookings',    folder: 'current-bookings-management' },
+                { id: 'sidebar-digital-tickets',     folder: 'digital-tickets' },
+                { id: 'sidebar-inflight-points',     folder: 'in-flight-points' },
+                { id: 'sidebar-booking-history',     folder: 'booking-history' },
+                { id: 'sidebar-digital-receipts',    folder: 'digital-receipts' },
+                { id: 'sidebar-profile-management',  folder: 'user_profile' },
+                { id: 'sidebar-settings',            folder: 'settings' }
+            ];
+            sidebarMap.forEach(item => {
+                const btn = document.getElementById(item.id);
+                if (btn) {
+                    if (item.folder === folder) {
+                        btn.classList.remove('regular-button');
+                        btn.classList.add('current-button');
+                    } else {
+                        btn.classList.remove('current-button');
+                        btn.classList.add('regular-button');
+                    }
+                }
+            });
+        }
+        function loadHTML(url, elementId, callback) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                    if (callback) callback();
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+
+        // Load header and footer
+        loadHTML('../../components/header.html', 'header-placeholder');
+        loadHTML('../../components/footer.html', 'footer-placeholder');
+        loadHTML('../../components/user-profile-sidebar.html', 'user-profile-sidebar-placeholder', highlightSidebarTab);
+        </script>
+    </body>
+</html>

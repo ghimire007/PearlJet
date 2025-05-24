@@ -539,8 +539,9 @@
 
                              displayMessage(loginMessageArea, `Login successful! Welcome.`, true);
                              storeToken(result.token); // Store the received token
-                             console.log('Logged in. Token stored.');
-                             loginForm.reset();
+                             localStorage.setItem('user', JSON.stringify(result.user)); // Store user details
+                             window.location.href = '/frontend/pages/quickBook/index.html'; 
+                            
                              
                              // TODO: Redirect to a dashboard or main app page
                               // Example: Redirect after a short delay
@@ -561,6 +562,46 @@
                     console.log("User already logged in:", currentUser);
                     // If there's a general message area for logged in status, use it.
                     // For now, just console log as the main message areas are for form feedback.
+                }
+
+                // Billing address validation on continue
+                const continueBtn = document.querySelector('#BillingDetails .action-btn');
+                if (continueBtn) {
+                    continueBtn.addEventListener('click', function(e) {
+                        // List of required billing address field IDs
+                        const requiredFields = [
+                            'first-name', 'last-name', 'email', 'address', 'city',
+                            'state', 'country', 'mobile', 'passport', 'zip-postal-code'
+                        ];
+                        let firstEmpty = null;
+                        for (const id of requiredFields) {
+                            const el = document.getElementById(id);
+                            if (el && !el.value.trim()) {
+                                if (!firstEmpty) firstEmpty = el;
+                                el.classList.add('input-error');
+                            } else if (el) {
+                                el.classList.remove('input-error');
+                            }
+                        }
+                        if (firstEmpty) {
+                            e.preventDefault();
+                            firstEmpty.focus();
+                            let warn = document.getElementById('address-warning');
+                            if (!warn) {
+                                warn = document.createElement('div');
+                                warn.id = 'address-warning';
+                                warn.style.color = 'red';
+                                warn.textContent = 'Please fill in all required billing address fields.';
+                                document.querySelector('.billing-address-form').prepend(warn);
+                            } else {
+                                warn.style.display = 'block';
+                            }
+                            return false;
+                        } else {
+                            let warn = document.getElementById('address-warning');
+                            if (warn) warn.style.display = 'none';
+                        }
+                    });
                 }
             });
         </script>
