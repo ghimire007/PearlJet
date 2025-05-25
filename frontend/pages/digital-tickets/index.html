@@ -7,8 +7,81 @@
         <link rel="stylesheet" href="../../components/header.css">
         <link rel="stylesheet" href="../../components/footer.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        <style>
+        .bp-actions {
+          display: flex;
+          justify-content: center;
+          margin-top: -8px;
+          margin-bottom: 24px;
+        }
+        .bp-download-btn {
+          background: #3E4C65;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          padding: 5px 16px;
+          font-size: 13px;
+          font-family: 'Poppins', sans-serif;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.2s, color 0.2s;
+          box-shadow: 0 2px 6px rgba(62,76,101,0.08);
+          margin-top: 0;
+        }
+        .bp-download-btn:hover {
+          background: #25314a;
+        }
+        .ticket-wrapper {
+          background: #fff;
+          border-radius: 18px;
+          box-shadow: 0 2px 12px rgba(62,76,101,0.08);
+          margin: 32px auto 0 auto;
+          padding-bottom: 0;
+          max-width: 540px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .boarding-pass-card {
+          box-shadow: none !important;
+          margin-bottom: 0 !important;
+          background: #fff;
+          border-radius: 18px 18px 0 0;
+        }
+        .bp-actions {
+          width: 100%;
+          background: #fff;
+          display: flex;
+          justify-content: center;
+          border-radius: 0 0 18px 18px;
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-bottom: 18px;
+          box-sizing: border-box;
+        }
+        .bp-download-btn {
+          background: #3E4C65;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          padding: 8px 24px;
+          font-size: 15px;
+          font-family: 'Poppins', sans-serif;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.2s, color 0.2s;
+          box-shadow: 0 2px 6px rgba(62,76,101,0.08);
+          margin-top: 16px;
+          margin-bottom: 0;
+        }
+        .bp-download-btn:hover {
+          background: #25314a;
+        }
+        </style>
     </head>
 
     <body>
@@ -166,11 +239,17 @@
                                     <div class="bp-qr" id="qr-${cardId}"></div>
                                 </div>
                             </div>
-                            <div class="bp-actions">
-                                <button class="bp-download-btn no-print" data-card="${cardId}">Download PDF</button>
-                            </div>
                         `;
-                        ticketsList.appendChild(ticket);
+                        // Create the wrapper
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'ticket-wrapper';
+                        wrapper.appendChild(ticket);
+                        // Create the download button outside the card
+                        const actions = document.createElement('div');
+                        actions.className = 'bp-actions';
+                        actions.innerHTML = `<button class="bp-download-btn no-print" data-card="${cardId}">Download PDF</button>`;
+                        wrapper.appendChild(actions);
+                        ticketsList.appendChild(wrapper);
                         // Generate QR code (after element is in DOM)
                         new QRCode(document.getElementById(`qr-${cardId}`), {
                             text: booking._id || 'FlyDreamAir',
@@ -183,20 +262,32 @@
                     });
                     // PDF download handler
                     ticketsList.querySelectorAll('.bp-download-btn').forEach(btn => {
-                        btn.addEventListener('click', function() {
+                        btn.addEventListener('click', async function() {
                             const cardId = this.getAttribute('data-card');
-                            // Select the full card (header + body + actions)
-                            const element = this.closest('.boarding-pass-card');
+                            // The card is now the previous sibling of the button's parent
+                            const element = this.parentElement.previousElementSibling;
                             const rect = element.getBoundingClientRect();
-                            const widthMm = rect.width * 0.34583;
-                            const heightMm = rect.height * 0.34583;
-                            const orientation = widthMm > heightMm ? 'landscape' : 'portrait';
-                            html2pdf().from(element).set({
-                                margin: 0,
-                                filename: 'boarding-pass.pdf',
-                                html2canvas: { scale: 2, useCORS: true },
-                                jsPDF: { format: [widthMm, heightMm], orientation }
-                            }).save();
+                            console.log(rect);
+                            // Hide the button before capture
+                            this.style.display = 'none';
+                            const canvas = await html2canvas(element, { scale: 2, useCORS: true });
+                            this.style.display = '';
+                            const imgData = canvas.toDataURL('image/png');
+                            const { jsPDF } = window.jspdf;
+                            const pdf = new jsPDF({
+                                orientation: 'portrait',
+                                unit: 'pt',
+                                format: 'a4'
+                            });
+                            const pageWidth = pdf.internal.pageSize.getWidth();
+                            const pageHeight = pdf.internal.pageSize.getHeight();
+                            let imgWidth = canvas.width;
+                            let imgHeight = canvas.height;
+                            const ratio = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
+                            imgWidth *= ratio;
+                            imgHeight *= ratio;
+                            pdf.addImage(imgData, 'PNG', (pageWidth - imgWidth) / 2, (pageHeight - imgHeight) / 2, imgWidth, imgHeight);
+                            pdf.save('boarding-pass.pdf');
                         });
                     });
                 } catch (err) {
