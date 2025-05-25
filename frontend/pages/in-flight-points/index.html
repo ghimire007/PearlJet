@@ -67,6 +67,10 @@
         <!-- Footer will be loaded here (e.g., by JavaScript) -->
         <div id="footer-placeholder"></div>
 
+        <button class="sidebar-hamburger" onclick="toggleSidebar()">&#9776;</button>
+        <div class="sidebar-overlay" id="sidebarOverlay" style="display:none;" onclick="toggleSidebar()"></div>
+        <div id="user-profile-sidebar-placeholder"></div>
+
         <!-- <script src="user-profile.js"></script> -->
         <script>
             function highlightSidebarTab() {
@@ -114,6 +118,25 @@
         loadHTML('../../components/header.html', 'header-placeholder');
         loadHTML('../../components/footer.html', 'footer-placeholder');
         loadHTML('../../components/user-profile-sidebar.html', 'user-profile-sidebar-placeholder', highlightSidebarTab);
+        </script>
+  <script src="../../js/api_client.js"></script>
+        <script>
+            function toggleSidebar() {
+                const sidebar = document.querySelector('.user-profile-section-selection');
+                const overlay = document.getElementById('sidebarOverlay');
+                const closeBtn = sidebar ? sidebar.querySelector('.sidebar-close') : null;
+                if (!sidebar) return;
+                sidebar.classList.toggle('open');
+                if (sidebar.classList.contains('open')) {
+                    overlay.style.display = 'block';
+                    if (closeBtn) closeBtn.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    overlay.style.display = 'none';
+                    if (closeBtn) closeBtn.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            }
         </script>
     </body>
 </html>

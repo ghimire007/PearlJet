@@ -16,15 +16,6 @@
     <div id="header-placeholder"></div>
 
     <main class="checkout-page">
-        <nav class="booking-nav-tabs main-checkout-tabs">
-             <ul>
-                <li><button class="tab-btn book-tab">Book</button></li>
-                <li><button class="tab-btn manage-tab">Manage</button></li>
-                <li><button class="tab-btn upgrade-tab">Upgrade</button></li>
-                <li><button class="tab-btn checkin-tab">Check-in</button></li>
-                <li><button class="tab-btn flight-status-tab">Flight Status</button></li>
-            </ul>
-        </nav>
 
         <section class="checkout-flow">
             <div class="checkout-tabs-navigation">
@@ -286,6 +277,19 @@
             if (taxCell) taxCell.textContent = `$${tax.toFixed(2)}`;
             total = subtotal + tax;
             if (totalCostCell) totalCostCell.textContent = `$${total.toFixed(2)}`;
+            localStorage.setItem('costBreakdown', JSON.stringify({
+                subtotal,
+                tax,
+                total,
+                items: [
+                    { label: 'Flight Ticket', amount: 250 },
+                    ...(passenger.seat ? [{ label: 'Selected Seat', amount: 15 }] : []),
+                    ...(passenger.services ? passenger.services.map(service => ({
+                        label: `In-Flight ${service.name.charAt(0).toUpperCase() + service.name.slice(1)}`,
+                        amount: service.price
+                    })) : [])
+                ]
+            }));
         }
         // --- Autofill Logic Refactor ---
         function autofillUserDetails() {
@@ -416,6 +420,7 @@
 
                     // --- Booking save with JWT integration ---
                     const currentFlightSelection = JSON.parse(localStorage.getItem('currentFlightSelection'));
+                    const costBreakdown = JSON.parse(localStorage.getItem('costBreakdown') || '{}');
                     const bookingData = {
                         flight: currentFlightSelection.flight,
                         passenger: currentFlightSelection.passenger,
@@ -432,7 +437,8 @@
                             cardNumber: document.getElementById('card-number').value,
                             expiryDate: document.getElementById('expiry-date').value,
                             cvc: document.getElementById('cvc').value
-                        }
+                        },
+                        costBreakdown
                     };
 
                     const token = localStorage.getItem('flyDreamAirToken');
@@ -453,7 +459,7 @@
                         const contentType = response.headers.get('content-type');
                         if (response.ok && contentType && contentType.includes('application/json')) {
                             const booking = await response.json();
-                            window.location.href = '/frontend/pages/booking_conirmed/index.html?id=' + booking._id;
+                            window.location.href = '/frontend/pages/booking_confirmed/index.html?id=' + booking._id;
                         } else {
                             const errorText = await response.text();
                             alert('Booking failed: ' + errorText);

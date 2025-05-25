@@ -12,66 +12,17 @@
     <body>
         <div id="header-placeholder"></div>
 
+        <button class="sidebar-hamburger" onclick="toggleSidebar()">&#9776;</button>
+        <div class="sidebar-overlay" id="sidebarOverlay" style="display:none;" onclick="toggleSidebar()"></div>
+
         <main class="user-profile-page">
 
             <div id="main-content-box">
-                <div id="user-profile-sidebar-placeholder"> </div>
+                <div id="user-profile-sidebar-placeholder"></div>
 
                 <section class="section-content-area">
                     <div id="transaction-list">
-                        <table id="transaction-item-1">
-                            <tr>
-                                <th class="table-left-side">Transaction number</th>
-
-                                <td class="table-right-side">$$$</td>
-                            </tr>
-
-                            <tr>
-                                <td class="table-left-side">Flight info</td>
-
-                                <td class="table-right-side">
-                                    <button class="button-in-table">
-                                        Link to pdf version
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <table id="transaction-item-2">
-                            <tr>
-                                <th class="table-left-side">Transaction number</th>
-
-                                <td class="table-right-side">$$$</td>
-                            </tr>
-
-                            <tr>
-                                <td class="table-left-side">Flight info</td>
-
-                                <td class="table-right-side">
-                                    <button class="button-in-table">
-                                        Link to pdf version
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <table id="transaction-item-3">
-                            <tr>
-                                <th class="table-left-side">Transaction number</th>
-
-                                <td class="table-right-side">$$$</td>
-                            </tr>
-
-                            <tr>
-                                <td class="table-left-side">Flight info</td>
-
-                                <td class="table-right-side">
-                                    <button class="button-in-table">
-                                        Link to pdf version
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
+                        <p>Loading your receipts...</p>
                     </div>
                 </section>
             </div>
@@ -110,6 +61,8 @@
         <div id="footer-placeholder"></div>
 
         <!-- <script src="user-profile.js"></script> -->
+        <script src="../../js/api_client.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <script>
             function highlightSidebarTab() {
             const pathParts = window.location.pathname.split('/').filter(Boolean);
@@ -157,6 +110,177 @@
         loadHTML('../../components/header.html', 'header-placeholder');
         loadHTML('../../components/footer.html', 'footer-placeholder');
         loadHTML('../../components/user-profile-sidebar.html', 'user-profile-sidebar-placeholder', highlightSidebarTab);
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            setTimeout(async () => {
+                if (typeof getBookings !== 'function') {
+                    console.error('getBookings is not available');
+                    return;
+                }
+                let receiptsList = document.getElementById('transaction-list');
+                receiptsList.innerHTML = '<p>Loading your receipts...</p>';
+                try {
+                    const bookings = await getBookings();
+                    if (!bookings.length) {
+                        receiptsList.innerHTML = '<p>No receipts found.</p>';
+                        return;
+                    }
+                    receiptsList.innerHTML = '';
+                    bookings.forEach((booking, idx) => {
+                        const cardId = `receipt-card-${idx}`;
+                        const receipt = document.createElement('div');
+                        receipt.className = 'receipt-download-row';
+                        receipt.innerHTML = `
+                            <div class="receipt-list-card">
+                                <div>
+                                    <div class="receipt-list-id">Booking ID: <span>${booking._id?.$oid || booking._id || 'N/A'}</span></div>
+                                    <div class="receipt-list-passenger">Passenger: <span>${booking.passenger?.name || 'N/A'}</span></div>
+                                </div>
+                                <button class="download-receipt-btn" data-idx="${idx}">Download PDF</button>
+                            </div>
+                        `;
+                        receiptsList.appendChild(receipt);
+                    });
+
+                    // PDF download handler
+                    receiptsList.querySelectorAll('.download-receipt-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const idx = this.getAttribute('data-idx');
+                            const booking = bookings[idx];
+                            // Build the receipt HTML (hidden)
+                            const tempDiv = document.createElement('div');
+                            tempDiv.style.position = 'fixed';
+                            tempDiv.style.left = '-9999px';
+                            tempDiv.style.top = '0';
+                            tempDiv.innerHTML = `
+                                <div style="font-family:'Poppins',Arial,sans-serif;max-width:500px;border:1px solid #e0e0e0;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(62,76,101,0.08);">
+                                    <div style="background:#3E4C65;color:#fff;padding:1.2em 2em;display:flex;align-items:center;justify-content:space-between;">
+                                        <div style="font-size:1.3em;font-weight:700;letter-spacing:1px;">✈️ FlyDreamAir</div>
+                                        <div style="font-size:1.1em;font-weight:500;letter-spacing:2px;text-transform:uppercase;">Receipt</div>
+                                    </div>
+                                    <div style="padding:1.5em;">
+                                        <div style="margin-bottom:1em;">
+                                            <strong>Booking ID:</strong> ${booking._id?.$oid || booking._id || 'N/A'}<br>
+                                            <strong>Passenger:</strong> ${booking.passenger?.name || 'N/A'}
+                                        </div>
+                                        <table style="width:100%;border-collapse:collapse;font-size:1em;">
+                                            <thead>
+                                                <tr style="background:#f4f6f8;">
+                                                    <th style="text-align:left;padding:8px;">Item</th>
+                                                    <th style="text-align:left;padding:8px;">Details/Qty.</th>
+                                                    <th style="text-align:right;padding:8px;">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                ${
+                                                    booking.costBreakdown?.items?.map(item => `
+                                                        <tr>
+                                                            <td style="padding:8px;">${item.label}</td>
+                                                            <td style="padding:8px;">${item.label === 'Selected Seat' ? (booking.passenger?.seat || 1) : 1}</td>
+                                                            <td style="padding:8px;text-align:right;">$${item.amount.toFixed(2)}</td>
+                                                        </tr>
+                                                    `).join('') || ''
+                                                }
+                                                <tr>
+                                                    <td style="padding:8px;">Subtotal</td>
+                                                    <td></td>
+                                                    <td style="padding:8px;text-align:right;">$${booking.costBreakdown?.subtotal?.toFixed(2) || '0.00'}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:8px;">Tax</td>
+                                                    <td></td>
+                                                    <td style="padding:8px;text-align:right;">$${booking.costBreakdown?.tax?.toFixed(2) || '0.00'}</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr style="background:#f4f6f8;">
+                                                    <td colspan="2" style="padding:8px;"><strong>Total Cost:</strong></td>
+                                                    <td style="padding:8px;text-align:right;"><strong>$${booking.costBreakdown?.total?.toFixed(2) || '0.00'}</strong></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            `;
+                            document.body.appendChild(tempDiv);
+                            // Measure and download PDF
+                            const element = tempDiv.firstElementChild;
+                            const rect = element.getBoundingClientRect();
+                            const widthMm = rect.width * 0.34583;
+                            const heightMm = rect.height * 0.364583;
+                            const orientation = widthMm > heightMm ? 'landscape' : 'portrait';
+                            html2pdf().from(element).set({
+                                margin: 0,
+                                filename: 'receipt.pdf',
+                                html2canvas: { scale: 2, useCORS: true },
+                                jsPDF: { format: [widthMm, heightMm], orientation }
+                            }).save().then(() => {
+                                document.body.removeChild(tempDiv);
+                            });
+                        });
+                    });
+                } catch (err) {
+                    receiptsList.innerHTML = '<p>Error loading receipts. Please try again later.</p>';
+                    console.error(err);
+                }
+            }, 500);
+        });
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.user-profile-section-selection');
+            const overlay = document.getElementById('sidebarOverlay');
+            const closeBtn = sidebar ? sidebar.querySelector('.sidebar-close') : null;
+            if (!sidebar) return;
+            sidebar.classList.toggle('open');
+            if (sidebar.classList.contains('open')) {
+                overlay.style.display = 'block';
+                if (closeBtn) closeBtn.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.style.display = 'none';
+                if (closeBtn) closeBtn.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
         </script>
+        <script src="../../js/header-auth.js"></script>
+        <style>
+            .receipt-download-row {
+                margin-bottom: 18px;
+            }
+            .receipt-list-card {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: #fff;
+                border: 1px solid #e0e0e0;
+                border-radius: 10px;
+                padding: 1em 1.5em;
+                box-shadow: 0 2px 8px rgba(62,76,101,0.08);
+                gap: 1.5em;
+            }
+            .receipt-list-id, .receipt-list-passenger {
+                font-size: 1em;
+                color: #333;
+                margin-bottom: 2px;
+            }
+            .receipt-list-id span, .receipt-list-passenger span {
+                font-weight: 600;
+                color: #3E4C65;
+            }
+            .download-receipt-btn {
+                background: #3E4C65;
+                color: #fff;
+                border: none;
+                border-radius: 8px;
+                padding: 0.6em 1.2em;
+                font-size: 1em;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+            .download-receipt-btn:hover {
+                background: #23234a;
+            }
+        </style>
     </body>
 </html>

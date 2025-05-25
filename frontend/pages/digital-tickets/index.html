@@ -4,66 +4,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FlyDreamAir - Digital Tickets</title>
         <link rel="stylesheet" href="digital-tickets.css">
+        <link rel="stylesheet" href="../../components/header.css">
+        <link rel="stylesheet" href="../../components/footer.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     </head>
 
     <body>
         <div id="header-placeholder"></div>
 
         <main class="user-profile-page">
-
             <div id="main-content-box">
                 <div id="user-profile-sidebar-placeholder"></div>
-
                 <section class="section-content-area">
                     <div id="digital-tickets-list">
-                        <table id="digital-ticket-item-1">
-                            <tr>
-                                <th class="table-left-side">Digital tickets</th>
-                            </tr>
-
-                            <tr>
-                                <td class="table-right-side" colspan="2">
-                                    <button class="button-in-table">
-                                        Download pdf
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="table-right-side" colspan="2">
-                                    <button class="button-in-table">
-                                        Email pdf to email address
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <table id="digital-ticket-item-2">
-                            <tr>
-                                <th class="table-left-side">Digital tickets</th>
-                            </tr>
-
-                            <tr>
-                                <td class="table-right-side" colspan="2">
-                                    <button class="button-in-table">
-                                        Download pdf
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="table-right-side" colspan="2">
-                                    <button class="button-in-table">
-                                        Email pdf to email address
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
+                        <!-- Tickets will be rendered here by JS -->
                     </div>
                 </section>
             </div>
-
             <div id="promo-box">
                 <section class="promo-content">
                     <div class="promo-item">
@@ -85,19 +44,19 @@
                         <a href="#" class="learn-more-link">Learn more ></a>
                     </div>
                 </section>
-
                 <section class="sales-clarification">
                     <p>* space for clarification of sales/ promotions</p>
                 </section>
             </div>
-
-
         </main>
 
-        <!-- Footer will be loaded here (e.g., by JavaScript) -->
         <div id="footer-placeholder"></div>
 
-        <!-- <script src="user-profile.js"></script> -->
+        <button class="sidebar-hamburger" onclick="toggleSidebar()">&#9776;</button>
+        <div class="sidebar-overlay" id="sidebarOverlay" style="display:none;" onclick="toggleSidebar()"></div>
+        <div id="user-profile-sidebar-placeholder"></div>
+
+        <script src="../../js/api_client.js"></script>
         <script>
         function loadHTML(url, elementId, callback) {
             fetch(url)
@@ -139,9 +98,130 @@
                 }
             });
         }
-        loadHTML('../components/header.html', 'header-placeholder');
-        loadHTML('../components/footer.html', 'footer-placeholder');
+        loadHTML('../../components/header.html', 'header-placeholder');
+        loadHTML('../../components/footer.html', 'footer-placeholder');
         loadHTML('../../components/user-profile-sidebar.html', 'user-profile-sidebar-placeholder', highlightSidebarTab);
+
+        // Fetch and display digital tickets (boarding pass style, logo, QR code, no cost breakdown)
+        document.addEventListener('DOMContentLoaded', async function() {
+            setTimeout(async () => {
+                if (typeof getBookings !== 'function') {
+                    console.error('getBookings is not available');
+                    return;
+                }
+                let ticketsList = document.getElementById('digital-tickets-list');
+                ticketsList.innerHTML = '<p>Loading your tickets...</p>';
+                try {
+                    const bookings = await getBookings();
+                    if (!bookings.length) {
+                        ticketsList.innerHTML = '<p>No tickets found.</p>';
+                        return;
+                    }
+                    ticketsList.innerHTML = '';
+                    bookings.forEach((booking, idx) => {
+                        const ticket = document.createElement('div');
+                        ticket.className = 'boarding-pass-card';
+                        const depDate = booking.flight ? new Date(booking.flight.departureDateTime) : null;
+                        const arrDate = booking.flight ? new Date(booking.flight.arrivalDateTime) : null;
+                        const dateStr = depDate ? depDate.toLocaleDateString() : 'N/A';
+                        const timeStr = depDate ? depDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'N/A';
+                        const arrTimeStr = arrDate ? arrDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'N/A';
+                        let services = 'None';
+                        if (booking.passenger && booking.passenger.services && booking.passenger.services.length) {
+                            services = booking.passenger.services.map(s => `${s.name} ($${s.price})`).join(', ');
+                        }
+                        const cardId = `ticket-card-${idx}`;
+                        ticket.innerHTML = `
+                            <div class="bp-header">
+                                <div class="bp-airline">
+                                    <div class="bp-airline-name">✈️ FlyDreamAir</div>
+                                </div>
+                                <div class="bp-type">Boarding Pass</div>
+                            </div>
+                            <div class="bp-body" id="${cardId}">
+                                <div class="bp-section bp-left">
+                                    <div class="bp-label">Passenger</div>
+                                    <div class="bp-value">${booking.passenger?.name || 'N/A'}</div>
+                                    <div class="bp-label">From</div>
+                                    <div class="bp-value">${booking.flight?.origin || 'N/A'}</div>
+                                    <div class="bp-label">To</div>
+                                    <div class="bp-value">${booking.flight?.destination || 'N/A'}</div>
+                                    <div class="bp-label">Flight</div>
+                                    <div class="bp-value">${booking.flight?.flightNumber || 'N/A'}</div>
+                                    <div class="bp-label">Date</div>
+                                    <div class="bp-value">${dateStr}</div>
+                                </div>
+                                <div class="bp-divider"></div>
+                                <div class="bp-section bp-right">
+                                    <div class="bp-label">Seat</div>
+                                    <div class="bp-value">${booking.passenger?.seat || 'N/A'}</div>
+                                    <div class="bp-label">Class</div>
+                                    <div class="bp-value">${booking.flight?.class || 'N/A'}</div>
+                                    <div class="bp-label">Boarding</div>
+                                    <div class="bp-value">${timeStr}</div>
+                                    <div class="bp-label">Arrival</div>
+                                    <div class="bp-value">${arrTimeStr}</div>
+                                    <div class="bp-label">Services</div>
+                                    <div class="bp-value">${services}</div>
+                                    <div class="bp-qr" id="qr-${cardId}"></div>
+                                </div>
+                            </div>
+                            <div class="bp-actions">
+                                <button class="bp-download-btn no-print" data-card="${cardId}">Download PDF</button>
+                            </div>
+                        `;
+                        ticketsList.appendChild(ticket);
+                        // Generate QR code (after element is in DOM)
+                        new QRCode(document.getElementById(`qr-${cardId}`), {
+                            text: booking._id || 'FlyDreamAir',
+                            width: 64,
+                            height: 64,
+                            colorDark: "#222",
+                            colorLight: "#fff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+                    });
+                    // PDF download handler
+                    ticketsList.querySelectorAll('.bp-download-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const cardId = this.getAttribute('data-card');
+                            // Select the full card (header + body + actions)
+                            const element = this.closest('.boarding-pass-card');
+                            const rect = element.getBoundingClientRect();
+                            const widthMm = rect.width * 0.34583;
+                            const heightMm = rect.height * 0.34583;
+                            const orientation = widthMm > heightMm ? 'landscape' : 'portrait';
+                            html2pdf().from(element).set({
+                                margin: 0,
+                                filename: 'boarding-pass.pdf',
+                                html2canvas: { scale: 2, useCORS: true },
+                                jsPDF: { format: [widthMm, heightMm], orientation }
+                            }).save();
+                        });
+                    });
+                } catch (err) {
+                    ticketsList.innerHTML = '<p>Error loading tickets. Please try again later.</p>';
+                    console.error(err);
+                }
+            }, 500);
+        });
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.user-profile-section-selection');
+            const overlay = document.getElementById('sidebarOverlay');
+            const closeBtn = sidebar ? sidebar.querySelector('.sidebar-close') : null;
+            if (!sidebar) return;
+            sidebar.classList.toggle('open');
+            if (sidebar.classList.contains('open')) {
+                overlay.style.display = 'block';
+                if (closeBtn) closeBtn.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.style.display = 'none';
+                if (closeBtn) closeBtn.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
         </script>
     </body>
 </html>

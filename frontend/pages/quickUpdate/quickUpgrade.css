@@ -547,3 +547,62 @@
     width: 100%;
     padding-right: 50px;
 }
+
+@media screen and (max-width: 900px) {
+    .searchModule {
+        position: static;
+        width: 98%;
+        height: auto;
+        top: unset;
+        left: unset;
+        right: unset;
+        margin: 16px auto 0 auto;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+    .upgradeBookingArea {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 8px 8px 8px;
+    }
+    .upgradeInputsArea {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        align-items: stretch;
+    }
+    .upgradeInputs {
+        width: 100%;
+        margin: 0 0 8px 0;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .input {
+        width: 100%;
+        min-width: 0;
+    }
+    .eligibilityButton {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .blueButton {
+        width: 100%;
+        margin-top: 8px;
+    }
+    .searchChoices {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 4px;
+    }
+    .searchChoices a {
+        display: inline-block;
+        min-width: 90px;
+        text-align: center;
+        margin: 0 6px 0 0;
+    }
+}

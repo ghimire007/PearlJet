@@ -56,7 +56,7 @@ export const login = async (req, res) => {
 // Controller to get user details by ID
 export const getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.userId);
+    const user = await User.findById(req.user._id);
     if (!user) return res.status(404).send({ message: 'User not found' });
     res.status(200).send(user);
   } catch (error) {
@@ -69,7 +69,7 @@ export const getUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const updates = req.body;
-    const user = await User.findByIdAndUpdate(req.userId, updates, { new: true, runValidators: true });
+    const user = await User.findByIdAndUpdate(req.user._id, updates, { new: true, runValidators: true });
     if (!user) return res.status(404).send({ message: 'User not found' });
     res.status(200).send(user);
   } catch (error) {

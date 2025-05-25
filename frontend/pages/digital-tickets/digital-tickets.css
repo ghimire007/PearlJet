@@ -1,7 +1,7 @@
 ﻿:root {
     --primary-color: #3E4C65;
     --primary-hover: #2c3950;
-    --accent-color: #ffd700;
+    --accent-color: #ffd;
     --text-on-primary: #fff;
     --background-light: #f4f6f8;
     --card-background: #ffffff;
@@ -344,4 +344,192 @@ td.table-right-side {
     {
         padding: 0 20px;
     }
+}
+
+/* Boarding pass card styles */
+.boarding-pass-card {
+    max-width: 600px;
+    margin: 2em auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    font-family: 'Poppins', Arial, sans-serif;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+.bp-header {
+    background: var(--primary-color);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 1.5em;
+}
+.bp-airline {
+    display: flex;
+    align-items: center;
+}
+.bp-logo {
+    font-size: 2em;
+    margin-right: 0.7em;
+}
+.bp-airline-name {
+    font-size: 1.3em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+}
+.bp-type {
+    font-size: 1.1em;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.bp-body {
+    display: flex;
+    flex-direction: row;
+    padding: 1.5em;
+    background: #f8fafd;
+    position: relative;
+}
+.bp-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+.bp-left {
+    padding-right: 1.5em;
+}
+.bp-right {
+    padding-left: 1.5em;
+}
+.bp-divider {
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #b0c4de,
+        #b0c4de 6px,
+        transparent 6px,
+        transparent 12px
+    );
+    margin: 0 1em;
+}
+.bp-label {
+    font-size: 0.9em;
+    color: #888;
+    font-weight: 500;
+    margin-top: 0.5em;
+}
+.bp-value {
+    font-size: 1.1em;
+    color: #222;
+    font-weight: 600;
+    margin-bottom: 0.2em;
+}
+.bp-actions {
+    padding: 1em 1.5em 1.5em 1.5em;
+    background: #f7f7fa;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+.bp-download-btn {
+    width: 100%;
+    background: #3a3a5a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7em 0;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.bp-download-btn:hover {
+    background: #23234a;
+}
+.bp-logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+.bp-qr {
+    margin-top: 1.5em;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* Responsive Sidebar: Hamburger and Slide-in */
+@media (max-width: 900px) {
+  .user-profile-section-selection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    max-width: 80vw;
+    background: var(--card-background, #fff);
+    z-index: 2000;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+    border-radius: 0 12px 12px 0;
+    padding-top: 60px;
+  }
+  .user-profile-section-selection.open {
+    transform: translateX(0);
+  }
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 1999;
+  }
+  .sidebar-close {
+    display: block;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 2rem;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    z-index: 2100;
+  }
+  .sidebar-hamburger {
+    display: block;
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 2101;
+    background: var(--primary-color, #3E4C65);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 6px 12px;
+  }
+}
+@media (min-width: 901px) {
+  .sidebar-hamburger, .sidebar-close, .sidebar-overlay {
+    display: none !important;
+  }
+  .user-profile-section-selection {
+    position: static;
+    transform: none !important;
+    width: 280px;
+    border-radius: 8px;
+    padding-top: 20px;
+  }
 }
