@@ -1,5 +1,5 @@
 // API base URL - using relative path since frontend and backend are on same origin
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'http://3.27.193.154:3000/api';
 // const TOKEN_KEY = 'flyDreamAirToken'; // Removed declaration, will use the one from index.html scope
 
 // Helper to get token from localStorage
