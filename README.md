@@ -43,7 +43,7 @@ The backend is built using express js
    npm run dev
    ```
 
-   The server will start on `http://localhost:3000` and will automatically restart on file changes.
+   The server will start on `http://3.27.193.154:3000` and will automatically restart on file changes.
 
 ### API Endpoints
 

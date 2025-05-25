@@ -185,7 +185,7 @@
         window.addEventListener('DOMContentLoaded', function() {
             const flightId = getQueryParam('id');
             if (flightId) {
-                fetch(`http://localhost:3000/api/flights/${flightId}`)
+                fetch(`http://3.27.193.154:3000/api/flights/${flightId}`)
                     .then(res => res.json())
                     .then(flight => {
                         if (flight && !flight.error) {
