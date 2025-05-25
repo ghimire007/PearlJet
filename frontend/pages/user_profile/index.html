@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlyDreamAir - Prolfile Management</title>
+        <link rel="stylesheet" href="user_profile.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <link rel="stylesheet" href="../../components/header.css">
+        <link rel="stylesheet" href="../../components/footer.css">
+    </head>
+
+    <body>
+            <div id="header-placeholder"></div>
+
+            <button class="sidebar-hamburger" onclick="toggleSidebar()">&#9776;</button>
+            <div class="sidebar-overlay" id="sidebarOverlay" style="display:none;" onclick="toggleSidebar()"></div>
+
+            <main class="user-profile-page">
+                <div id="main-content-box">
+                    <div id="user-profile-sidebar-placeholder"></div>
+
+                    <section class="section-content-area">
+                        <div id="pm-div">
+                            <form id="pm-form">
+                                <div id="update-personal-details">
+                                    <h3>Location</h3>
+                                    <div class="form-group">
+                                        <label for="country">Country of Residence</label>
+                                        <select id="country" name="country" required>
+                                            <option value="" disabled selected>Select your country</option>
+                                            <option value="Australia">Australia</option>
+                                            <option value="New Zealand">New Zealand</option>
+                                            <option value="United States">United States</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="Canada">Canada</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <h3>Personal Details</h3>
+                                    <p class="pm-instructional-text">
+                                        Please enter your personal details as they are listed on either:<br />
+                                        (1) your passport<br />
+                                        (2) your driver's license<br />
+                                        (3) birth certificate
+                                    </p>
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <select id="title" name="title" required>
+                                            <option value="" disabled selected>Select Title</option>
+                                            <option value="Mr">Mr</option>
+                                            <option value="Mrs">Mrs</option>
+                                            <option value="Miss">Miss</option>
+                                            <option value="Ms">Ms</option>
+                                            <option value="Dr">Dr</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="first-name">First Name</label>
+                                            <input type="text" id="first-name" name="firstName" placeholder="John" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="last-name">Last Name</label>
+                                            <input type="text" id="last-name" name="lastName" placeholder="Smith" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date-of-birth">Date of Birth</label>
+                                        <input type="text" id="date-of-birth" name="dateOfBirth" placeholder="DD/MM/YYYY" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" placeholder="name@gmail.com" required autocomplete="email" />
+                                    </div>
+
+                                <div id="update-security-details">
+                                    <div class="pm-sections-titles-div">
+                                        <table><tr><td class="table-left-side">Update security details</td><td class="table-right-side"><span class="drop-down-arrow">&#x2304;</span></td></tr></table>
+                                    </div>
+                                    <h3>Add a recovery email or phone number <span class="pm-optional-text">* optional</span></h3>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="recovery-email">A Different Email</label>
+                                            <input type="email" id="recovery-email" name="recoveryEmail" placeholder="alternate@gmail.com" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone-number">Phone Number</label>
+                                            <input type="tel" id="phone-number" name="phoneNumber" placeholder="0412 345 678" />
+                                        </div>
+                                    </div>
+                                    <h3 id="two-factor-subtitle">Add two-factor identification <span class="pm-optional-text">* optional</span></h3>
+                                    <div class="form-group">
+                                        <label for="two-factor-phone-number">Phone number to receive a login code</label>
+                                        <input type="tel" id="two-factor-phone-number" name="twoFactorPhoneNumber" placeholder="0412 345 678" />
+                                    </div>
+                                </div>
+
+                                <div id="update-preferred-contact-method">
+                                    <div class="pm-sections-titles-div">
+                                        <table><tr><td class="table-left-side">Update preferred contact method</td><td class="table-right-side"><span class="drop-down-arrow">&#x2304;</span></td></tr></table>
+                                    </div>
+                                    <h3>Preferred contact method <span class="pm-optional-text">* optional</span></h3>
+                                    <div class="radio-group" id="preferred-contact-method">
+                                        <label><input type="radio" name="contactMethod" value="email" checked> Email</label>
+                                        <label><input type="radio" name="contactMethod" value="SMS"> SMS</label>
+                                        <label><input type="radio" name="contactMethod" value="phone"> Phone call</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="change-email-or-phone-number">Preferred contact detail</label>
+                                        <input type="text" id="change-email-or-phone-number" name="contactDetail" placeholder="e.g. John@gmail.com | 0412 345 678" />
+                                    </div>
+                                </div>
+
+                                <div id="update-saved-payment-method">
+                                    <div class="pm-sections-titles-div">
+                                        <table><tr><td class="table-left-side">Update saved payment method</td><td class="table-right-side"><span class="drop-down-arrow">&#x2304;</span></td></tr></table>
+                                    </div>
+                                    <h3>Save payment method <span class="pm-optional-text">* optional</span></h3>
+                                    <p class="pm-instructional-text">Streamline the booking process and save your desired payment method to your account!</p>
+                                    <div class="form-group">
+                                        <label for="currency">Preferred currency to view costs in:</label>
+                                        <select name="currency" id="currency">
+                                            <option value="aud" selected>Australia $(AUD)</option>
+                                            <option value="usd">United States $(USD)</option>
+                                            <option value="cad">Canada $(CAD)</option>
+                                            <option value="gbp">United Kingdom £(GBP)</option>
+                                            <option value="euro">Europe €(EUR)</option>
+                                            <option value="yuan">China ¥(CNY)</option>
+                                        </select>
+                                    </div>
+                                    <div class="radio-group" id="preferred-payment-method">
+                                        <label><input type="radio" name="paymentMethodType" value="card" checked> Debit/Credit Card</label>
+                                        <label><input type="radio" name="paymentMethodType" value="paypal"> PayPal</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card-holder">Card Holder Name</label>
+                                        <input type="text" id="card-holder" name="cardHolderName" placeholder="John Smith" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card-number">Card Number</label>
+                                        <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9123 4567" />
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="expiry-date">Expiry Date</label>
+                                            <input type="text" id="expiry-date" name="cardExpiryDate" placeholder="MM/YY" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvc">CVC</label>
+                                            <input type="text" id="cvc" name="cardCvc" placeholder="123" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address-p1">Address Line 1</label>
+                                        <input type="text" id="address-p1" name="addressLine1" placeholder="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address-p2">Address Line 2</label>
+                                        <input type="text" id="address-p2" name="addressLine2" placeholder="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" name="city" placeholder="" />
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="country-billing">Country</label>
+                                            <input type="text" id="country-billing" name="billingCountry" placeholder="e.g. Australia" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="state-province">State/Province</label>
+                                            <input type="text" id="state-province" name="billingStateProvince" placeholder="e.g. NSW" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="zip-postal-code">Zip/Postal Code</label>
+                                            <input type="text" id="zip-postal-code" name="billingZipPostalCode" placeholder="e.g 2423" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button id="save-changes-button" type="submit">
+                                    <p>Save changes</p>
+                                </button>
+                            </form>
+
+      
+
+                        </div>
+                    </section>
+                </div>
+
+                <div id="promo-box">
+                    <section class="promo-content">
+                        <div class="promo-item">
+                            <div class="promo-image-placeholder"></div>
+                            <h3 class="promo-title">Title</h3>
+                            <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                            <a href="#" class="learn-more-link">Learn more ></a>
+                        </div>
+                        <div class="promo-item">
+                            <div class="promo-image-placeholder"></div>
+                            <h3 class="promo-title">Title</h3>
+                            <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                            <a href="#" class="learn-more-link">Learn more ></a>
+                        </div>
+                        <div class="promo-item">
+                            <div class="promo-image-placeholder"></div>
+                            <h3 class="promo-title">Title</h3>
+                            <p class="promo-info">Info:<br />rgoah ogfi oabgfdob a fodinbofdbn fdoab ghaohgf ghfidaohgfiod</p>
+                            <a href="#" class="learn-more-link">Learn more ></a>
+                        </div>
+                    </section>
+
+                    <section class="sales-clarification">
+                        <p>* space for clarification of sales/ promotions</p>
+                    </section>
+                </div>
+
+
+            </main>
+
+            <!-- Footer will be loaded here (e.g., by JavaScript) -->
+            <div id="footer-placeholder"></div>
+
+            <!-- <script src="user-profile.js"></script> -->
+            <script>
+                   function highlightSidebarTab() {
+            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            let folder = '';
+            if (pathParts.length > 1 && pathParts[pathParts.length - 1] === 'index.html') {
+                folder = pathParts[pathParts.length - 2];
+            } else {
+                folder = pathParts[pathParts.length - 1];
+            }
+            const sidebarMap = [
+                { id: 'sidebar-upcoming-flights',    folder: 'upcoming_flights' },
+                { id: 'sidebar-current-bookings',    folder: 'current-bookings-management' },
+                { id: 'sidebar-digital-tickets',     folder: 'digital-tickets' },
+                { id: 'sidebar-inflight-points',     folder: 'in-flight-points' },
+                { id: 'sidebar-booking-history',     folder: 'booking-history' },
+                { id: 'sidebar-digital-receipts',    folder: 'digital-receipts' },
+                { id: 'sidebar-profile-management',  folder: 'user_profile' },
+                { id: 'sidebar-settings',            folder: 'settings' }
+            ];
+            sidebarMap.forEach(item => {
+                const btn = document.getElementById(item.id);
+                if (btn) {
+                    if (item.folder === folder) {
+                        btn.classList.remove('regular-button');
+                        btn.classList.add('current-button');
+                    } else {
+                        btn.classList.remove('current-button');
+                        btn.classList.add('regular-button');
+                    }
+                }
+            });
+        }
+                // Example JavaScript to load header and footer
+                function loadHTML(url, elementId, callback) {
+                    fetch(url)
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById(elementId).innerHTML = data;
+                            if (callback) callback();
+                        })
+                        .catch(error => console.error('Error loading HTML:', error));
+                }
+
+                // Load header and footer
+                loadHTML('../../components/header.html', 'header-placeholder');
+                loadHTML('../../components/footer.html', 'footer-placeholder');
+                loadHTML('../../components/user-profile-sidebar.html', 'user-profile-sidebar-placeholder', highlightSidebarTab);
+            </script>
+            <script src="../../js/api_client.js"></script>
+            <script>
+            // --- User Profile Fetch & Update Logic ---
+
+            document.addEventListener('DOMContentLoaded', async function() {
+                // Wait for sidebar and form to be present
+                await new Promise(r => setTimeout(r, 100));
+                const form = document.getElementById('pm-form');
+                if (!form) return;
+
+                // Helper: format date to DD/MM/YYYY
+                function formatDate(dateStr) {
+                    if (!dateStr) return '';
+                    const d = new Date(dateStr);
+                    const day = String(d.getDate()).padStart(2, '0');
+                    const month = String(d.getMonth() + 1).padStart(2, '0');
+                    const year = d.getFullYear();
+                    return `${day}/${month}/${year}`;
+                }
+                // Helper: parse DD/MM/YYYY to ISO
+                function parseDate(input) {
+                    if (!input) return null;
+                    const [day, month, year] = input.split('/');
+                    if (!day || !month || !year) return null;
+                    return new Date(`${year}-${month}-${day}`).toISOString();
+                }
+
+                // Prefill form with user data
+                async function prefillUserProfile() {
+                    try {
+                        const user = await apiCall('/user', 'GET');
+                        // Top-level fields
+                        form.elements['title'].value = user.title || '';
+                        form.elements['firstName'].value = user.firstName || '';
+                        form.elements['lastName'].value = user.lastName || '';
+                        form.elements['country'].value = user.countryOfResidence || '';
+                        form.elements['dateOfBirth'].value = formatDate(user.dob);
+                        form.elements['email'].value = user.email || '';
+                        if (form.elements['phoneNumber']) form.elements['phoneNumber'].value = user.mobileNumber || '';
+                        // Card details
+                        if (user.cardDetails) {
+                            form.elements['cardNumber'].value = user.cardDetails.cardNumber || '';
+                            form.elements['cardExpiryDate'].value = user.cardDetails.expiryDate || '';
+                            form.elements['cardHolderName'].value = user.cardDetails.cardHolderName || '';
+                            form.elements['cardCvc'].value = user.cardDetails.cvc || '';
+                        }
+                        // Billing address
+                        if (user.billingAddress) {
+                            form.elements['addressLine1'].value = user.billingAddress.address1 || '';
+                            form.elements['addressLine2'].value = user.billingAddress.address2 || '';
+                            form.elements['city'].value = user.billingAddress.city || '';
+                            form.elements['billingStateProvince'].value = user.billingAddress.state || '';
+                            form.elements['billingCountry'].value = user.billingAddress.country || '';
+                            form.elements['billingZipPostalCode'].value = user.billingAddress.zipCode || '';
+                        }
+                    } catch (err) {
+                        alert('Failed to load user profile: ' + err.message);
+                    }
+                }
+
+                // On save, gather all fields and send update
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const updateData = {
+                        title: form.elements['title'].value,
+                        firstName: form.elements['firstName'].value,
+                        lastName: form.elements['lastName'].value,
+                        countryOfResidence: form.elements['country'].value,
+                        dob: parseDate(form.elements['dateOfBirth'].value),
+                        email: form.elements['email'].value,
+                        mobileNumber: form.elements['phoneNumber'] ? form.elements['phoneNumber'].value : '',
+                        cardDetails: {
+                            cardNumber: form.elements['cardNumber'].value,
+                            expiryDate: form.elements['cardExpiryDate'].value,
+                            cardHolderName: form.elements['cardHolderName'].value,
+                            cvc: form.elements['cardCvc'].value
+                        },
+                        billingAddress: {
+                            address1: form.elements['addressLine1'].value,
+                            address2: form.elements['addressLine2'].value,
+                            city: form.elements['city'].value,
+                            state: form.elements['billingStateProvince'].value,
+                            country: form.elements['billingCountry'].value,
+                            zipCode: form.elements['billingZipPostalCode'].value
+                        }
+                    };
+                    try {
+                        await apiCall('/user', 'PUT', updateData);
+                        alert('Profile updated successfully!');
+                    } catch (err) {
+                        alert('Failed to update profile: ' + err.message);
+                    }
+                });
+
+                prefillUserProfile();
+            });
+            </script>
+            <script src="../../js/header-auth.js"></script>
+            <script>
+            function toggleSidebar() {
+                const sidebar = document.querySelector('.user-profile-section-selection');
+                const overlay = document.getElementById('sidebarOverlay');
+                const closeBtn = sidebar ? sidebar.querySelector('.sidebar-close') : null;
+                if (!sidebar) return;
+                sidebar.classList.toggle('open');
+                if (sidebar.classList.contains('open')) {
+                    overlay.style.display = 'block';
+                    if (closeBtn) closeBtn.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    overlay.style.display = 'none';
+                    if (closeBtn) closeBtn.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            }
+            </script>
+    </body>
+</html>

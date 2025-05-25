@@ -36,6 +36,17 @@ const bookingSchema = new mongoose.Schema({
     expiryDate: String,
     cvc: String
   },
+  costBreakdown: {
+    subtotal: Number,
+    tax: Number,
+    total: Number,
+    items: [
+      {
+        label: String,
+        amount: Number
+      }
+    ]
+  },
   status: { type: String, default: 'confirmed' }
 }, { timestamps: true });
 

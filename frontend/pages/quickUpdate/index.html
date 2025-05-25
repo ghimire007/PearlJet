@@ -5,38 +5,11 @@
     <head>
         <title>Welcome to FlyDreamAir!</title>
         <link rel="stylesheet" href="quickUpgrade.css">
+        <link rel="stylesheet" href="../../components/header.css">
+        <link rel="stylesheet" href="../../components/footer.css">
     </head>
     <body>
-        <!-- Header 1 (including logo, language dropdown, profile and log out buttons) -->
-        <header class="header1">
-            <div class="logoHeader">
-                <div class="logo">FlyDreamAir</div>
-            </div>
-            <nav>
-                <select name="Language Options" id="language" class="whiteButton">
-                    <option value="lang1">Australia (English)</option>
-                    <option value="lang2">Language 2</option>
-                    <option value="lang3">Language 3</option>
-                    <option value="lang4">Language 4</option>
-                    <option value="lang5">Language 5</option>
-                    <option value="lang6">Language etc.</option>
-                </select>
-                <button class="whiteButton" onClick="profileButton()">Profile</button>
-                <button class="whiteButton" onClick="logOutButton()">Log Out</button>
-            </nav>
-        </header>  
-        <!-- Second header covering the deals, plan, book, travel, manage booking, help navigation buttons -->
-        <header class="header2">
-            <nav class="headerChoices">
-                <a href="">Deals</a>
-                <a href="">Plan</a>
-                <a href="">Book</a>
-                <a href="">Travel</a>
-                <a href="">Manage Booking</a>
-                <a href="">Help</a>
-            </nav>
-        </header>
-        <!-- search module section -->
+        <div id="header-placeholder"></div>
         <section>
             <!-- div covering the banner image and the search module -->
             <div class="imgAndSearchSection">
@@ -46,11 +19,11 @@
                 <div class="searchModule">
                     <div class="searchNavBar">
                         <nav class="searchChoices">
-                            <a href="">Book</a>
-                            <a href="">Manage</a>
-                            <a href="">Upgrade</a>
-                            <a href="">Check-in</a>
-                            <a href="">Flight Status</a>
+                            <a href="/frontend/pages/quickBook">Book</a>
+                            <a href="/frontend/pages/quickManage">Manage</a>
+                            <a href="/frontend/pages/quickUpdate/">Upgrade</a>
+                            <a href="/frontend/pages/quickCheckIn/">Check-in</a>
+                            <a href="/frontend/pages/quickCheckFlightStatus/">Flight Status</a>
                         </nav>
                      </div>
                      <!-- manage booking elements start -->
@@ -225,5 +198,21 @@
             function checkEligibilityButton() {}
 
          </script>
+          <script src="../../js/api_client.js"></script>
+          <script>
+          function loadHTML(url, elementId, callback) {
+              fetch(url)
+                  .then(response => response.text())
+                  .then(data => {
+                      document.getElementById(elementId).innerHTML = data;
+                      if (callback) callback();
+                  })
+                  .catch(error => console.error('Error loading HTML:', error));
+          }
+
+          document.addEventListener('DOMContentLoaded', function() {
+              loadHTML('../../components/header.html', 'header-placeholder');
+          });
+          </script>
     </body>
 </html>

@@ -684,3 +684,253 @@
     color: #3E4C65;
     border: 1.5px solid #3E4C65;
 }
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Search Module */
+    .searchModule {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .searchNavBar {
+        width: 100%;
+    }
+
+    .searchChoices {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .searchChoices a {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    /* User Search Area */
+    .userSearchArea {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .fromClass, .toClass, .datesClass, .priceRangeClass {
+        width: 100%;
+    }
+
+    .priceRanges {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .rangeAmount {
+        width: 100%;
+    }
+
+    /* People and Search Section */
+    .peopleAndSearch {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .peopleAmount {
+        width: 100%;
+    }
+
+    .peopleType {
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    /* Travel Cards */
+    .travelCardsContainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .eachTravelCard {
+        height: 200px;
+    }
+
+    /* Airline Info Section */
+    .infoBody {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .airlineImageContainer {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .airlineImage {
+        height: 200px;
+    }
+
+    .gridFour {
+        width: 100%;
+    }
+
+    .airlineInfoContainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Info Cards Section */
+    .infoCardsSection {
+        grid-template-columns: 1fr;
+        padding: 15px;
+        gap: 20px;
+    }
+
+    /* Membership Section */
+    .membershipSection .infoBody {
+        flex-direction: column;
+    }
+
+    .gridTwo {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .membershipInfoContainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Section Headings */
+    .sectionHeading {
+        font-size: 20px;
+        padding: 15px;
+    }
+
+    /* Buttons */
+    .blueButton {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .pAmountButton {
+        padding: 8px 12px;
+    }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+    .searchModule {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .searchChoices a {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .peopleType {
+        font-size: 14px;
+    }
+
+    .eachTravelCard {
+        height: 180px;
+    }
+
+    .airlineImage {
+        height: 150px;
+    }
+
+    .sectionHeading {
+        font-size: 18px;
+    }
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fix for iOS input zoom */
+@media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="date"],
+    select {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* Improve touch targets */
+@media screen and (max-width: 768px) {
+    button, 
+    .searchChoices a,
+    .pAmountButton {
+        min-height: 44px; /* Apple's recommended minimum touch target size */
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .searchModule {
+        position: static;
+        width: 98%;
+        height: auto;
+        top: unset;
+        left: unset;
+        right: unset;
+        margin: 16px auto 0 auto;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+    .userSearchArea {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 8px 8px 8px;
+    }
+    .fromClass, .toClass, .datesClass, .priceRangeClass {
+        width: 100%;
+        margin: 0 0 8px 0;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .input {
+        width: 100%;
+        min-width: 0;
+    }
+    .peopleAndSearch {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin: 0;
+    }
+    .peopleAmount {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 8px;
+    }
+    .searchFlightsContainer {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .blueButton {
+        width: 100%;
+        margin-top: 8px;
+    }
+    .searchChoices {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 4px;
+    }
+    .searchChoices a {
+        display: inline-block;
+        min-width: 90px;
+        text-align: center;
+        margin: 0 6px 0 0;
+    }
+}

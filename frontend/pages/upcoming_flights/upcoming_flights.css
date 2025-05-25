@@ -659,3 +659,70 @@ td.dollar-amount-td
     background-color: orange;
     color: #fff
 }
+
+/* Responsive Sidebar: Hamburger and Slide-in */
+@media (max-width: 900px) {
+  .user-profile-section-selection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    max-width: 80vw;
+    background: var(--card-background, #fff);
+    z-index: 2000;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+    border-radius: 0 12px 12px 0;
+    padding-top: 60px;
+  }
+  .user-profile-section-selection.open {
+    transform: translateX(0);
+  }
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 1999;
+  }
+  .sidebar-close {
+    display: block;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 2rem;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    z-index: 2100;
+  }
+  .sidebar-hamburger {
+    display: block;
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 2101;
+    background: var(--primary-color, #3E4C65);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 6px 12px;
+  }
+}
+@media (min-width: 901px) {
+  .sidebar-hamburger, .sidebar-close, .sidebar-overlay {
+    display: none !important;
+  }
+  .user-profile-section-selection {
+    position: static;
+    transform: none !important;
+    width: 280px;
+    border-radius: 8px;
+    padding-top: 20px;
+  }
+}

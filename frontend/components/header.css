@@ -202,39 +202,75 @@
     }
 }
 
-/* Header 1 styles */
+/* Header 1 styles - Modern horizontal layout for nav buttons */
 .header1 {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
     align-items: center;
-    background-color: #3E4C65; /* Reverted to original blue */
-    font-family: 'Poppins', sans-serif; /* Added Poppins font */
+    padding: 20px;
+    background-color: #3E4C65;
+    font-family: 'Poppins', sans-serif;
 }
 
 .logoHeader {
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
 }
 
 .logo {
-    display: flex;
-    justify-content: flex-start;
-    color: #FFFFFF; /* Reverted to white */
-    padding: 0;
+    color: #FFFFFF;
     font-size: 20px;
-    font-family: 'Poppins', sans-serif; /* Added Poppins font */
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
+    cursor: pointer;
+}
+
+.header1 nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .whiteButton {
     background-color: #F4F6F8;
     color: #3E4C65;
     border: 1px solid #F4F6F8;
-    padding: 8px;
+    padding: 8px 16px;
     border-radius: 4px;
-    font-family: 'Poppins', sans-serif; /* Added Poppins font */
-    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    display: inline-block;
+    margin: 0 2px;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+}
+
+.whiteButton:hover {
+    background-color: #e0e3e7;
+    color: #2c3950;
+}
+
+.header1 nav select.whiteButton {
+    min-width: 150px;
+    margin-right: 8px;
+}
+
+/* Responsive adjustments for header1 nav */
+@media (max-width: 600px) {
+    .header1 {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+    }
+    .header1 nav {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+    }
+    .logoHeader {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
 }
 
 /* Header 2 styles */

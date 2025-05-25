@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlyDreamAir - Settings</title>
+        <link rel="stylesheet" href="settings.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <link rel="stylesheet" href="../../components/header.css">
+        <link rel="stylesheet" href="../../components/footer.css">
+    </head>
+
+    <body>
+        <div id="header-placeholder"></div>
+
+        <button class="sidebar-hamburger" onclick="toggleSidebar()">&#9776;</button>
+        <div class="sidebar-overlay" id="sidebarOverlay" style="display:none;" onclick="toggleSidebar()"></div>
+        <main class="user-profile-page">
+            <div id="header-placeholder"></div>
+            <div id="main-content-box">
+                <div id="user-profile-sidebar-placeholder"></div>
+                <section class="section-content-area">
+                    <div id="settings-div">
+                        <h2 id="settings-title">Website Settings</h2>
+                        <form id="color-mode-form" class="settings-card">
+                            <div class="form-group">
+                                <label>Color Mode</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" id="light-mode" name="colour-selector" value="Light-Mode" checked /> Light mode</label>
+                                    <label><input type="radio" id="dark-mode" name="colour-selector" value="Dark-Mode" /> Dark mode</label>
+                                </div>
+                            </div>
+                            <div class="form-group toggle-group">
+                                <label for="enable-notifications">Enable notifications</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="enable-notifications" name="enable-notifications">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="form-group toggle-group">
+                                <label for="email-updates">Email updates</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="email-updates" name="email-updates">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="form-group toggle-group">
+                                <label for="privacy-mode">Privacy mode</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="privacy-mode" name="privacy-mode">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <div id="footer-placeholder"></div>
+        <script>
+        function highlightSidebarTab() {
+            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            let folder = '';
+            if (pathParts.length > 1 && pathParts[pathParts.length - 1] === 'index.html') {
+                folder = pathParts[pathParts.length - 2];
+            } else {
+                folder = pathParts[pathParts.length - 1];
+            }
+            const sidebarMap = [
+                { id: 'sidebar-upcoming-flights',    folder: 'upcoming_flights' },
+                { id: 'sidebar-current-bookings',    folder: 'current-bookings-management' },
+                { id: 'sidebar-digital-tickets',     folder: 'digital-tickets' },
+                { id: 'sidebar-inflight-points',     folder: 'in-flight-points' },
+                { id: 'sidebar-booking-history',     folder: 'booking-history' },
+                { id: 'sidebar-digital-receipts',    folder: 'digital-receipts' },
+                { id: 'sidebar-profile-management',  folder: 'user_profile' },
+                { id: 'sidebar-settings',            folder: 'settings' }
+            ];
+            sidebarMap.forEach(item => {
+                const btn = document.getElementById(item.id);
+                if (btn) {
+                    if (item.folder === folder) {
+                        btn.classList.remove('regular-button');
+                        btn.classList.add('current-button');
+                    } else {
+                        btn.classList.remove('current-button');
+                        btn.classList.add('regular-button');
+                    }
+                }
+            });
+        }
+        function loadHTML(url, elementId, callback) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                    if (callback) callback();
+                })
+                .catch(error => console.error('Error loading HTML:', error));
+        }
+        loadHTML('../../components/header.html', 'header-placeholder');
+        loadHTML('../../components/footer.html', 'footer-placeholder');
+        loadHTML('../../components/user-profile-sidebar.html', 'user-profile-sidebar-placeholder', highlightSidebarTab);
+        </script>
+        <script src="../../js/header-auth.js"></script>
+        <script src="../../js/api_client.js"></script>
+        <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.user-profile-section-selection');
+            const overlay = document.getElementById('sidebarOverlay');
+            const closeBtn = sidebar ? sidebar.querySelector('.sidebar-close') : null;
+            if (!sidebar) return;
+            sidebar.classList.toggle('open');
+            if (sidebar.classList.contains('open')) {
+                overlay.style.display = 'block';
+                if (closeBtn) closeBtn.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.style.display = 'none';
+                if (closeBtn) closeBtn.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+        </script>
+    </body>
+</html>

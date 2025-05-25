@@ -222,6 +222,7 @@
         <div id="footer-placeholder"></div>
 
         <script src="../../js/api_client.js" defer></script>
+        <script src="../../js/header-auth.js"></script>
         <script>
             // Load header and footer
             function loadHTML(url, elementId) {
@@ -540,8 +541,15 @@
                              displayMessage(loginMessageArea, `Login successful! Welcome.`, true);
                              storeToken(result.token); // Store the received token
                              localStorage.setItem('user', JSON.stringify(result.user)); // Store user details
-                             window.location.href = '/frontend/pages/quickBook/index.html'; 
-                            
+                             
+                             // Check for stored redirect URL
+                             const redirectUrl = localStorage.getItem('redirectAfterLogin');
+                             if (redirectUrl) {
+                                 localStorage.removeItem('redirectAfterLogin'); // Clear the stored URL
+                                 window.location.href = redirectUrl;
+                             } else {
+                                 window.location.href = '/frontend/pages/quickBook/index.html';
+                             }
                              
                              // TODO: Redirect to a dashboard or main app page
                               // Example: Redirect after a short delay
