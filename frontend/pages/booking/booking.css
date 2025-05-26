@@ -1,11 +1,9 @@
-body {
-    font-family: 'Roboto', sans-serif;
+body
+{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
     margin: 0;
-    background-color: #f4f6f8; /* Light grey background, adjust as needed */
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensure footer sticks to bottom if content is short */
+    padding: 0;
 }
 
 /* Styles previously for .main-header, .logo, .main-nav, .header-actions, etc. have been moved to frontend/components/header.css */

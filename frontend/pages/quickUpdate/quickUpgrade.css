@@ -16,6 +16,13 @@
     src: url(../../Poppins/Poppins-Regular.ttf);
     font-weight: 300;
 }
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f4f6f8;
+    color: #333;
+    line-height: 1.6;
+}
 
 /* header 1 -- logo, language, profile and log out buttons */
 .header1 {

@@ -4,11 +4,10 @@
   --accent-color: #fff;
   --text-on-primary: #fff;
 }
-
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #e6f7ff;
+    background-color: #f4f6f8;
     color: #333;
     line-height: 1.6;
 }
