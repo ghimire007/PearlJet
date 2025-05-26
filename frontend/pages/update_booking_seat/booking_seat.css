@@ -185,18 +185,32 @@ body {
 }
 
 .action-btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    min-width: 180px;
+}
+
+.primary-action-btn {
     background-color: var(--primary-color);
     color: white;
-    padding: 12px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
 }
-.action-btn:hover {
+
+.primary-action-btn:hover {
     background-color: var(--primary-hover);
+}
+
+.danger-action-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.danger-action-btn:hover {
+    background-color: #c82333;
 }
 
 .class-selection, .passenger-type-selector, .in-flight-services {
@@ -429,10 +443,11 @@ body {
 }
 
 .checkout-button-container {
-    text-align: center; /* Center the button */
-    margin-top: 30px; /* Space above the button */
-    padding-top: 20px;
-    border-top: 1px solid #eee; /* Optional separator line */
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 1rem;
 }
 
 #proceed-to-checkout-btn {

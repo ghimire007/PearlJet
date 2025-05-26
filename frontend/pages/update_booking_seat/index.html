@@ -139,6 +139,7 @@
         </div>
 
         <div class="checkout-button-container">
+            <button id="cancel-booking-btn" class="action-btn danger-action-btn" type="button">Cancel Booking</button>
             <button id="proceed-to-checkout-btn" class="action-btn primary-action-btn" type="button">Update</button>
         </div>
 
@@ -227,6 +228,22 @@
                     alert('Failed to load booking details: ' + err.message);
                 }
             }
+
+            // Add cancel booking functionality
+            document.getElementById('cancel-booking-btn').addEventListener('click', async function() {
+                if (!currentBooking) return alert('Booking not loaded.');
+                
+                if (confirm('Are you sure you want to cancel this booking? This action cannot be undone.')) {
+                    try {
+                        await apiCall(`/bookings/${currentBooking._id}/cancel`, 'PUT');
+                        alert('Booking cancelled successfully');
+                        window.location.href = '../user_profile/index.html';
+                    } catch (err) {
+                        alert('Failed to cancel booking: ' + err.message);
+                    }
+                }
+            });
+
             // Seat selection logic: remove .booked-seat from all seats if user selects a different seat
             document.querySelectorAll('.seat').forEach(seat => {
                 seat.addEventListener('click', function() {

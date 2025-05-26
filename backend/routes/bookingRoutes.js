@@ -5,7 +5,8 @@ import {
   getBookingById,
   updateBooking,
   deleteBooking,
-  getUpcomingBookings
+  getUpcomingBookings,
+  cancelBooking
 } from '../controllers/bookingController.js';
 import { verifyToken } from '../middleware/authMiddleware.js';
 
@@ -20,5 +21,6 @@ router.get('/upcoming', verifyToken, getUpcomingBookings);
 router.get('/:id', verifyToken, getBookingById);
 router.put('/:id', verifyToken, updateBooking); 
 router.delete('/:id', verifyToken, deleteBooking);
+router.put('/:id/cancel', verifyToken, cancelBooking);
 
 export default router; 
