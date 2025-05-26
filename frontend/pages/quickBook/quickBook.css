@@ -289,20 +289,32 @@
 }
 
 .pAmountButton {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-left: 5px;
-    margin-right: 5px;
-    color: #FFFFFF;
-    background-color: #3E4C65;
-    border: 1px solid #3E4C65;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #3E4C65 !important;
+    color: #fff !important;
+    border: 2px solid #3E4C65 !important;
+    box-shadow: 0 2px 6px rgba(62,76,101,0.08);
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    margin: 0 8px !important;
 }
 
 .pAmountButton:hover {
-    background-color: transparent;
-    border: 1.5px solid #3E4C65;
-    color: #3E4C65;
+    background-color: #fff !important;
+    color: #3E4C65 !important;
+    border: 2px solid #3E4C65 !important;
+}
+
+.peopleType span {
+    margin: 0 8px !important;
+    min-width: 24px;
+    display: inline-block;
+    text-align: center;
 }
 
 .dealsSection {
@@ -932,5 +944,201 @@ img {
         min-width: 90px;
         text-align: center;
         margin: 0 6px 0 0;
+    }
+    .airlineInfoSection .infoBody {
+        flex-direction: column !important;
+    }
+    .airlineInfoSection .airlineImageContainer {
+        order: 0 !important;
+    }
+    .airlineInfoSection .gridFour .infoHeading {
+        font-size: 1.7rem !important;
+        margin-top: 18px !important;
+        margin-bottom: 10px !important;
+        line-height: 1.2 !important;
+    }
+    .airlineInfoSection .gridFour {
+        gap: 10px !important;
+    }
+}
+
+/* --- Responsive improvements for sections below the search bar --- */
+
+@media screen and (max-width: 900px) {
+    .dealsSection,
+    .airlineInfoSection,
+    .infoCardsSection,
+    .membershipSection {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+    .infoCardsSection,
+    .travelCardsContainer {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 20px;
+    }
+    .eachInfoCard,
+    .eachTravelCard {
+        width: 100% !important;
+        max-width: 100%;
+        min-width: 0;
+    }
+    .airlineImageContainer {
+        width: 100% !important;
+        height: auto !important;
+        min-width: 0;
+        margin-bottom: 20px;
+    }
+    .airlineImage {
+        width: 100% !important;
+        height: auto !important;
+        min-width: 0;
+    }
+    .infoBody,
+    .membershipSection .infoBody {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 12px 0 !important;
+    }
+    .gridFour,
+    .gridTwo {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    .airlineInfoContainer,
+    .membershipInfoContainer {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dealsSection,
+    .airlineInfoSection,
+    .infoCardsSection,
+    .membershipSection {
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+    .sectionHeading {
+        font-size: 18px;
+        padding: 10px 0;
+    }
+    .infoCardsSection,
+    .travelCardsContainer {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 16px;
+        padding: 0 !important;
+    }
+    .eachInfoCard,
+    .eachTravelCard {
+        width: 100% !important;
+        max-width: 100%;
+        min-width: 0;
+        height: auto !important;
+    }
+    .airlineImageContainer {
+        width: 100% !important;
+        height: auto !important;
+        min-width: 0;
+        margin-bottom: 16px;
+    }
+    .airlineImage {
+        width: 100% !important;
+        height: auto !important;
+        min-width: 0;
+    }
+    .infoBody,
+    .membershipSection .infoBody {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 8px 0 !important;
+    }
+    .gridFour,
+    .gridTwo {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    .airlineInfoContainer,
+    .membershipInfoContainer {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dealsSection,
+    .airlineInfoSection,
+    .infoCardsSection,
+    .membershipSection {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+    .sectionHeading {
+        font-size: 16px;
+        padding: 6px 0;
+    }
+    .infoCardsSection,
+    .travelCardsContainer {
+        gap: 10px;
+    }
+    .eachInfoCard,
+    .eachTravelCard {
+        width: 100% !important;
+        max-width: 100%;
+        min-width: 0;
+        height: auto !important;
+    }
+    .airlineImageContainer {
+        width: 100% !important;
+        height: auto !important;
+        min-width: 0;
+        margin-bottom: 10px;
+    }
+    .airlineImage {
+        width: 100% !important;
+        height: auto !important;
+        min-width: 0;
+    }
+    .infoBody,
+    .membershipSection .infoBody {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 4px 0 !important;
+    }
+    .gridFour,
+    .gridTwo {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    .airlineInfoContainer,
+    .membershipInfoContainer {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .airlineInfoSection .gridFour .infoHeading {
+        font-size: 1.2rem !important;
+        margin-top: 14px !important;
+        margin-bottom: 8px !important;
+    }
+    .airlineInfoSection .gridFour {
+        gap: 8px !important;
+    }
+    .pAmountButton {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1.2rem !important;
+        margin: 0 6px !important;
+    }
+    .peopleType span {
+        font-size: 1.1rem;
+        min-width: 20px;
+        margin: 0 6px !important;
+        font-weight: 400 !important;
     }
 }

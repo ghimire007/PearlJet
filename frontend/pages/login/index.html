@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlyDreamAir - Onboarding</title>
+        <link rel="stylesheet" href="../../components/header.css">
+        <link rel="stylesheet" href="../../components/footer.css">
+        <link rel="stylesheet" href="onboarding.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <!-- Font Awesome for icons (optional, but good for checkmarks, etc.) -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+    </head>
+    <body>
+        <!-- Header will be loaded here -->
+        <div id="header-placeholder"></div>
+
+        <main class="register-page">
+            <!-- Login Form Container -->
+            <div id="login-flow-container">
+                <div class="form-content">
+                    <h2>Login</h2>
+                    <div id="message-area" class="message-area" style="display: none;"></div>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-identifier">Email</label>
+                            <input type="email" id="login-identifier" name="identifier" placeholder="Enter email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="password" placeholder="Enter password" required autocomplete="current-password">
+                        </div>
+                        <button type="submit" class="action-btn primary-action-btn">Login</button>
+                        <div class="auth-toggle-link">
+                            <a href="../register/index.html">Don't have an account? Register</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer will be loaded here -->
+        <div id="footer-placeholder"></div>
+
+        <script src="../../js/api_client.js"></script>
+        <script>
+            // Load header and footer
+            function loadHTML(url, elementId) {
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById(elementId).innerHTML = data;
+                    })
+                    .catch(error => console.error('Error loading HTML:', error));
+            }
+            loadHTML('../../components/header.html', 'header-placeholder');
+            loadHTML('../../components/footer.html', 'footer-placeholder');
+
+            // Token Management
+            const TOKEN_KEY = 'flyDreamAirToken';
+
+            function storeToken(token) {
+                localStorage.setItem(TOKEN_KEY, token);
+            }
+
+            function getToken() {
+                return localStorage.getItem(TOKEN_KEY);
+            }
+
+            function removeToken() {
+                localStorage.removeItem(TOKEN_KEY);
+            }
+
+            function displayMessage(message, isSuccess) {
+                const messageArea = document.getElementById('message-area');
+                messageArea.textContent = message;
+                messageArea.className = 'message-area ' + (isSuccess ? 'success' : 'error');
+                messageArea.style.display = 'block';
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const loginForm = document.getElementById('login-form');
+                const messageArea = document.getElementById('message-area');
+
+                if (loginForm) {
+                    loginForm.addEventListener('submit', async (event) => {
+                        event.preventDefault();
+                        messageArea.style.display = 'none'; // Hide any previous messages
+
+                        const email = loginForm.identifier.value;
+                        const password = loginForm.password.value;
+
+                        if (!email || !password) {
+                            displayMessage('Please enter both email and password.', false);
+                            return;
+                        }
+
+                        try {
+                            const response = await loginUserApi({ email, password });
+                            if (response.token) {
+                                // Store the token
+                                storeToken(response.token);
+                                // Store user info if available
+                                if (response.user) {
+                                    localStorage.setItem('user', JSON.stringify(response.user));
+                                }
+                                
+                                displayMessage('Login successful! Redirecting...', true);
+
+                                // Check for stored redirect URL
+                                const redirectUrl = localStorage.getItem('redirectAfterLogin');
+                                if (redirectUrl) {
+                                    localStorage.removeItem('redirectAfterLogin'); // Clear the stored URL
+                                    window.location.href = redirectUrl;
+                                } else {
+                                    window.location.href = '../quickBook/index.html';
+                                }
+                            } else {
+                                displayMessage('Login failed. No authentication token received.', false);
+                            }
+                        } catch (error) {
+                            displayMessage(error.message || 'Login failed. Please check your credentials and try again.', false);
+                        }
+                    });
+                }
+
+                // Check if user is already logged in
+                const token = getToken();
+                if (token) {
+                    const redirectUrl = localStorage.getItem('redirectAfterLogin');
+                    if (redirectUrl) {
+                        localStorage.removeItem('redirectAfterLogin');
+                        window.location.href = redirectUrl;
+                    } else {
+                        window.location.href = '../quickBook/index.html';
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

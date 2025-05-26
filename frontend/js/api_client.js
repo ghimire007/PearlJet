@@ -116,7 +116,7 @@ function updateHeaderAuthButtons() {
 
     // Set up click handlers
     newLoginBtn.onclick = function() {
-        window.location.href = '../onboarding/index.html';
+        window.location.href = '../login/index.html';
     };
     newProfileBtn.onclick = function() {
         window.location.href = '../user_profile/index.html';
@@ -149,10 +149,10 @@ function checkAuthAndRedirect(redirect = true) {
     if (!token && redirect) {
         // Save current URL including query parameters before redirecting
         const currentPath = window.location.pathname + window.location.search;
-        if (!currentPath.includes('onboarding')) {
+        if (!currentPath.includes('login')) {
             localStorage.setItem('redirectAfterLogin', currentPath);
         }
-        window.location.href = '../onboarding/index.html';
+        window.location.href = '../login/index.html';
         return false;
     }
     return !!token;
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateHeaderAuthButtons();
         // Check if current page is public
         const currentPath = window.location.pathname;
-        const isPublicPage = currentPath.includes('quickBook') || currentPath.includes('onboarding');
+        const isPublicPage = currentPath.includes('quickBook') || currentPath.includes('login') || currentPath.includes('register');
         
         // If not a public page, check authentication
         if (!isPublicPage) {
