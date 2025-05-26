@@ -202,9 +202,12 @@ td.table-right-side {
     background: #e8f5e9;
     color: #2e7d32;
 }
-.status-cancelled {
+.status-cancelled,
+.status-canceled {
     background: #ffebee;
     color: #c62828;
+    border: 1px solid #c62828;
+    font-weight: 600;
 }
 .status-upcoming {
     background: #e3f2fd;
