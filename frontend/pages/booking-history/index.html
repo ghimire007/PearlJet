@@ -105,7 +105,7 @@
                         </div>
                         <div class="history-row">
                             <div class="history-label">Status</div>
-                            <div class="history-value"><span class="flight-status ${booking.status === 'Completed' ? 'status-completed' : booking.status === 'Cancelled' ? 'status-cancelled' : 'status-upcoming'}">${booking.status || '-'}</span></div>
+                            <div class="history-value"><span class="flight-status ${booking.status === 'Completed' ? 'status-completed' : (booking.status === 'Cancelled' || booking.status === 'canceled' ? 'status-canceled' : 'status-upcoming')}">${booking.status || '-'}</span></div>
                             <div class="history-label">Points Earned</div>
                             <div class="history-value">${booking.pointsEarned ? booking.pointsEarned + ' points' : 'Pending'}</div>
                         </div>
