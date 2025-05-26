@@ -194,27 +194,6 @@
                 </div>
             </div>
 
-            <!-- Login Form Container (Initially Hidden) -->
-            <div id="login-flow-container" style="display: none;">
-                <div class="form-content">
-                    <h2>Login</h2>
-                    <div id="login-message-area" class="message-area" style="display: none;"></div>
-                    <form id="login-form">
-                        <div class="form-group">
-                            <label for="login-identifier">Email</label>
-                            <input type="email" id="login-identifier" name="identifier" placeholder="Enter email" required autocomplete="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="login-password">Password</label>
-                            <input type="password" id="login-password" name="password" placeholder="Enter password" required autocomplete="current-password">
-                        </div>
-                        <button type="submit" class="action-btn primary-action-btn">Login</button>
-                        <div class="auth-toggle-link">
-                            <a href="#" id="show-register-link">Don't have an account? Register</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
 
         </main>
 
@@ -243,7 +222,6 @@
 
             // DOM Elements for forms and containers
             const registrationFlowContainer = document.getElementById('registration-flow-container');
-            const loginFlowContainer = document.getElementById('login-flow-container');
             const showLoginLink = document.getElementById('show-login-link');
             const showRegisterLink = document.getElementById('show-register-link');
             const completeRegistrationBtn = document.getElementById('complete-registration-btn');
@@ -384,17 +362,7 @@
             }
 
             function toggleAuthForms(showLogin) {
-                if (showLogin) {
-                    registrationFlowContainer.style.display = 'none';
-                    loginFlowContainer.style.display = 'block';
-                } else {
-                    registrationFlowContainer.style.display = 'block';
-                    loginFlowContainer.style.display = 'none';
-                    // Reset registration form to first step
-                    currentStepIndex = 0;
-                    updateStepper(currentStepIndex);
-                    showFormStep(currentStepIndex);
-                }
+                window.location.href = '../login/index.html';
             }
             
             // Collect data from a form given its ID

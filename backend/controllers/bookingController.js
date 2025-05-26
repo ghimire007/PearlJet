@@ -77,4 +77,19 @@ export const getUpcomingBookings = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+};
+
+// Cancel a booking
+export const cancelBooking = async (req, res) => {
+  try {
+    const booking = await Booking.findOneAndUpdate(
+      { _id: req.params.id, user: req.user._id },
+      { status: 'canceled' },
+      { new: true }
+    );
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    res.json(booking);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 }; 
