@@ -6,12 +6,11 @@
 }
 
 body {
-    /* Inherits global styles from booking.css if that was loaded, 
-       but good to have some basics if this page is loaded standalone. */
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #f8f9fa; /* Light background for the page */
+    background-color: #f4f6f8;
     color: #333;
+    line-height: 1.6;
 }
 
 .seat-selection-page {
